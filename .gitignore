@@ -1,0 +1,10 @@
+get_f0_lib/*.o
+get_f0_lib/*.a
+slgr_engine/*.o
+slgr_engine/*.a
+pyslgr/*.cpp
+pyslgr/*.o
+pyslgr/*.pyc
+pyslgr/*.so
+pyslgr/build
+examples/tmp
