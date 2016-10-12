@@ -8,3 +8,4 @@ pyslgr/*.pyc
 pyslgr/*.so
 pyslgr/build
 examples/tmp
+.DS_Store
