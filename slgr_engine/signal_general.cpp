@@ -496,9 +496,9 @@ void Signal::load_sph (string filename, int channel_num)
 	}
 	delete[] hdr;
 
-	printf("format: %s\n", format);
-	printf("sample_n_bytes = %d\n", sample_n_bytes);
-	printf("num_channels = %d\n", num_channels);
+	// printf("format: %s\n", format);
+	// printf("sample_n_bytes = %d\n", sample_n_bytes);
+	// printf("num_channels = %d\n", num_channels);
 
 	// Sanity checks
 	if (sample_n_bytes<1 || sample_n_bytes>2) {

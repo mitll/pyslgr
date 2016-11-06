@@ -4,16 +4,18 @@ import os
 import sys
 import json
 
+from pyslgr.GMMModel import GMMSAD
 from pyslgr.LLSignal import LLSignal
 from pyslgr.MFCCFeatures import MFCCFeatures
 from pyslgr.FeatPipe import FeatPipe
+from pyslgr.sad import XtalkSAD
 
-print '\nTesting FeatPipe with MFCC features ...'
+print '\nTesting FeatPipe with MFCC features and GMMSAD ...'
 
-# JSON config file
-with open('config/lid_mfcc.json','r') as fid:
+# Features config file
+with open('config/lid_mfcc+gmmsad_pipe.json','r') as fid:
     pipe_config = json.load(fid)
-print 'Pipeline configuration: {}'.format(pipe_config)
+print 'Pipeline configuration: {}\n'.format(pipe_config)
 
 # Load signal
 fn = 'signals/example.sph'
@@ -21,7 +23,7 @@ x = LLSignal()
 x.load_sph(fn, 0)
 
 # Apply pipeline
-pipe = FeatPipe(pipe_config, MFCCFeatures, None)
+pipe = FeatPipe(pipe_config, MFCCFeatures, GMMSAD)
 f = pipe.process(x)
 
 # Info

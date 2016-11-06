@@ -20,9 +20,9 @@ def process(fn, feat_config_lid, model_path, model_names):
     x.load_sph(fn, 0)
 
     # Calculate base features
-    f = MFCCFeatures()
+    f = MFCCFeatures(feat_config_lid)
     print "Processing features..."
-    f.process(x, feat_config_lid)
+    f.process(x)
 
     # Post process features
     f.rasta()

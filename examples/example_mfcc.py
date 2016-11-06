@@ -26,11 +26,11 @@ x = LLSignal()
 x.load_sph(fn, 0)
 
 # Get features
-f = MFCCFeatures()
 if use_dict:
-    f.process(x, feat_config)
+    f = MFCCFeatures(feat_config)
 else:
-    f.process(x, mfcc_config)
+    f = MFCCFeatures(mfcc_config)
+f.process(x)
 f.delta(2)
 f.accel(2)
 f.sdc(3, 7)

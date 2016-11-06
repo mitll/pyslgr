@@ -19,8 +19,8 @@ def process_gmmsad(fn, feat_config, model_dir, model_files):
     x = LLSignal()
     x.load_sph(fn, 0)
 
-    gs = GMMSAD(feat_config, model_dir, model_files)
-    sad_marks = gs.gmmsad(x)
+    gmmsad = GMMSAD(feat_config, model_dir, model_files)
+    sad_marks = gmmsad.process(x, None)
     print 'sad marks : {}'.format(sad_marks)
 
     # JSON config file
@@ -35,8 +35,8 @@ def process_gmmsad(fn, feat_config, model_dir, model_files):
     print 'MFCC features configuration: {}'.format(mfcc_config)
 
     # Get features
-    f = MFCCFeatures()
-    f.process(x, mfcc_config)
+    f = MFCCFeatures(mfcc_config)
+    f.process(x)
 
     # Load and apply sad marks
     print 'Number of feature vectors before SAD: {}'.format(f.num_vec())
@@ -51,19 +51,18 @@ if __name__ == "__main__":
     model_dir = '../models'
 
     # JSON config file
-    fp = open(sad_config_fn,'r')
-    c = json.load(fp)
-    fp.close()
+    with open(sad_config_fn,'r') as fp:
+        c = json.load(fp)
 
-    # Feature config for LID
-    feat_config = json.dumps(c['sad_config']['feat_config'])
+    # Feature config 
+    feat_config = json.dumps(c['feat_config'])
 
     # Models in order
-    model_files = c['sad_config']['models']
+    model_files = c['gmm_models']
     print 'Using models: {}'.format(model_files)
 
     # Processing
-    fn = 'signals/example2.sph'
+    fn = 'signals/example.sph'
     print "Processing file: " , fn
     process_gmmsad(fn, feat_config, model_dir, model_files)
     

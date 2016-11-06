@@ -5,6 +5,7 @@ from libcpp.vector cimport vector
 from MFCC_Features cimport MFCC_Features
 from GMM_model cimport GMM_model
 from LLSignal cimport LLSignal
+from LLFeatures cimport LLFeatures
        
 cdef class GMMModel:
     cdef GMM_model *_mPtr
@@ -19,4 +20,5 @@ cdef class GMMSAD:
     cdef int _label_window
     cdef string _label_keep
     cdef vector[GMM_model] _gmm_models
-    cpdef gmmsad(self, LLSignal signal)
+    cpdef process(self, LLSignal signal, LLFeatures f)
+

@@ -32,8 +32,8 @@ x.load_sph(fn, 0)
 x.resample_8k()
 
 # Get features
-f = MFCCFeatures()
-f.process(x, mfcc_config)
+f = MFCCFeatures(mfcc_config)
+f.process(x)
 f.set_outfeat('f')
 print 'Number of output features: {}'.format(f.num_outfeat())
 delta_f = 0.5*x.sampling_frequency() / (feat_config['tgt_num_filt']+1)

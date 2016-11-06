@@ -11,10 +11,10 @@ from LLFeatures cimport LLFeatures
 from GMM_model cimport GMM_model
 from GMMModel cimport GMMModel
 from Signal cimport Time_Interval
+import json
 import numpy as np
 from Scores import Scores
 import os
-
 
 cdef class GMMModel:
     def __cinit__(self):
@@ -103,7 +103,9 @@ cdef class GMMModel:
 
 cdef class GMMSAD:
     """Class to process a signal and produce SAD marks using a GMM
+
         GMMSAD (feat_config, gmm_models, label_keep, label_window, min_gap_dur=0.5, min_seg_dur=0.2)
+        or GMMSAD (config) where config is a JSON string or dictionary. 
 
         Parameters:
             feat_config : string
@@ -121,9 +123,45 @@ cdef class GMMSAD:
             min_seg_dur : float (default 0.2 seconds)
                 Minimum segment duration -- ignore segments below this duration
     """
-    def __cinit__(self, string feat_config, string model_dir, dict gmm_models, string label_keep='speech', label_window=50, float min_gap_dur=0.5, 
-                  float min_seg_dur=0.2):
-        self._config = feat_config
+
+    def __cinit__(self, config, string model_dir="", dict gmm_models=None, string label_keep='speech', int label_window=50, float min_gap_dur=0.5, float min_seg_dur=0.2):
+        if isinstance(config, str) or isinstance(config, unicode):
+            config = json.loads(config)
+        elif not isinstance(config, dict):
+            raise ValueError("GMMSAD constructor: unknown input type")
+
+        # Cython does not allow overloaded constructors, so we must check to make sure 
+        if ('model_dir' not in config) and (model_dir==""):
+            raise ValueError("GMMSAD constructor: model_dir must be specified")
+        if ('gmm_models' not in config) and (gmm_models is None):
+            raise ValueError("GMMSAD constructor: model_dir must be specified")
+
+        # Now fill in values
+        if 'feat_config' in config:
+            feat_config = config['feat_config']
+        else:
+            feat_config = config
+        if model_dir=="":
+            model_dir = config['model_dir']
+        if gmm_models is None:
+            gmm_models = config['gmm_models']
+        if 'label_keep' in config:
+            label_keep = config['label_keep']
+        if 'label_window' in config:
+            label_window = config['label_window']
+        if 'min_gap_dur' in config:
+            min_gap_dur = config['min_gap_dur']
+        if 'min_seg_dur' in config:
+            min_seg_dur = config['min_seg_dur']
+
+        if isinstance(feat_config, dict):
+            feat_config_str = json.dumps(feat_config)
+        elif isinstance(feat_config, str) or isinstance(feat_config, unicode):
+            feat_config_str = feat_config
+        else:
+            raise ValueError("GMMSAD constructor: unknown input type")
+    
+        self._config = feat_config_str
         self._min_gap_dur = min_gap_dur
         self._min_seg_dur = min_seg_dur
         self._label_window = label_window
@@ -131,7 +169,6 @@ cdef class GMMSAD:
             raise Exception('GMMSAD: label {} not found in gmm_models dictionary'.format(label_keep))
 
         # Populate _gmm_models with loaded GMM models
-        print "Populating..."
         i1 = 0
         cdef string ky
         cdef GMM_model *curr_model
@@ -144,7 +181,15 @@ cdef class GMMSAD:
             self._gmm_models.push_back(deref(curr_model))
             i1 += 1
     
-    cpdef gmmsad(self, LLSignal signal):
+    cpdef process(self, LLSignal signal, LLFeatures f):
+        """
+           Process LLSignal and return a list of tuples.  Each tuple is a start time (seconds) and duration of the 
+           detected class.
+
+           gmmsad (signal)
+              signal   LLSignal 
+              f        LLFeatures object (not used, but available for uniformity)
+        """
         out = signal._sigPtr.gmmsad(deref(signal._sigPtr), self._config, self._gmm_models, self._label_window, self._idx_keep, self._min_gap_dur, self._min_seg_dur)
         out_python = []
         cdef list_cpp[Time_Interval].iterator it = out.begin()

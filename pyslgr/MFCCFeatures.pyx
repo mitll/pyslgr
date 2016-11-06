@@ -1,4 +1,6 @@
-#MFCCFeatures.pyx
+#
+# MFCCFeatures -- python interface
+#
 from libcpp.string cimport string
 from libcpp.list cimport list as list_cpp
 from MFCC_Features cimport MFCC_Features
@@ -8,16 +10,34 @@ from Features cimport Time_Interval
 from cython.operator cimport dereference as deref
 import json
 
-#import LLSignal
-#from LLSignal import LLSignal
-
 cdef class MFCCFeatures(LLFeatures):
 
-    def __cinit__(self):
+    def __cinit__(self, config):
+        """
+        config  String or dictionary containing configuration parameters for MFCCs.
+                Parameters in the config are:
+                alpha         Warping factor for bilinear method (no warping: 1.0)
+                dither        0/1 - Add low level noise to the signal (typical: 1)
+                fb_low        Lowest filter bank frequency in Hz (typical: 300)
+                fb_hi         Highest filter bank frequency in Hz (typical: 3140)
+                fb_only       0/1 - Instead of producing cepstral coefficients produce the 'raw' filter bank outputs instead
+                keep_c0       0/1 - Keep the c0 cepstral coefficient; c0 represents frame energy (typical: 0)
+                linear        true/false - linear or mel-warped scale for filter banks (typical: false)
+                num_cep       int - number of cepstral coefficients (c1-c??) to output (typical: 7-19)
+                tgt_num_filt  int - number of filters across the entire bandwidth; only applied for linear=true
+                win_inc_ms    int - window increment in milliseconds (typical: 10)
+                win_len_ms    int - window length in milliseconds (typical: 20-30)
+        """
         if type(self) is MFCCFeatures:            
             self._mfccPtr = self._fPtr = new MFCC_Features()
         if self._mfccPtr == NULL:
             raise MemoryError()
+        if isinstance(config, dict):
+            self._config_str = json.dumps(config)
+        elif isinstance(config, str) or isinstance(config, unicode):
+            self._config_str = config
+        else:
+            raise ValueError("MFCCFeatures constructor: unknown input type for config")
 
     def __dealloc__(self):
         if type(self) is MFCCFeatures:
@@ -32,35 +52,16 @@ cdef class MFCCFeatures(LLFeatures):
         """
         return self._mfccPtr.duration()
         
-    def process(self, LLSignal signal, config):
+    def process(self, LLSignal signal):
         """Process the signal to return mel-frequency cepstral coefficient (MFCC) features.
 
-        process(signal, config) -> features
+        process(signal) -> features
 
         Parameters:
                 signal  Input signal -- instance of LLSignal class
-                config  String containing configuration parameters for MFCCs.  The string is 
-                        a JSON object converted to a string.  Parameters in the config are:
-                        alpha         Warping factor for bilinear method (no warping: 1.0)
-                        dither        0/1 - Add low level noise to the signal (typical: 1)
-                        fb_low        Lowest filter bank frequency in Hz (typical: 300)
-                        fb_hi         Highest filter bank frequency in Hz (typical: 3140)
-                        fb_only       0/1 - Instead of producing cepstral coefficients produce the 'raw' filter bank outputs instead
-                        keep_c0       0/1 - Keep the c0 cepstral coefficient; c0 represents frame energy (typical: 0)
-                        linear        true/false - linear or mel-warped scale for filter banks (typical: false)
-                        num_cep       int - number of cepstral coefficients (c1-c??) to output (typical: 7-19)
-                        tgt_num_filt  int - number of filters across the entire bandwidth; only applied for linear=true
-                        win_inc_ms    int - window increment in milliseconds (typical: 10)
-                        win_len_ms    int - window length in milliseconds (typical: 20-30)
         """
 
-        if isinstance(config, dict):
-            config_str = json.dumps(config)
-            self._mfccPtr.process(deref(signal._sigPtr), config_str)
-        elif isinstance(config, str) or isinstance(config, unicode):
-            self._mfccPtr.process(deref(signal._sigPtr), config)
-        else:
-            raise ValueError("process: unknown input type")
+        self._mfccPtr.process(deref(signal._sigPtr), self._config_str)
        
     cpdef float get_win_inc_ms(self):
         """Return the window increment in milliseconds.
