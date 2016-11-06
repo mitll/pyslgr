@@ -2,8 +2,6 @@
 	"mode": "gmm-svm",
 	"feat_config" : {"feat_type":"mfcc","alpha":"1","dither":"1","fb_low":"300","fb_hi":"3140",
 			  "keep_c0":"true","linear":"false","num_cep":"6", "win_inc_ms":"10","win_len_ms":"20"},
-	"conf_estimator": {"mode":"3G", "dnorm":"8.0", "num_inputs":"46", "amatrix":"language_conf/a.dat", 
-			   "bvector":"language_conf/b.dat", "ll_scaling":"1.78737"},
 	"ubm_model": "language/sbkg.o1024-sdc-rasta-fn-fnap.mod",
 	"models": {
 		"albanian_p": "language/salbanian_p.o1024-sdc-rasta-fn-fnap.mod",

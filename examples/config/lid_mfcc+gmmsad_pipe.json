@@ -1,5 +1,5 @@
 {
-    "feat_config" : {
+    "pipe_config" : {
 	"delta_spread" : 1,
 	"delta2point"  : true,
 	"do_delta"     : true,
