@@ -27,6 +27,7 @@ if __name__ == "__main__":
 
     # Info
     print 'Number of output features: {}'.format(f.num_outfeat())
+    # f.save_raw('tmp/gsv_feat.dat')
 
     # Load in and create GSV
     with open('config/gsv.json', 'r') as fp:
@@ -36,4 +37,4 @@ if __name__ == "__main__":
     # Now compute a GSV expansion
     v = gsv.process(f)
     print 'A few elements of GSV expansion: {}'.format(v[0:10])
-
+    print 'GSV expansion dimension = {}'.format(len(v))
