@@ -131,7 +131,7 @@ cdef class GMMSAD:
             raise ValueError("GMMSAD constructor: unknown input type")
 
         # Cython does not allow overloaded constructors, so we must check to make sure 
-        if ('model_dir' not in config) and (model_dir==""):
+        if ('model_dir' not in config) and (model_dir==(<string> "")):
             raise ValueError("GMMSAD constructor: model_dir must be specified")
         if ('gmm_models' not in config) and (gmm_models is None):
             raise ValueError("GMMSAD constructor: model_dir must be specified")
@@ -141,7 +141,7 @@ cdef class GMMSAD:
             feat_config = config['feat_config']
         else:
             feat_config = config
-        if model_dir=="":
+        if model_dir==(<string> ""):
             model_dir = config['model_dir']
         if gmm_models is None:
             gmm_models = config['gmm_models']
