@@ -10,7 +10,7 @@ from LLFeatures cimport LLFeatures
 cdef class GMMModel:
     cdef GMM_model *_mPtr
     cpdef load(self, string model_file_name)        
-    cpdef bool is_loaded(self)      
+    cpdef bool is_loaded(self)
 
 cdef class GMMSAD:
     cdef string _config
@@ -21,4 +21,3 @@ cdef class GMMSAD:
     cdef string _label_keep
     cdef vector[GMM_model] _gmm_models
     cpdef process(self, LLSignal signal, LLFeatures f)
-

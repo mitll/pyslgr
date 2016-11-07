@@ -427,6 +427,8 @@ public:
 	void score_models (Features &f, vector<GMM_model> &models, vec<float> &scores, float &ubm_score, 
                       vec<float> &frame_scores, int topM=5, bool use_shortfall=true, float sf_delta=10.0);
 	void suff_stats_ns (Features &f, vec<REAL_EXP> &sum, vec<REAL_EXP> &ec);
+	vec<float> ubm_mean (void);
+	vec<float> ubm_icov (void);
 private:
 };
 

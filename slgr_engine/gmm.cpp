@@ -764,3 +764,18 @@ void GMM_model::load (string model_file_name) {
 
 }
 
+vec<float> GMM_model::ubm_mean (void) {
+	vec<float> ubm_out(num_mix*num_fea);
+	int i;
+	for (i=0; i<(num_mix*num_fea); i++)
+		ubm_out.data[i] = mean[i];
+	return ubm_out;
+}
+
+vec<float> GMM_model::ubm_icov (void) {
+	vec<float> ubm_out(num_mix*num_fea);
+	int i;
+	for (i=0; i<(num_mix*num_fea); i++)
+		ubm_out.data[i] = inv_cov[i];
+	return ubm_out;
+}

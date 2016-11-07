@@ -40,7 +40,27 @@ cdef class GMMModel:
         self._mPtr.load(model_file_name)
     
     cpdef bool is_loaded(self):
-        return self._mPtr.is_loaded()       
+        return self._mPtr.is_loaded()
+
+    def icov (self):
+        """ Return the GMM diagonal of the inverse covariance matrix as a numpy array
+        """
+        cdef vec[float] ubm_cpp 
+        ubm_cpp = self._mPtr.ubm_icov()
+        ubm_icov = np.empty([ubm_cpp.len], dtype=np.float)
+        for i1 in xrange(0, ubm_cpp.len):
+            ubm_icov[i1] = ubm_cpp.data[i1]
+        return ubm_icov
+
+    def mean (self):
+        """ Return the GMM mean vector as a numpy array
+        """
+        cdef vec[float] ubm_cpp 
+        ubm_cpp = self._mPtr.ubm_mean()
+        ubm_mean = np.empty([ubm_cpp.len], dtype=np.float)
+        for i1 in xrange(0, ubm_cpp.len):
+            ubm_mean[i1] = ubm_cpp.data[i1]
+        return ubm_mean
 
     def score_models (self, LLFeatures f, list models, int topM=5, bool use_shortfall=True, float sf_delta=10.0):
         """ Load a GMM model.
@@ -59,35 +79,24 @@ cdef class GMMModel:
             sf_delta : float
                Shortfall delta for pruning (default: 10.0)
         """
-        # cdef Features features_cpp = deref(f._fPtr)
-        # print "In GMMModel.pyx score_models"
-        # print "Creating GMM_model vector"
         lenModels = <int> len(models)
-        # print "lenModels : " , lenModels
         cdef vector[GMM_model] models_cpp
-        # print "Populating..."
         for i in range(lenModels):
             models_cpp.push_back(deref((<GMMModel>models[i])._mPtr))
-        # print "Creating scores empty vec"
         cdef vec[float] *scores_cpp  = new vec[float](lenModels)
-        # print "Creating frame_scores empty vec"
         cdef vec[float] *frame_scores_cpp = new vec[float](0)
-        #for k in range(frame_scores.size):
-        #   deref(frame_scores_cpp).data[k] = frame_scores[k]
         cdef float ubm_score = -1.0
-        # print "Invoking C++ score_models..."
         self._mPtr.score_models(deref(f._fPtr), models_cpp, deref(scores_cpp), ubm_score, deref(frame_scores_cpp), topM, use_shortfall, sf_delta)
-        # print "... returning from C++ score_models"
         
-        #Package scores in Python objects
-        #1. Scores
+        # Package scores in Python objects
+        # 1. Scores
         # print "Packaging scores in Python object"
         scoresPy = []
         cdef int len_scores = deref(scores_cpp).len
         for j in range(len_scores):
             scoresPy.append(deref(scores_cpp).data[j])
         
-        #2. Frame scores
+        # 2. Frame scores
         # print "Packaging FRAME scores in Python object"
         frameScoresPy = []
         cdef int len_frame_scores = deref(frame_scores_cpp).len
@@ -95,7 +104,6 @@ cdef class GMMModel:
             frameScoresPy.append(deref(frame_scores_cpp).data[k])
         
         allScores = Scores(frameScoresPy, scoresPy, ubm_score)
-        # print "Returning from score_models"
         
         del scores_cpp
         del frame_scores_cpp
