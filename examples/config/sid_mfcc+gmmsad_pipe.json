@@ -1,0 +1,25 @@
+{
+    "pipe_config" : {
+	"delta_spread" : 2,
+	"do_delta"     : true,
+	"do_rasta"     : true,
+	"do_feat_norm" : true,
+	"outfeat"      : "fd",
+	"feat_config"  : {"feat_type":"mfcc","alpha":1,"dither":1,"fb_low":300,"fb_hi":3140,
+			 "keep_c0":"true","linear":"false","num_cep":19, "win_inc_ms":10,"win_len_ms":20}
+    },
+    "sad_config" : {
+	"feat_config"  : {"feat_type":"mfcc", "alpha":1, "dither":1, "fb_low":300, "fb_hi":3140, "keep_c0":false,
+			  "linear":false, "num_cep":19, "win_inc_ms":10, "win_len_ms":20},
+	"label_keep" : "speech",
+	"label_window" : 50,
+	"min_gap_dur" : 0.5, 
+	"min_seg_dur" : 0.2,
+	"model_dir" : "../models",
+	"gmm_models" : {
+	    "speech" : "sad/sSPEECH.o128-rasta-mfb2-21-cep+dcep.mod",
+	    "music" : "sad/sMUSIC3.o128-rasta-mfb2-21-cep+dcep.mod",
+	    "nonspeech" : "sad/sNONSPEECH.o128-rasta-mfb2-21-cep+dcep.mod"
+	}
+    }
+}

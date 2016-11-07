@@ -1,0 +1,9 @@
+{
+    "model_dir"       : "../models/gsv_sid",
+    "gmm_model"       : "sbkg-all.o512-mfcc-rasta-fn.mod",
+    "do_nap"          : true,
+    "nap_projection"  : "uw_mfcc_4w-mic.dat",
+    "corank"          : 64,
+    "rf"              : 0.01
+}    
+    
