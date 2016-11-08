@@ -2,35 +2,39 @@
 
 import numpy as np
 from GMMModel import GMMModel
+import os
 
 class iVector(object):
     """
-    Implementation of an iVector extractor
+    iVector extractor
     """
     def __init__ (self, config):
-       """
-       config : a dictionary of config parameters 
-          'tv_matrix' : filename for total variability matrix -- should be a numpy array
-          'ubm_model' : UBM model file
-       """
+        """
+        config : a dictionary of config parameters 
+            'tv_matrix' : filename for total variability matrix -- raw floats
+            'ubm_model' : UBM model file
+        """
+        # Load in the UBM model
+        self._ubm = GMMModel()
+        if 'model_dir' in config:
+            ubm_fn = os.path.join(config['model_dir'], config['ubm_model'])
+        else:
+            ubm_fn = config['ubm_model']
+        self._ubm.load(ubm_fn)
 
-       # Load in the total variability matrix
-       self._U = np.load(config['tv_file'])
-       self._Ui = compute_block_matrices()
+        # Load in the total variability matrix
+        # self._U = np.load(config['tv_file'])
+        # self._Ui = compute_block_matrices()
 
     def _compute_block_matrices (self):
-        print 'wow'
+        print 'compute blocks'
 
-    def score(self, x):
+    def process(self, f):
         """
-        x   :   a single vector as a numpy array for scoring
+        f   :   LLFeatures object, input features 
+
+        returns an ivector (factors with no scaling or transformation)
         """
 
-    def train(self, x):
-       """
-       x    :   a numpy array where each row is a vector representing the target speaker
 
-       returns a model representing the target speaker
-       """
-
-       
+        return np.array(xrange(50))

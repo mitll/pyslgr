@@ -7,6 +7,7 @@ from pyslgr.iVector import iVector
 from pyslgr.LLSignal import LLSignal
 from pyslgr.MFCCFeatures import MFCCFeatures
 from pyslgr.FeatPipe import FeatPipe
+import sys
 
 if __name__ == "__main__":
 
@@ -28,12 +29,12 @@ if __name__ == "__main__":
     print 'Number of output features: {}'.format(f.num_outfeat())
     # f.save_raw('tmp/ivec_feat.dat')
 
-    # Load in and create GSV
+    # Load in and create ivector
     with open('config/ivec.json', 'r') as fp:
         config = json.load(fp)
     ivec = iVector(config)
 
-    # Now compute a GSV expansion
+    # Now compute an ivector
     v = ivec.process(f)
     print 'A few elements of iVector: {}'.format(v[0:10])
     print 'iVector dimension = {}'.format(len(v))
