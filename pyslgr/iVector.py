@@ -3,6 +3,7 @@
 import numpy as np
 from GMMModel import GMMModel
 import os
+import sys
 
 class iVector(object):
     """
@@ -23,11 +24,26 @@ class iVector(object):
         self._ubm.load(ubm_fn)
 
         # Load in the total variability matrix
-        # self._U = np.load(config['tv_file'])
-        # self._Ui = compute_block_matrices()
+        if 'model_dir' in config:
+            tv_fn = os.path.join(config['model_dir'], config['tv_matrix'])
+        else:
+            tv_fn = config['tv_matrix']
+        self._U = np.fromfile(tv_fn, dtype=np.float32)
+        num_rows = self._ubm.num_fea()*self._ubm.num_mix()
+        self._subdim = self._U.size/num_rows
+        self._U = self._U.reshape([num_rows,self._subdim])
+        self._Ui = self._compute_block_matrices()
 
     def _compute_block_matrices (self):
-        print 'compute blocks'
+        Ui = np.empty([self._ubm.num_mix(),self._subdim,self._subdim])
+        icov = self._ubm.icov()
+        for im in xrange(0, self._ubm.num_mix()):
+            i1 = im*self._ubm.num_fea()
+            i2 = (im+1)*self._ubm.num_fea()
+            UtU = ((self._U[i1:i2,:].T)*icov[i1:i2]).T  # Multiply by diagonal on left -- better way to do this?
+            UtU = self._U[i1:i2,:].T.dot(UtU)  # Need to add covariance here
+            Ui[im] = UtU
+        return Ui
 
     def process(self, f):
         """
@@ -35,6 +51,31 @@ class iVector(object):
 
         returns an ivector (factors with no scaling or transformation)
         """
+        
+        # Get 0th and 1st order stats
+        ec, F = self._ubm.suff_stats(f)
+        sys.stdout.flush()
+        
+        # Now accumulate LHS -- normal equations
+        lhs = np.zeros([self._subdim,self._subdim])
+        for i1 in xrange(0,self._ubm.num_mix()):
+            sys.stdout.flush()
+            lhs += ec[i1]*self._Ui[i1]
+        sys.stdout.flush()
 
+        # RHS, part 1, F = F - diag(ec)*m_ubm
+        ubm_mean = self._ubm.mean()
+        for im in xrange(0, self._ubm.num_mix()):
+            i1 = im*self._ubm.num_fea()
+            i2 = (im+1)*self._ubm.num_fea()
+            F[i1:i2] -= ec[im]*ubm_mean[i1:i2]
 
-        return np.array(xrange(50))
+        # RHS, part 2, U'*Sigma^(-1)*(F-diag(ec)*m_ubm)
+        F *= self._ubm.icov()
+        F = self._U.T.dot(F)
+
+        # Now solve and return result -- most of the time will be full rank, but be careful
+        # Uses SVD and Linpack GELSD
+        ivec, resid, rank, s = np.linalg.lstsq(lhs, F)
+
+        return ivec
