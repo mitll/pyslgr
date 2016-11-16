@@ -15,6 +15,7 @@ import json
 import numpy as np
 from Scores import Scores
 import os
+ctypedef double REAL_EXP
 
 cdef class GMMModel:
     def __cinit__(self):
@@ -62,6 +63,12 @@ cdef class GMMModel:
             ubm_mean[i1] = ubm_cpp.data[i1]
         return ubm_mean
 
+    def num_fea(self):
+        return self._mPtr.num_fea
+
+    def num_mix(self):
+        return self._mPtr.num_mix
+
     def score_models (self, LLFeatures f, list models, int topM=5, bool use_shortfall=True, float sf_delta=10.0):
         """ Load a GMM model.
     
@@ -108,6 +115,27 @@ cdef class GMMModel:
         del scores_cpp
         del frame_scores_cpp
         return allScores
+
+    def suff_stats (self, LLFeatures f):
+        # void suff_stats_ns (Features &f, vec[REAL_EXP] &sum, vec[REAL_EXP] &ec) except +
+
+        cdef vec[REAL_EXP] *ec = new vec[REAL_EXP](self._mPtr.num_mix)   # expected counts
+        cdef vec[REAL_EXP] *sum = new vec[REAL_EXP](self._mPtr.num_mix*f.num_outfeat())  # sum
+        self._mPtr.suff_stats_ns(deref(f._fPtr), deref(sum), deref(ec))
+
+        # Create and copy expected counts into numpy array
+        ec_np = np.empty([ec.len], dtype=np.double)
+        for i1 in xrange(0, ec.len):
+            ec_np[i1] = ec.data[i1]
+
+        # Create and copy sum into numpy array
+        sum_np = np.empty([sum.len], dtype=np.double)
+        for i1 in xrange(0, sum.len):
+            sum_np[i1] = sum.data[i1]
+        del ec
+        del sum
+
+        return ec_np, sum_np
 
 cdef class GMMSAD:
     """Class to process a signal and produce SAD marks using a GMM

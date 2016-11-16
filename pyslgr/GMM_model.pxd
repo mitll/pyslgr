@@ -8,6 +8,8 @@ ctypedef double REAL_EXP
 
 cdef extern from "speech_tools.h":
     cdef cppclass GMM_model:
+        int num_fea
+        int num_mix
         GMM_model() except +
         void load (string model_file_name) except +
         bool is_loaded() except +

@@ -1,5 +1,5 @@
 {
 	 "model_dir" : "../models/ivec_sid",
-	 "tv_matrix" : "u_matrix.dat",
+	 "tv_matrix" : "o2048_tot_U_600.dat",
 	 "ubm_model" : "bkg_o2048.mod"
 }
