@@ -1,4 +1,4 @@
-pySLGR 0.7.0
+###pySLGR 0.7.0
 
 Preliminary release:
 * This release has initial functionality and basic algorithms for running SLGR systems 
