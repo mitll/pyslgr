@@ -7,6 +7,11 @@ Preliminary release:
 * This release has initial functionality and basic algorithms for running SLGR systems 
 * Future releases will have hyper-parameter training, documentation, and example systems
 
+Requirements:
+* Linux
+* Boost libraries
+* Anaconda Python 2.7.x
+
 Installation:
 * Download the files from the git release tab 
 * Type 'conda install pyslgr-0.7.0-py27_0.tar.bz2' to install pySLGR
