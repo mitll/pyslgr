@@ -41,6 +41,8 @@ def process_gmmsad(fn, feat_config, model_dir, model_files):
     # Load and apply sad marks
     print 'Number of feature vectors before SAD: {}'.format(f.num_vec())
     f.load_sad_marks(sad_marks)
+    if not os.path.exists('tmp'):
+        os.mkdir('tmp')
     f.save_sad_marks('tmp/eg.mark')
     f.apply_sad()
     print 'Number of feature vectors after SAD: {}'.format(f.num_vec())

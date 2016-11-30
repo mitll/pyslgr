@@ -35,6 +35,8 @@ print 'Duration in seconds is: {}'.format(f.duration())
 
 # Save features
 fn_base = os.path.basename(fn)
+if not os.path.exists('tmp'):
+    os.mkdir('tmp')
 print '\nSaving features to tmp/{}.full_feat_ext.dat as raw floats.'.format(fn_base)
 f.save_raw(os.path.join('tmp', fn_base + '.feat_ext.dat'))
 

@@ -1,8 +1,12 @@
-pyslgr
+pySLGR 0.7.0
 
-Type 'make' to build
+Preliminary release:
+- This release has initial functionality and basic algorithms for running SLGR systems 
+- Future releases will have hyper-parameter training, documentation, and example systems
 
-Type 'make clean' to clean directories
+Building Cython interface only:
+- Type 'make' to build
+- Type 'make clean' to clean directories
+- Type 'make eg' to see some examples -- more examples are available in the examples subdirectory
 
-Type 'make eg' to see examples
 

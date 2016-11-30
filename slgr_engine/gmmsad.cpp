@@ -1,26 +1,17 @@
 //
-// Copyright 2012-2015 Massachusetts Institute of Technology. All rights
-// reserved. Title to and copyright in the speaker, language, gender recognition
-// software, any derivatives and any associated documentation is retained by
-// MIT, subject to a non-exclusive royalty-free license to the U.S. Government
-// to use the software for Government purposes as defined in Federal 
-// Acquisition Regulation. Distribution to or use by third parties without 
-// the prior written authorization of MIT is expressly prohibited.
+// Copyright 2016 MIT Lincoln Laboratory, Massachusetts Institute of Technology
 //
-// MIT MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED, WITH RESPECT
-// TO THE FUNCTIONALITY OR USE OF THE SOFTWARE. ALL IMPLIED WARRANTIES, 
-// INCLUDING BUT NOT LIMITED TO, WARRANTIES OF MERCHANTABILITY OR FITNESS FOR 
-// A PARTICULAR PURPOSE ARE EXPRESSLY EXCLUDED. FURTHER, MIT MAKES NO WARRANTY 
-// THAT THE USE OF THE SOFTWARE COMPONENTS OR DOCUMENTATION WILL NOT INFRINGE 
-// ANY PATENTS, COPYRIGHTS, TRADEMARKS, TRADE SECRETS OR OTHER RIGHTS OF ANY 
-// PARTY.
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use these files except in compliance with
+// the License.
 //
-// MIT DISCLAIMS ANY AND ALL LIABILITY FOR SPECIAL, INCIDENTAL, OR 
-// CONSEQUENTIAL DAMAGES (INCLUDING LOSS OF PROFIT) ARISING OUT OF THE 
-// INSTALLATION, USE, OPERATION OR SUPPORT OF THE SOFTWARE OR ASSOCIATED 
-// DOCUMENTATION, EVEN IF MIT HAS BEEN APPRISED OF THE POSSIBILITY OF SUCH 
-// DAMAGES.
-
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
+// an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
+// specific language governing permissions and limitations under the License.
+//
 
 //
 // GMMSAD implementation for Signal class
