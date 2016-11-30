@@ -1,5 +1,8 @@
 ###pySLGR 0.7.0
 
+A Python tool for Speaker, Language, and Gender Recognition (SLGR) and general meta-data extraction.
+
+
 Preliminary release:
 * This release has initial functionality and basic algorithms for running SLGR systems 
 * Future releases will have hyper-parameter training, documentation, and example systems
