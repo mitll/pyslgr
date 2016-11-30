@@ -1,0 +1,13 @@
+package:
+  name: pyslgr
+  version: "0.7.0"
+ 
+source:
+  path: ../
+ 
+requirements:
+  build:
+    - python
+    - setuptools
+  run:
+    - python
