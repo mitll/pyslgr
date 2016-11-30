@@ -9,4 +9,8 @@ Building Cython interface only:
 - Type 'make clean' to clean directories
 - Type 'make eg' to see some examples -- more examples are available in the examples subdirectory
 
+Building an Anaconda package:
+- cd pyslgr
+- conda build . 
+- conda install pyslgr --use-local
 
