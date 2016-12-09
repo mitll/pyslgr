@@ -1,0 +1,327 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+  
+    <title>MFCC Features &mdash; pySLGR 1 documentation</title>
+  <!-- htmltitle is before nature.css - we use this hack to load bootstrap first -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="_static/css/bootstrap.min.css" media="screen" />
+  <link rel="stylesheet" href="_static/css/bootstrap-responsive.css"/>
+
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/gallery.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="pySLGR 1 documentation" href="index.html" />
+    <link rel="up" title="1. User Guide" href="user_guide.html" />
+    <link rel="next" title="2. Examples" href="examples.html" />
+    <link rel="prev" title="1.2. Quick Start" href="quick_start.html" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="_static/js/bootstrap.min.js" type="text/javascript"></script>
+
+  <script type="text/javascript">
+    $("div.buttonNext, div.buttonPrevious").hover(
+       function () {
+           $(this).css('background-color', '#FF9C34');
+       },
+       function () {
+           $(this).css('background-color', '#A7D6E2');
+       }
+    );
+    function showMenu() {
+      var topNav = document.getElementById("scikit-navbar");
+      if (topNav.className === "navbar") {
+          topNav.className += " responsive";
+      } else {
+          topNav.className = "navbar";
+      }
+    };
+  </script>
+
+  </head>
+  <body role="document">
+
+<div class="header-wrapper">
+    <div class="header"><div class="navbar" id="scikit-navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+              <li><a href="user_guide.html">User Guide</a></li>
+   
+            <li><a href="examples.html">Examples</a></li>
+			<li><a href="search.html">Search</a></li>
+            </ul>
+            <a href="javascript:void(0);" onclick="showMenu()">
+                <div class="nav-icon">
+                    <div class="hamburger-line"></div>
+                    <div class="hamburger-line"></div>
+                    <div class="hamburger-line"></div>
+                </div>
+            </a>
+            
+        </div> <!-- end navbar --></div>
+</div>
+
+
+<div class="content-wrapper">
+    <div class="sphinxsidebar">
+    <div class="sphinxsidebarwrapper">
+        <div class="rel">
+    
+
+  <!-- rellinks[1:] is an ugly hack to avoid link to module
+  index -->
+        <div class="rellink">
+        <a href="quick_start.html"
+        accesskey="P">Previous
+        <br/>
+        <span class="smallrellink">
+        1.2. Quick Start
+        </span>
+            <span class="hiddenrellink">
+            1.2. Quick Start
+            </span>
+        </a>
+        </div>
+            <div class="spacer">
+            &nbsp;
+            </div>
+        <div class="rellink">
+        <a href="examples.html"
+        accesskey="N">Next
+        <br/>
+        <span class="smallrellink">
+        2. Examples
+        </span>
+            <span class="hiddenrellink">
+            2. Examples
+            </span>
+        </a>
+        </div>
+            <div class="spacer">
+            &nbsp;
+            </div>
+        <div class="rellink">
+        <a href="py-modindex.html"
+        >Modules
+        <br/>
+        <span class="smallrellink">
+        Python Module...
+        </span>
+            <span class="hiddenrellink">
+            Python Module Index
+            </span>
+        </a>
+        </div>
+
+    <!-- Ad a link to the 'up' page -->
+        <div class="spacer">
+        &nbsp;
+        </div>
+        <div class="rellink">
+        <a href="user_guide.html">
+        Up
+        <br/>
+        <span class="smallrellink">
+        1. User Guide
+        </span>
+            <span class="hiddenrellink">
+            1. User Guide
+            </span>
+            
+        </a>
+        </div>
+    </div>
+    
+      <p class="doc-version">This documentation is for pySLGR <strong>version 1</strong> &mdash; <!--- <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p> --->
+	<!---
+    <p class="citing">If you use the software, please consider <a href="about.html#citing-scikit-learn">citing scikit-learn</a>.</p>
+    --->
+	<ul>
+<li><a class="reference internal" href="#">1.3. MFCC Features</a><ul>
+<li><a class="reference internal" href="#overview">1.3.1. Overview</a><ul>
+<li><a class="reference internal" href="#delta">1.3.1.1. Delta</a></li>
+<li><a class="reference internal" href="#acceleration">1.3.1.2. Acceleration</a></li>
+<li><a class="reference internal" href="#energy">1.3.1.3. Energy</a></li>
+<li><a class="reference internal" href="#shifted-delta-features-sdc">1.3.1.4. Shifted Delta Features (SDC)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#understanding-set-outfeat">1.3.2. Understanding set_outfeat()</a></li>
+<li><a class="reference internal" href="#rasta">1.3.3. RASTA</a></li>
+<li><a class="reference internal" href="#online-resources">1.3.4. Online Resources</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</div>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" checked />
+<label for="nav-trigger"></label>
+
+
+
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="mfcc-features">
+<h1>1.3. MFCC Features<a class="headerlink" href="#mfcc-features" title="Permalink to this headline">¶</a></h1>
+<p><strong>MFCC</strong> stands for <em>Mel Frequency Cepstral Coefficient</em>. MFCC features are widely used in speech recognition problems. Speech is dictated by the way in which we use our oral anatomy to create each sound. Therefore, one way to uniquely identify a sound (independent of the speaker) is to create a mathematical representation that encodes the physical mechanics of spoken language. MFCC features are one approach to encoding this information.</p>
+<div class="section" id="overview">
+<h2>1.3.1. Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>At a high level the process for obtaining MFCC features looks like this:</p>
+<img alt="images/mfcc/mfcc_overview.jpeg" class="align-center" src="images/mfcc/mfcc_overview.jpeg" />
+<p>For an in-depth explanation of some of these steps and the motivation behind them, see the tutorial found <a class="reference external" href="http://practicalcryptography.com/miscellaneous/machine-learning/guide-mel-frequency-cepstral-coefficients-mfccs">here.</a></p>
+<p>Obtaining the cepstral coefficients for a given signal can be done using the MFCC class. This <a class="reference internal" href="quick_start.html#example-mfcc"><span class="std std-ref">example</span></a> can get you started. You can adjust several hyperparameters using a config file. The config file is expected to be in .json format. A list of the parameters that can be modified can be found here: <a class="reference internal" href="pyslgr.html#pyslgr.MFCCFeatures.MFCCFeatures.process" title="pyslgr.MFCCFeatures.MFCCFeatures.process"><code class="xref py py-meth docutils literal"><span class="pre">process()</span></code></a>.</p>
+<p>The cepstral coefficents provide the basic MFCC features for a signal. However, accuracy can often be improved by using additional features. These features include delta, acceleration, energy.</p>
+<div class="section" id="delta">
+<span id="mfcc-features-delta"></span><h3>1.3.1.1. Delta<a class="headerlink" href="#delta" title="Permalink to this headline">¶</a></h3>
+<p>The cepstral coefficients capture the envelope of the spectral power. However, this does not account for the change in these coefficients over time. Computing the derivative of the coefficients helps capture the aspects of the frame that change over time. When we choose a frame length, we need to bare in mind these changes over time because choosing a frame length that is too short might not provide enough information about changes in frequency yet choosing a frame that is too long can introduce changes that are too dramatic.</p>
+<p>Using the <a class="reference internal" href="pyslgr.html#pyslgr.LLFeatures.LLFeatures.delta" title="pyslgr.LLFeatures.LLFeatures.delta"><code class="xref py py-meth docutils literal"><span class="pre">delta()</span></code></a> function calculates the derivatives and appends them as features.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Make sure to read <a class="reference internal" href="#setting-features"><span class="std std-ref">Understanding set_outfeat()</span></a> for details on how to include the deltas as features.</p>
+</div>
+</div>
+<div class="section" id="acceleration">
+<h3>1.3.1.2. Acceleration<a class="headerlink" href="#acceleration" title="Permalink to this headline">¶</a></h3>
+<p>Acceleration is similar to delta but represents the second derivative. The features can be appended using <a class="reference internal" href="pyslgr.html#pyslgr.LLFeatures.LLFeatures.accel" title="pyslgr.LLFeatures.LLFeatures.accel"><code class="xref py py-meth docutils literal"><span class="pre">accel()</span></code></a>.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Make sure to read <a class="reference internal" href="#setting-features"><span class="std std-ref">Understanding set_outfeat()</span></a> for details on how to include acceleration as a feature.</p>
+</div>
+</div>
+<div class="section" id="energy">
+<h3>1.3.1.3. Energy<a class="headerlink" href="#energy" title="Permalink to this headline">¶</a></h3>
+<p>Energy can be an important feature. Energy is automatically computed when calulating the MFCC features. To include energy as a feature in the feature vector, append &#8216;e&#8217; to the arguement of the set_outfeat function.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Make sure to read <a class="reference internal" href="#setting-features"><span class="std std-ref">Understanding set_outfeat()</span></a> for details on how to include energy as a feature.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The order in which letters are passed to set_outfeat() is reflected by the feature vector. For example, f denotes the base features, thus if &#8220;ef&#8221; is passed to <em>set_outfeat</em> the resulting vector will have the energy feature followed by the base features. In contrast, if &#8220;fe&#8221; is passed to <em>set_outfeat</em>, the base features will appear first in the feature vector followed by the energy feature.</p>
+</div>
+</div>
+<div class="section" id="shifted-delta-features-sdc">
+<h3>1.3.1.4. Shifted Delta Features (SDC)<a class="headerlink" href="#shifted-delta-features-sdc" title="Permalink to this headline">¶</a></h3>
+<p>Shifted delta features can be used to improve language recognition. Results using sdc features are comparable to using PPRLM and calculating these features is less computationally expensive. SDC features provide additional temporal features. They are created by stacking delta cepstra computed over several frames.</p>
+<p>These features can be added using  <a class="reference internal" href="pyslgr.html#pyslgr.LLFeatures.LLFeatures.sdc" title="pyslgr.LLFeatures.LLFeatures.sdc"><code class="xref py py-meth docutils literal"><span class="pre">sdc()</span></code></a>.</p>
+</div>
+</div>
+<div class="section" id="understanding-set-outfeat">
+<span id="setting-features"></span><h2>1.3.2. Understanding set_outfeat()<a class="headerlink" href="#understanding-set-outfeat" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="pyslgr.html#pyslgr.LLFeatures.LLFeatures.set_outfeat" title="pyslgr.LLFeatures.LLFeatures.set_outfeat"><code class="xref py py-meth docutils literal"><span class="pre">set_outfeat()</span></code></a> allows the user to select the features to be included. By default, set_outfeat() is set to &#8216;all&#8217;. This means that all calculated features will be included with the exception of energy. To choose a subset of these features, we pass set_outfeat() a string indicating the desired features. The features must first be calculated to be able to include them. Below is a table of the recognized characters and the feature set they represent:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="73%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Character</th>
+<th class="head">Function</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>&#8216;f&#8217;</td>
+<td>Base Features</td>
+</tr>
+<tr class="row-odd"><td>&#8216;d&#8217;</td>
+<td>Delta Features</td>
+</tr>
+<tr class="row-even"><td>&#8216;a&#8217;</td>
+<td>Acceleration Features</td>
+</tr>
+<tr class="row-odd"><td>&#8216;e&#8217;</td>
+<td>Energy</td>
+</tr>
+<tr class="row-even"><td>&#8216;s&#8217;</td>
+<td>SDC Features</td>
+</tr>
+<tr class="row-odd"><td>&#8216;all&#8217;</td>
+<td>All Features (except energy)</td>
+</tr>
+</tbody>
+</table>
+<p>The order in which the characters are listed determines the stacking order of the features. For example, set_outfeat(&#8216;fe&#8217;) sets the feature vector to first contain the base features and then appending energy to the end of that vector. Conversely, set_outfeat(&#8216;ef&#8217;) begins each feature vector with energy followed by the base feature vectors.</p>
+</div>
+<div class="section" id="rasta">
+<h2>1.3.3. RASTA<a class="headerlink" href="#rasta" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="online-resources">
+<h2>1.3.4. Online Resources<a class="headerlink" href="#online-resources" title="Permalink to this headline">¶</a></h2>
+<div class="figure" id="id1">
+<a class="reference external image-reference" href="https://en.wikipedia.org/wiki/Mel-frequency_cepstrum"><img alt="Wikipedia" src="images/mfcc/resource_2.png" style="width: 200px; height: 130px;" /></a>
+<p class="caption"><span class="caption-text"><a class="reference external" href="https://en.wikipedia.org/wiki/Mel-frequency_cepstrum">Wikipedia</a></span></p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2016, Esther Wolf.
+      <a href="_sources/MFCC_Features.txt" rel="nofollow">Show this page source</a>
+    </div>
+     <div class="rel">
+    
+    <div class="buttonPrevious">
+      <a href="quick_start.html">Previous
+      </a>
+    </div>
+    <div class="buttonNext">
+      <a href="examples.html">Next
+      </a>
+    </div>
+    <div class="buttonPrevious">
+      <a href="py-modindex.html">Previous
+      </a>
+    </div>
+    
+     </div>
+
+    
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-22606712-2']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    
+  </body>
+</html>

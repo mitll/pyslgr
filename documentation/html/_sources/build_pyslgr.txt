@@ -1,0 +1,119 @@
+.. title:: Build PySLGR
+.. build_pyslgr
+.. _build_pyslgr_top:
+
+====================
+How to Build PySLGR
+====================
+
+Windows
+#########
+
+Linux
+#######
+
+	.. note-- might have to install dependencies fftw and boost
+
+	**1.** Make sure that Anaconda is installed. If it is not, you can download it `here. <http://www.continuum.io/downloads>`_
+
+	**2.** Make sure that your gcc compiler version is greater than 4.8, else follow the instructions to :ref:`compiler_install`.
+
+	**3.** Now compile the source code by running:
+	::
+		make all
+	| in the following directories:
+	
+		- slgr/slgr_engine
+		- slgr/GetF0Lib 
+
+	**4.** Navigate to slgr/slgr_cython, and run:
+	::
+		make -f makefile_linux
+
+	**5.** Then from the same directory build the package:
+	::
+		conda build pyslgr
+
+	**6.** We can now install the package:
+	::
+		conda install --use-local pyslgr
+	
+
+
+Mac OSX
+########
+
+	**1.** Make sure that Anaconda is installed. If it is not, you can download it `here. <http://www.continuum.io/downloads>`_ 
+
+	**2.** Set Anaconda's python version as your default python. To confirm that you are using the correct python version:
+	::
+		>>> which python
+		/<your_home_directory>/anaconda/bin/python
+
+	.. note:: The makefiles of this package depend on the fact that the path to python is the correct one (namely the anaconda version). Creating an alias such as "pyconda" will not work.
+
+	**3.** Install Boost using Anaconda
+	::
+		>>> conda install -c anaconda boost=1.60.0
+
+	**4.** Install FFTW3 using Anaconda
+	::
+		>>> conda install -c salilab fftw=3.3.4
+
+	**5.** Make sure that you are using a C and C++ compiler version 4.8 or higher. See :ref:`compiler_install`.
+
+	.. warning:: Having a compiler that has a lower version number than 4.8 will result in a linking error later on. The default compiler from Xcode has version 4.3 and will not work.
+
+	**6.** Now run:
+	::
+		make all
+	| in the following directories:
+	
+		- slgr/slgr_engine
+		- slgr/GetF0Lib 
+
+	**7.** Navigate to slgr/slgr_cython, and run:
+	::
+		make -f makefile_linux
+
+	**8.** Finally we can build the python module (from the same directoty - slgr/slgr_cython):
+	::
+		conda build pyslgr
+
+	**9.** We now use this local file to install pyslgr:
+	::
+		conda install --use-local pyslgr
+
+.. note:: The package will only be available if python is started from the same directory where it was installed. To make the package available from any directory, find the location of the *tar.bz2* file given after completion of step 8. Copy this file to a location of your choice and follow the :ref:`instructions for installing <install_top>`.
+
+
+
+
+.. _compiler_install:
+
+Installing the Correct Compiler
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ **1.** Make sure you have Homebrew, if not, follow the instructions on their webpage: `<http://brew.sh/>`_.
+
+ **2.** Run:
+ ::
+ 	brew install gcc48
+
+ **3.** Update your PATH variable to include /usr/local/bin
+
+ **4.** Check if gcc-4.8 is your default compiler by running
+ ::
+ 	which gcc
+
+ This should return usr/local/bin/gcc-4.8. If it does repeat the same for g++, if not go to step 5.
+
+ **5.** Navigate to usr/local/bin and run
+ ::
+ 	ln -s gcc-4.8 gcc
+
+ **6.** Try
+ ::
+ 	which gcc
+
+ Now, it should return usr/local/bin/gcc. Follow the same procedure for g++.

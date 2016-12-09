@@ -1,0 +1,249 @@
+.. title:: Quick Start
+.. quick_start
+
+================
+Quick Start
+================
+
+Examples come with the pyslgr installation. If you used the Anaconda install option, you will find the example script in the following directory:
+
+slgr_cython/example_<some_example>.py
+
+If you installed from file, the example script can be found at:
+
+examples/example_<some_example>.py
+
+To see the example simply run:
+::
+	python example_<some_example>.py
+
+	
+The following sections walk you through the examples using the python interpreter.
+
+example_signal
+###############
+
+Open the python interpreter and import the following:
+::
+   >>> import numpy as np
+   >>> import matplotlib.pyplot as plt
+   >>> from pyslgr.LLSignal import LLSignal
+
+To create an instance of LLSignal
+::
+   >>> sig = LLSignal()
+We can read the a test signal from file. Pyslgr has a few example signals already built in, we will use one of these.
+::
+   >>> sig.load_pcm_wav('../slgr_test/test/dlpt-ara-D4m-RZ.wav')
+
+We will visualize the signal in the time domain. We will calculate and display the first 10 seconds.
+::
+   >>> seconds = 10
+   >>> sf = sig.sampling_frequency()
+   >>> z = range(0, seconds*int(sf))
+   >>> t = (1.0/sf)*np.array(z)
+   >>> plt.plot(t, sig[0:len(z)])
+   >>> plt.xlabel("Time in seconds")
+   >>> plt.show()
+The signal looks like this:
+
+.. image:: images/quick_start/figure_1.png
+   :align: center
+   
+To get the pitch of the signal, use **f0_get(min_f0,max_f0,window_dur,frame_step)**
+::
+	>>> f0 = sig.get_f0(100,650,0.010,0.005)
+	>>> f0[0][130:135]
+	array([196,29374695, 196.95007324, 193.93437195, 195.29318237, 202.55558777])
+
+Signals can be sliced using the same syntax as numpy. For instance, **sig[0:10]** returns the first 10 samples of the signal
+::
+	>>> sig[0:10]
+
+Using negative indices will give the last n values of the signal
+::
+	>>> sig[-1]
+	
+returns the last value in sig.
+
+Slices [m:n] where m >= n will return empty arrays. To test this, try
+::
+	>>> sig[3:1]
+	>>> sig[3:3]
+
+For a slice [m:n] where n > sig.length(), clipping will occur and only m:sig.length() is returned
+::
+	>>> sig[-1:sig.length()+10]
+	array([72.])
+	>>> sig[-1]
+	72.0
+
+Strides and reversals are also possible. **sig[20::3]** returns every 3rd element starting with the 20th element. **sig[10:-2]** returns every second element starting at the 10th element as indices decrease.
+
+Using slices, we can plot portions of the signal. Here we look at 5 seconds of the signal from 3 seconds to 8 seconds.
+::
+  >>> min_seconds = 3
+  >>> max_seconds = 8
+  >>> z = range(min_seconds*int(sf), max_seconds*int(sf))
+  >>> t = (1.0/sf)*np.array(z)
+  >>> plt.plot(t, sig[min_seconds*int(sf):max_seconds*int(sf)])
+  >>> plt.xlabel("Time in seconds")
+  >>> plt.show()
+
+.. image:: images/quick_start/figure_2.png
+   :align: center
+	
+To check the frequency at which the signal was sampled, use the following
+::
+	>>> sig.sampling_frequency()
+	16000.0
+	
+We can downsample by resampling
+::
+	>>> sig.resample_8k()
+	>>> sig.sampling_frequency()
+	8000.0
+	>>> sig.save_pcm_wav(<filename>)
+
+There also several options for pre-processing the data, including mean removal, amplitude normalization, and preemphasis.
+::
+	>>> sig.remove_mean()
+	>>> sig.normalize()
+	>>> sig.preemphasize(0.97)
+
+.. _example_mfcc:
+
+example_mfcc
+###############
+.. note:: We will use the LLSignal class in this example. To familiarize yourself with this class, please see `example_signal`_. 
+.. note:: MFCCFeatures extends LLFeatures
+
+To begin we will want to import the relevent modules:
+::
+	>>> import json
+	>>> from pyslgr.LLSignal import LLSignal
+	>>> from pyslgr.MFCCFeatures import MFCCFeatures
+	
+Processing the signal in order to obtain  mel-frequency cepstral coefficient (MFCC) features, requires a config file (in json format). We will load in the default feature config file and make modifications. Then we will restore it for use.
+
+We begin by loading the config file.
+::
+	>>> fp = open('../config/lid_config.json','r')
+	>>> c = json.load(fp)
+	>>> fp.close()
+	
+For the purpose of this example we will set **fb_only** to true. To see all the config options, see :meth:`~pyslgr.MFCCFeatures.MFCCFeatures.process` **fb_only** produces the 'raw' filter bank outputs instead of producing cepstral coefficients.
+::
+	>>> feat_config = c['lid_config']['feat_config']
+	>>> feat_config['fb_only'] = 'true'
+	
+Now we save this a new config file.
+::
+	>>> mfcc_config = json.dumps(feat_config)
+
+To check whether our change took effect,
+::
+	>>> print 'MFCC features configuration: {}'.format(mfcc_config)
+	MFCC features configuration: {"fb_only": "true", "fb_hi": "3140", "win_inc_ms": "10", "linear": "false", "feat_type": "mfcc", "fb_low": "300", "win_len_ms": "20", "alpha": "1", "num_cep": "6", "keep_c0": "true", "dither": "1"}
+ 
+And, indeed **fb_only** has been set to true. We can also review the other configuration settings.
+ 
+We now load in the sample signal just as in `example_signal`.
+::
+	>>> fn = '../slgr_test/test/dlpt-ara-D4m-RZ.wav'
+	>>> sig = LLSignal()
+	>>> sig.load_pcm_wav(fn)
+	
+To get features, we make an instance of the MFCCFeatures class and call :meth:`~pyslgr.MFCCFeatures.MFCCFeatures.process`
+::
+	>>> feats = MFCCFeatures()
+	>>> feats.process(sig, mfcc_config)
+	
+To get features...
+::
+	>>> feats = MFCCFeatures()
+	>>> feats.process(sig, mfcc_config)
+	>>> feats.delta(2)
+	>>> feats.accel(2)
+	
+See :ref:`MFCC Features <mfcc_features_delta>` for more information on the delta() and accel().
+
+You can also try out the various slicing and indexing operations. 
+
+.. note:: Single vectors are printed to console as a list of entries read from left to right. Multiple vectorss are printed to console as columns, each column represents a vector.
+
+Here are some examples:
+::
+	>>> feats[0]     #gets the first vector
+	>>> feats[-1]    #gets the last vector
+	>>> feats[0:3]   #gets vectors 0 through 3
+	>>> feats[-3:-1] #gets third to last vector through last vector  
+	>>> feats[0:5:2] #gets vectors 0,2,4
+	>>> feats[1:1]   #produces an empty array
+
+example_lid_gmm
+#################
+
+To begin this example, we will want to import all the relevant modules
+::
+  >>> from pyslgr.LLSignal import LLSignal
+  >>> from pyslgr.MFCCFeatures import MFCCFeatures
+  >>> from pyslgr.GMMModel import GMMModel
+  >>> import json
+  >>> import os
+  >>> import operator
+
+Now we would like to load our example signal.
+::
+  >>> sig = LLSignal()
+  >>> sig.load_pcm_wav('../slgr_test/test/dlpt-ara-D4m-RZ.wav')
+
+As in example_mfcc, we need to set up the config file for our MFCC features.
+::
+  >>> slgr_config_fn = '../config/lid_config.json'
+  >>> fp = open(slgr_config_fn,'r')
+  >>> c = json.load(fp)
+  >>> fp.close()
+  >>> mfcc_config = json.dumps(c['lid_config']['feat_config'])
+
+For this example, we will also need models. These models can be found in the /nmec/slgr/model directory
+::
+  >>> model_dir = '../model'
+  >>> model_names = sorted(c['lid_config']['models'].values())
+
+We initialize the MFCC features as in example_mfcc. For more details on how to use the set_outfeat function, see .
+::
+  >>> feat = MFCCFeatures()
+  >>> feat.process(sig, mfcc_config)
+  >>> feat.rasta()
+  >>> feat.delta2point(1)
+  >>> feat.sdc(3,7)
+  >>> feat.xtalk(-10.0,5.0)
+  >>> feat.apply_sad()   
+  >>> feat.feat_norm()
+  >>> feat.set_outfeat('fs')
+
+Now we will create the GMM model object.
+::
+  >>> g_ubm = GMMModel()
+  >>> g_ubm.load(os.path.join(model_dir,"language", "sbkg.o1024-sdc-rasta-fn-fnap.mod"))
+
+To get models for all available languages.
+::
+  >>> g_langs = []
+  >>> for i in xrange(0, len(model_names)):
+        g_langs.append(GMMModel())
+        g_langs[i].load(os.path.join(model_dir, model_names[i]))
+
+To get the scores:
+::
+  >>> allScores = g_ubm.score_models(feat, g_langs, 5, True, 10.0)
+  >>> modelScores = allScores.scores
+  >>> scores_out = []
+  >>> for i in xrange(0,modelScores.size,2):
+      scores_out.append((model_names[i], modelScores[i+1]-modelScores[i]))
+  >>> scores_out = sorted(scores_out, key=operator.itemgetter(1))
+  >>> print 'scores: {}'.format(scores_out)
+  >>> print "UBM score =", allScores.ubm_score
+  UBM score = -71.553314209    
+

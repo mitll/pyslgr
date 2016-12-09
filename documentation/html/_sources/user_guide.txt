@@ -1,0 +1,17 @@
+.. title:: User guide: contents
+.. user_guide
+
+================
+User Guide
+================
+
+.. include:: big_toc.rst
+
+.. toctree::
+
+   install.rst
+   quick_start.rst
+   MFCC_Features.rst
+
+
+

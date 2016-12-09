@@ -1,0 +1,28 @@
+.. pySLGR_doc documentation master file, created by
+   sphinx-quickstart on Wed Aug 10 11:00:09 2016.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Welcome to pySLGR's documentation!
+======================================
+
+Table of Contents:
+
+.. toctree::
+	:maxdepth: 3
+	:numbered:
+	
+	user_guide.rst
+	examples.rst
+	pyslgr.rst
+
+
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+

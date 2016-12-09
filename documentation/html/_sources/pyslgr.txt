@@ -1,0 +1,46 @@
+pySLGR Package
+==============
+
+Modules
+###########
+
+pyslgr.GMMModel module
+----------------------
+
+.. automodule:: pyslgr.GMMModel
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+pyslgr.LLFeatures module
+------------------------
+
+.. automodule:: pyslgr.LLFeatures
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+pyslgr.LLSignal module
+----------------------
+
+.. automodule:: pyslgr.LLSignal
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+pyslgr.MFCCFeatures module
+--------------------------
+
+.. automodule:: pyslgr.MFCCFeatures
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+pyslgr.Scores module
+--------------------
+
+.. automodule:: pyslgr.Scores
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
