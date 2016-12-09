@@ -18,28 +18,44 @@ from copy import deepcopy
 
 class FeatPipe(object):
     """
-    Implementation of a full fatures extraction pipeline.
+    | Implementation of a full fatures extraction pipeline.
+    |
+    |
+    | config : a dictionary of config parameters with two main keys 'pipe_config', 'sad_config'.
+    | config['pipe_config'] has keys:
+    |
+    
+        +------------------+------------------------------------------------------------------+
+        | accel_spread     |  int                                                             |
+        +------------------+------------------------------------------------------------------+
+        | delta_spread     |  int                                                             |
+        +------------------+------------------------------------------------------------------+
+        | delta2point      |  True/False                                                      |
+        +------------------+------------------------------------------------------------------+
+        | do_accel         |  True/False                                                      |
+        +------------------+------------------------------------------------------------------+
+        | do_delta         |  True/False                                                      |
+        +------------------+------------------------------------------------------------------+
+        | do_rasta         |  True/False                                                      |
+        +------------------+------------------------------------------------------------------+
+        | do_feat_norm     |  True/False                                                      |
+        +------------------+------------------------------------------------------------------+
+        | do_sdc           |  True/False                                                      |
+        +------------------+------------------------------------------------------------------+
+        | outfeat          |  string to pass to set_outfeat                                   |
+        +------------------+------------------------------------------------------------------+
+        | feat_config      |  dictionary to pass directly into LLFeatures object              |
+        +------------------+------------------------------------------------------------------+
+        | sdc_params       |  a tuple to pass to sdc -- typically (3,7)                       |
+        +------------------+------------------------------------------------------------------+
+    |
+    | config['sad_config'] is passed directly to the sadClass
+    |
+    | featClass : an LLFeatures compatible class
+    | sadClass  : a class with constructor sadClass(config) and method sadClass.process(LLSignal x, LLFeatures f)
     """
     def __init__ (self, config, featClass, sadClass):
-       """
-       config : a dictionary of config parameters with two main keys 'pipe_config', 'sad_config'.
-       config['pipe_config'] has keys:
-           'accel_spread' : int
-           'delta_spread' : int
-           'delta2point'  : True/False
-           'do_accel'     : True/False
-           'do_delta'     : True/False
-           'do_rasta'     : True/False
-           'do_feat_norm' : True/False
-           'do_sdc'       : True/False
-           'outfeat'      : string to pass to set_outfeat
-           'feat_config'  : dictionary to pass directly into LLFeatures object
-           'sdc_params'   : a tuple to pass to sdc -- typically (3,7)
-       config['sad_config'] is passed directly to the sadClass
-
-       featClass : an LLFeatures compatible class
-       sadClass  : a class with constructor sadClass(config) and method sadClass.process(LLSignal x, LLFeatures f)
-       """
+    
        self.pipe_config = deepcopy(config['pipe_config'])
        self.feat = featClass
        if sadClass is None:

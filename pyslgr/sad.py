@@ -16,14 +16,15 @@
 
 class XtalkSAD (object):
     """
-    Perform energy-based speech activity detection using Xtalk
+    | Perform energy-based speech activity detection using Xtalk
+    
+    
+    | config : a dictionary of config parameters to pass to xtalk
+    | 'abs_min_energy', 'thresh', 'med_len' (optional)
     """
 
     def __init__ (self, config):
-        """
-        config : a dictionary of config parameters to pass to xtalk
-           'abs_min_energy', 'thresh', 'med_len' (optional)
-        """
+      
 
         self._abs_min_energy = config['abs_min_energy']
         self._thresh = config['thresh']

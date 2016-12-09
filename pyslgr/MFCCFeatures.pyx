@@ -25,23 +25,39 @@ from cython.operator cimport dereference as deref
 import json
 
 cdef class MFCCFeatures(LLFeatures):
+    """
+    | config  String or dictionary containing configuration parameters for MFCCs.
+    | Parameters in the config are:
+    |
+
+        +--------------+------------------------------------------------------------------------------------------------------+
+        | alpha        |    Warping factor for bilinear method (no warping: 1.0)                                              |
+        +--------------+------------------------------------------------------------------------------------------------------+
+        | dither       |    0/1 - Add low level noise to the signal (typical: 1)                                              |
+        +--------------+------------------------------------------------------------------------------------------------------+
+        | fb_low       |    Lowest filter bank frequency in Hz (typical: 300)                                                 |
+        +--------------+------------------------------------------------------------------------------------------------------+
+        | fb_hi        |    Highest filter bank frequency in Hz (typical: 3140)                                               |
+        +--------------+------------------------------------------------------------------------------------------------------+
+        | fb_only      |    0/1 - Instead of producing cepstral coefficients produce the 'raw' filter bank outputs instead    |
+        +--------------+------------------------------------------------------------------------------------------------------+
+        | keep_c0      |    0/1 - Keep the c0 cepstral coefficient; c0 represents frame energy (typical: 0)                   |
+        +--------------+------------------------------------------------------------------------------------------------------+
+        | linear       |    true/false - linear or mel-warped scale for filter banks (typical: false)                         |
+        +--------------+------------------------------------------------------------------------------------------------------+
+        | num_cep      |    int - number of cepstral coefficients (c1-c??) to output (typical: 7-19)                          |
+        +--------------+------------------------------------------------------------------------------------------------------+
+        | tgt_num_filt |  int - number of filters across the entire bandwidth; only applied for linear=true                   |
+        +--------------+------------------------------------------------------------------------------------------------------+
+        | win_inc_ms   |   int - window increment in milliseconds (typical: 10)                                               |
+        +--------------+------------------------------------------------------------------------------------------------------+
+        | win_len_ms   |    int - window length in milliseconds (typical: 20-30)                                              |
+        +--------------+------------------------------------------------------------------------------------------------------+
+    |
+    """
 
     def __cinit__(self, config):
-        """
-        config  String or dictionary containing configuration parameters for MFCCs.
-                Parameters in the config are:
-                alpha         Warping factor for bilinear method (no warping: 1.0)
-                dither        0/1 - Add low level noise to the signal (typical: 1)
-                fb_low        Lowest filter bank frequency in Hz (typical: 300)
-                fb_hi         Highest filter bank frequency in Hz (typical: 3140)
-                fb_only       0/1 - Instead of producing cepstral coefficients produce the 'raw' filter bank outputs instead
-                keep_c0       0/1 - Keep the c0 cepstral coefficient; c0 represents frame energy (typical: 0)
-                linear        true/false - linear or mel-warped scale for filter banks (typical: false)
-                num_cep       int - number of cepstral coefficients (c1-c??) to output (typical: 7-19)
-                tgt_num_filt  int - number of filters across the entire bandwidth; only applied for linear=true
-                win_inc_ms    int - window increment in milliseconds (typical: 10)
-                win_len_ms    int - window length in milliseconds (typical: 20-30)
-        """
+     
         if type(self) is MFCCFeatures:            
             self._mfccPtr = self._fPtr = new MFCC_Features()
         if self._mfccPtr == NULL:
