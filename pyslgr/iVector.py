@@ -21,6 +21,7 @@ import sys
 
 class iVector(object):
     """
+<<<<<<< HEAD
     iVector extractor
     """
     def __init__ (self, config):
@@ -29,6 +30,23 @@ class iVector(object):
             'tv_matrix' : filename for total variability matrix -- raw floats
             'ubm_model' : UBM model file
         """
+=======
+    | iVector extractor
+    |
+    |
+    | config : a dictionary of config parameters
+    |
+    
+        +--------------+------------------------------------------------------+
+        | tv_matrix    | filename for total variability matrix -- raw floats  |
+        +--------------+------------------------------------------------------+
+        | ubm_model    | UBM model file                                       |
+        +--------------+------------------------------------------------------+
+    |
+    """
+    def __init__ (self, config):
+       
+>>>>>>> 4d8de5e0547f98e081db3bf3c3b74e76dc3a9e0f
         # Load in the UBM model
         self._ubm = GMMModel()
         if 'model_dir' in config:

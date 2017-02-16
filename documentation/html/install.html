@@ -1,0 +1,284 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+  
+    <title>Install &mdash; pySLGR 1 documentation</title>
+  <!-- htmltitle is before nature.css - we use this hack to load bootstrap first -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="_static/css/bootstrap.min.css" media="screen" />
+  <link rel="stylesheet" href="_static/css/bootstrap-responsive.css"/>
+
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/gallery.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="pySLGR 1 documentation" href="index.html" />
+    <link rel="up" title="1. User Guide" href="user_guide.html" />
+    <link rel="next" title="1.2. Quick Start" href="quick_start.html" />
+    <link rel="prev" title="1. User Guide" href="user_guide.html" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="_static/js/bootstrap.min.js" type="text/javascript"></script>
+
+  <script type="text/javascript">
+    $("div.buttonNext, div.buttonPrevious").hover(
+       function () {
+           $(this).css('background-color', '#FF9C34');
+       },
+       function () {
+           $(this).css('background-color', '#A7D6E2');
+       }
+    );
+    function showMenu() {
+      var topNav = document.getElementById("scikit-navbar");
+      if (topNav.className === "navbar") {
+          topNav.className += " responsive";
+      } else {
+          topNav.className = "navbar";
+      }
+    };
+  </script>
+
+  </head>
+  <body role="document">
+
+<div class="header-wrapper">
+    <div class="header"><div class="navbar" id="scikit-navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+              <li><a href="user_guide.html">User Guide</a></li>
+   
+            <li><a href="examples.html">Examples</a></li>
+			<li><a href="search.html">Search</a></li>
+            </ul>
+            <a href="javascript:void(0);" onclick="showMenu()">
+                <div class="nav-icon">
+                    <div class="hamburger-line"></div>
+                    <div class="hamburger-line"></div>
+                    <div class="hamburger-line"></div>
+                </div>
+            </a>
+            
+        </div> <!-- end navbar --></div>
+</div>
+
+
+<div class="content-wrapper">
+    <div class="sphinxsidebar">
+    <div class="sphinxsidebarwrapper">
+        <div class="rel">
+    
+
+  <!-- rellinks[1:] is an ugly hack to avoid link to module
+  index -->
+        <div class="rellink">
+        <a href="user_guide.html"
+        accesskey="P">Previous
+        <br/>
+        <span class="smallrellink">
+        1. User Guide
+        </span>
+            <span class="hiddenrellink">
+            1. User Guide
+            </span>
+        </a>
+        </div>
+            <div class="spacer">
+            &nbsp;
+            </div>
+        <div class="rellink">
+        <a href="quick_start.html"
+        accesskey="N">Next
+        <br/>
+        <span class="smallrellink">
+        1.2. Quick Start
+        </span>
+            <span class="hiddenrellink">
+            1.2. Quick Start
+            </span>
+        </a>
+        </div>
+            <div class="spacer">
+            &nbsp;
+            </div>
+        <div class="rellink">
+        <a href="py-modindex.html"
+        >Modules
+        <br/>
+        <span class="smallrellink">
+        Python Module...
+        </span>
+            <span class="hiddenrellink">
+            Python Module Index
+            </span>
+        </a>
+        </div>
+
+    <!-- Ad a link to the 'up' page -->
+        <div class="spacer">
+        &nbsp;
+        </div>
+        <div class="rellink">
+        <a href="user_guide.html">
+        Up
+        <br/>
+        <span class="smallrellink">
+        1. User Guide
+        </span>
+            <span class="hiddenrellink">
+            1. User Guide
+            </span>
+            
+        </a>
+        </div>
+    </div>
+    
+	<!---
+    <p class="citing">If you use the software, please consider <a href="about.html#citing-scikit-learn">citing scikit-learn</a>.</p>
+    --->
+	<ul>
+<li><a class="reference internal" href="#">1.1. Install</a><ul>
+<li><a class="reference internal" href="#installation">1.1.1. Installation</a></li>
+<li><a class="reference internal" href="#check-installation">1.1.2. Check Installation</a></li>
+<li><a class="reference internal" href="#to-remove">1.1.3. To Remove</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</div>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" checked />
+<label for="nav-trigger"></label>
+
+
+
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="install">
+<h1>1.1. Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="installation">
+<h2>1.1.1. Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">We use Anaconda to install PySLGR.</div>
+<div class="line">If you do not have Anaconda installed, you can download it <a class="reference external" href="http://www.continuum.io/downloads">here</a></div>
+</div>
+<ol class="arabic">
+<li><p class="first">Download PySLGR from <a class="reference external" href="https://g62code.llan.ll.mit.edu/nmec/slgr.git">https://g62code.llan.ll.mit.edu/nmec/slgr.git</a> (put external link here when I have it)</p>
+</li>
+<li><p class="first">Copy the provided conda package (<em>pyslgr&lt;version&gt;.tar.bz2</em>) to your local system. Make sure you have the correct version for your operating system. We will refer to the location of this file as &lt;pyslgr-pkg dir&gt;.</p>
+</li>
+<li><p class="first">Open the terminal and run:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">&lt;</span><span class="n">pyslgr</span><span class="o">-</span><span class="n">pkg</span> <span class="nb">dir</span><span class="o">&gt;/&lt;</span><span class="n">pkg</span><span class="o">-</span><span class="n">name</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">bz2</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>where &lt;pkg-name.tar.bz2&gt; is the name of the file provided.</p>
+</li>
+</ol>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p>For windows users, if you are using command prompt the command will look like this:</p>
+<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">&lt;</span><span class="n">pyslgr</span><span class="o">-</span><span class="n">pkg</span> <span class="nb">dir</span><span class="o">&gt;</span>\<span class="o">&lt;</span><span class="n">pkg</span><span class="o">-</span><span class="n">name</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">bz2</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">For details on how to build the package from the source code, see <a class="reference internal" href="build_pyslgr.html#build-pyslgr-top"><span class="std std-ref">How to Build PySLGR</span></a>.</p>
+</div>
+</div>
+<div class="section" id="check-installation">
+<h2>1.1.2. Check Installation<a class="headerlink" href="#check-installation" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p class="first">Locate a sample script in the <em>examples</em> directory.</p>
+</li>
+<li><p class="first">Run:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">&lt;</span><span class="n">sample_script</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="to-remove">
+<h2>1.1.3. To Remove<a class="headerlink" href="#to-remove" title="Permalink to this headline">¶</a></h2>
+<p>Run:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">remove</span> <span class="o">--</span><span class="n">name</span> <span class="o">&lt;</span><span class="n">env</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span> <span class="n">pyslgr</span>
+</pre></div>
+</div>
+<p>where &lt;env-name&gt; is the name of an existing environment.</p>
+<p>To list all environments use:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>conda info -env$
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2016, Esther Wolf.
+      <a href="_sources/install.txt" rel="nofollow">Show this page source</a>
+    </div>
+     <div class="rel">
+    
+    <div class="buttonPrevious">
+      <a href="user_guide.html">Previous
+      </a>
+    </div>
+    <div class="buttonNext">
+      <a href="quick_start.html">Next
+      </a>
+    </div>
+    <div class="buttonPrevious">
+      <a href="py-modindex.html">Previous
+      </a>
+    </div>
+    
+     </div>
+
+    
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-22606712-2']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    
+  </body>
+</html>

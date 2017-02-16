@@ -1,0 +1,834 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+  
+    <title>3. pySLGR Package &mdash; pySLGR 1 documentation</title>
+  <!-- htmltitle is before nature.css - we use this hack to load bootstrap first -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="_static/css/bootstrap.min.css" media="screen" />
+  <link rel="stylesheet" href="_static/css/bootstrap-responsive.css"/>
+
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/gallery.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="pySLGR 1 documentation" href="index.html" />
+    <link rel="prev" title="2. Examples" href="examples.html" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="_static/js/bootstrap.min.js" type="text/javascript"></script>
+
+  <script type="text/javascript">
+    $("div.buttonNext, div.buttonPrevious").hover(
+       function () {
+           $(this).css('background-color', '#FF9C34');
+       },
+       function () {
+           $(this).css('background-color', '#A7D6E2');
+       }
+    );
+    function showMenu() {
+      var topNav = document.getElementById("scikit-navbar");
+      if (topNav.className === "navbar") {
+          topNav.className += " responsive";
+      } else {
+          topNav.className = "navbar";
+      }
+    };
+  </script>
+
+  </head>
+  <body role="document">
+
+<div class="header-wrapper">
+    <div class="header"><div class="navbar" id="scikit-navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+              <li><a href="user_guide.html">User Guide</a></li>
+   
+            <li><a href="examples.html">Examples</a></li>
+			<li><a href="search.html">Search</a></li>
+            </ul>
+            <a href="javascript:void(0);" onclick="showMenu()">
+                <div class="nav-icon">
+                    <div class="hamburger-line"></div>
+                    <div class="hamburger-line"></div>
+                    <div class="hamburger-line"></div>
+                </div>
+            </a>
+            
+        </div> <!-- end navbar --></div>
+</div>
+
+
+<div class="content-wrapper">
+    <div class="sphinxsidebar">
+    <div class="sphinxsidebarwrapper">
+        <div class="rel rellarge">
+    
+
+  <!-- rellinks[1:] is an ugly hack to avoid link to module
+  index -->
+        <div class="rellink">
+        <a href="examples.html"
+        accesskey="P">Previous
+        <br/>
+        <span class="smallrellink">
+        2. Examples
+        </span>
+            <span class="hiddenrellink">
+            2. Examples
+            </span>
+        </a>
+        </div>
+            <div class="spacer">
+            &nbsp;
+            </div>
+        <div class="rellink">
+        <a href="py-modindex.html"
+        >Modules
+        <br/>
+        <span class="smallrellink">
+        Python Module...
+        </span>
+            <span class="hiddenrellink">
+            Python Module Index
+            </span>
+        </a>
+        </div>
+
+    <!-- Ad a link to the 'up' page -->
+    </div>
+    
+      <p class="doc-version">This documentation is for pySLGR <strong>version 1</strong> &mdash; <!--- <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p> --->
+	<!---
+    <p class="citing">If you use the software, please consider <a href="about.html#citing-scikit-learn">citing scikit-learn</a>.</p>
+    --->
+	<ul>
+<li><a class="reference internal" href="#">3. pySLGR Package</a><ul>
+<li><a class="reference internal" href="#modules">3.1. Modules</a><ul>
+<li><a class="reference internal" href="#module-pyslgr.GMMModel">3.1.1. pyslgr.GMMModel module</a></li>
+<li><a class="reference internal" href="#module-pyslgr.LLFeatures">3.1.2. pyslgr.LLFeatures module</a></li>
+<li><a class="reference internal" href="#module-pyslgr.LLSignal">3.1.3. pyslgr.LLSignal module</a></li>
+<li><a class="reference internal" href="#module-pyslgr.MFCCFeatures">3.1.4. pyslgr.MFCCFeatures module</a></li>
+<li><a class="reference internal" href="#module-pyslgr.Scores">3.1.5. pyslgr.Scores module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</div>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" checked />
+<label for="nav-trigger"></label>
+
+
+
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pyslgr-package">
+<h1>3. pySLGR Package<a class="headerlink" href="#pyslgr-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="modules">
+<h2>3.1. Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-pyslgr.GMMModel">
+<span id="pyslgr-gmmmodel-module"></span><h3>3.1.1. pyslgr.GMMModel module<a class="headerlink" href="#module-pyslgr.GMMModel" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="pyslgr.GMMModel.GMMModel">
+<em class="property">class </em><code class="descclassname">pyslgr.GMMModel.</code><code class="descname">GMMModel</code><a class="headerlink" href="#pyslgr.GMMModel.GMMModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="pyslgr.GMMModel.GMMModel.is_loaded">
+<code class="descname">is_loaded</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.GMMModel.GMMModel.is_loaded" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.GMMModel.GMMModel.load">
+<code class="descname">load</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.GMMModel.GMMModel.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a GMM model.</p>
+<p>load(model_file_name)</p>
+<dl class="docutils">
+<dt>Parameters:</dt>
+<dd><dl class="first last docutils">
+<dt>model_file_name</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">string</span><dd>File name of model to load</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.GMMModel.GMMModel.score_models">
+<code class="descname">score_models</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.GMMModel.GMMModel.score_models" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a GMM model.</p>
+<p>load(LLFeatures f, list models, int topM, bool use_shortfall, float sf_delta)</p>
+<dl class="docutils">
+<dt>Parameters:</dt>
+<dd><dl class="first last docutils">
+<dt>f</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">LLFeatures</span><dd>Feature input</dd>
+<dt>models</dt>
+<dd>List of GMM models to process</dd>
+<dt>topM</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">int</span><dd>Number of Gaussians to score per frame (default: 5)</dd>
+<dt>use_shortfall</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">bool</span><dd>Use shortfall method when evaluating Gaussian mixture model (default: True)</dd>
+<dt>sf_delta</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">float</span><dd>Shortfall delta for pruning (default: 10.0)</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyslgr.GMMModel.GMMSAD">
+<em class="property">class </em><code class="descclassname">pyslgr.GMMModel.</code><code class="descname">GMMSAD</code><a class="headerlink" href="#pyslgr.GMMModel.GMMSAD" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Class to process a signal and produce SAD marks using a GMM
+GMMSAD (feat_config, gmm_models, label_keep, label_window, min_gap_dur=0.5, min_seg_dur=0.2)</p>
+<dl class="docutils">
+<dt>Parameters:</dt>
+<dd><dl class="first last docutils">
+<dt>feat_config</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">string</span><dd>Configuration string from a JSON object &#8211; see MFCCFeatures.process for more details</dd>
+<dt>model_dir</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">string</span><dd>Base directory where models are stored</dd>
+<dt>gmm_models</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">dict</span><dd>Dictionary of models for GMMSAD scoring.  Typical keys are &#8216;speech&#8217;, &#8216;music&#8217;, &#8216;nonspeech&#8217;.</dd>
+<dt>min_gap_dur</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">float (default 0.5 seconds)</span><dd>Minimum gap between segments &#8211; segments are combined if the gap is smaller than this time</dd>
+<dt>min_seg_dur</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">float (default 0.2 seconds)</span><dd>Minimum segment duration &#8211; ignore segments below this duration</dd>
+</dl>
+</dd>
+</dl>
+<dl class="method">
+<dt id="pyslgr.GMMModel.GMMSAD.gmmsad">
+<code class="descname">gmmsad</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.GMMModel.GMMSAD.gmmsad" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyslgr.LLFeatures">
+<span id="pyslgr-llfeatures-module"></span><h3>3.1.2. pyslgr.LLFeatures module<a class="headerlink" href="#module-pyslgr.LLFeatures" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="pyslgr.LLFeatures.LLFeatures">
+<em class="property">class </em><code class="descclassname">pyslgr.LLFeatures.</code><code class="descname">LLFeatures</code><a class="headerlink" href="#pyslgr.LLFeatures.LLFeatures" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="pyslgr.LLFeatures.LLFeatures.accel">
+<code class="descname">accel</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.LLFeatures.LLFeatures.accel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate acceleration values from delta values.</p>
+<p>accel(accel_spread)</p>
+<dl class="docutils">
+<dt>Parameters:</dt>
+<dd><dl class="first last docutils">
+<dt>accel_spread</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">int</span><dd>Acceleration at time t is calculated using the frames t-k,...,t,...,t+k where k is &#8216;accel_spread&#8217;</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.LLFeatures.LLFeatures.apply_sad">
+<code class="descname">apply_sad</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.LLFeatures.LLFeatures.apply_sad" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given that speech activity detection has been calculated or loaded, remove frames corresponding
+to non-speech.</p>
+<p>apply_sad()</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.LLFeatures.LLFeatures.delta">
+<code class="descname">delta</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.LLFeatures.LLFeatures.delta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate delta values from base features.</p>
+<p>delta(delta_spread)</p>
+<dl class="docutils">
+<dt>Parameters:</dt>
+<dd><dl class="first last docutils">
+<dt>delta_spread</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">int</span><dd>Delta at time t is calculated using the frames t-k,...,t,...,t+k where k is &#8216;delta_spread&#8217;</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.LLFeatures.LLFeatures.delta2point">
+<code class="descname">delta2point</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.LLFeatures.LLFeatures.delta2point" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate delta values from base features using only 2 values.</p>
+<p>delta2point(delta_spread)</p>
+<dl class="docutils">
+<dt>Parameters:</dt>
+<dd><dl class="first last docutils">
+<dt>delta_spread</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">int</span><dd>Delta at time t is calculated using the frames t-k and t+k where k is &#8216;delta_spread&#8217;</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.LLFeatures.LLFeatures.feat_norm">
+<code class="descname">feat_norm</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.LLFeatures.LLFeatures.feat_norm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalize each feature individually to zero mean and unit variance across all frames.</p>
+<p>feat_norm()</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.LLFeatures.LLFeatures.load_raw">
+<code class="descname">load_raw</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.LLFeatures.LLFeatures.load_raw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a file of raw floats into a feature store.  Assumes all features are base features.</p>
+<p>load_raw (filename, num_feat)</p>
+<dl class="docutils">
+<dt>Parameters:</dt>
+<dd><dl class="first last docutils">
+<dt>filename</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">string</span><dd>Name of file to load</dd>
+<dt>num_feat</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">int</span><dd>Number of base features (dimension of feature vector)</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.LLFeatures.LLFeatures.load_sad_labels">
+<code class="descname">load_sad_labels</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.LLFeatures.LLFeatures.load_sad_labels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a file of SAD labels (0/1).  Assumes whitespace separation between labels.</p>
+<p>load_sad_labels(filename, sloppy)</p>
+<dl class="docutils">
+<dt>Parameters:</dt>
+<dd><dl class="first last docutils">
+<dt>filename</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">string</span><dd>Name of file to load</dd>
+<dt>sloppy</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">bool</span><dd>Complain if the number of labels doesn&#8217;t match the number of feature vectors (default: True)</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.LLFeatures.LLFeatures.num_base_feat">
+<code class="descname">num_base_feat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.LLFeatures.LLFeatures.num_base_feat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of base features in each vector.
+Base features do not include post-processing such as delta, sdc, or acceleration.</p>
+<p>num_base_feat() -&gt; int</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.LLFeatures.LLFeatures.num_outfeat">
+<code class="descname">num_outfeat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.LLFeatures.LLFeatures.num_outfeat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of output features in each vector.
+Output features are set with the set_outfeat() method.</p>
+<p>num_outfeat() -&gt; int</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.LLFeatures.LLFeatures.num_total_feat">
+<code class="descname">num_total_feat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.LLFeatures.LLFeatures.num_total_feat" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.LLFeatures.LLFeatures.num_vec">
+<code class="descname">num_vec</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.LLFeatures.LLFeatures.num_vec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of feature vectors.</p>
+<p>num_vec() -&gt; int</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.LLFeatures.LLFeatures.rasta">
+<code class="descname">rasta</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.LLFeatures.LLFeatures.rasta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply RASTA to all features.</p>
+<p>rasta()</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.LLFeatures.LLFeatures.sad_labels">
+<code class="descname">sad_labels</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.LLFeatures.LLFeatures.sad_labels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the current SAD labels (0/1) per frame.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.LLFeatures.LLFeatures.save_raw">
+<code class="descname">save_raw</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.LLFeatures.LLFeatures.save_raw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save features as raw floats to &#8216;filename&#8217;.  The features
+saved are set by &#8216;set_outfeat&#8217;.</p>
+<p>save_raw(filename)</p>
+<dl class="docutils">
+<dt>Parameters:</dt>
+<dd><dl class="first last docutils">
+<dt>filename</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">string</span><dd>Name of file to save features in</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.LLFeatures.LLFeatures.save_sad_labels">
+<code class="descname">save_sad_labels</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.LLFeatures.LLFeatures.save_sad_labels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save SAD labels (0/1) to file.</p>
+<p>save_sad_labels(filename)</p>
+<dl class="docutils">
+<dt>Parameters:</dt>
+<dd><dl class="first last docutils">
+<dt>filename</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">string</span><dd>Name of output file</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.LLFeatures.LLFeatures.sdc">
+<code class="descname">sdc</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.LLFeatures.LLFeatures.sdc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shifted-delta features &#8211; typically used for language recognition.
+Note: Uses available delta features which must be calculated before invoking &#8216;sdc()&#8217;.</p>
+<p>sdc (sdc_p, sdc_k):</p>
+<dl class="docutils">
+<dt>Parameters:</dt>
+<dd><dl class="first last docutils">
+<dt>sdc_p</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">int </span><dd>p value &#8211; shift between delta blocks (typical value, 3 )</dd>
+<dt>sdc_k</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">int</span><dd>k value &#8211; number of delta blocks to stack (typical value, 7)</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.LLFeatures.LLFeatures.set_outfeat">
+<code class="descname">set_outfeat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.LLFeatures.LLFeatures.set_outfeat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the features to output for typical operations.
+The value can be changed at any time.  Order in the parameter string
+determines the stacking order.  By default the &#8216;outfeat&#8217; is set to &#8216;all&#8217; when the
+feature object is created.</p>
+<p>set_outfeat(outfeat)</p>
+<dl class="docutils">
+<dt>Parameters:</dt>
+<dd><dl class="first last docutils">
+<dt>outfeat</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">string</span><dd>Set the output features.  If outfeat==&#8217;all&#8217;, then all base features and
+calculated features are returned (except energy.  Otherwise, &#8216;outfeat&#8217; 
+is examined a character at a time and features are stacked in that order.
+&#8216;f&#8217; base features, &#8216;d&#8217; delta-features, &#8216;a&#8217; acceleration features, &#8216;e&#8217; energy, 
+&#8216;s&#8217; sdc features.  E.g., set_outfeat(&#8216;fd&#8217;) would set the output to base features in indices 
+0, ..., num_base_feat-1 and delta features in num_base_feat+1, ..., -1.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.LLFeatures.LLFeatures.xtalk">
+<code class="descname">xtalk</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.LLFeatures.LLFeatures.xtalk" title="Permalink to this definition">¶</a></dt>
+<dd><p>xtalk energy based speech-activity detection.</p>
+<p>xtalk (abs_min_energy, thresh, med_len=1)</p>
+<dl class="docutils">
+<dt>Parameters:</dt>
+<dd><dl class="first last docutils">
+<dt>abs_min_energy</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">float</span><dd>Below this threshold is non-speech.  Typical values, -10 or 0.</dd>
+<dt>thresh</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">float</span><dd>Above this threshold triggers speech activity (the algorithm is adaptive).</dd>
+<dt>med_len: int (default 1)</dt>
+<dd>Median filter to smooth activity.  Large values imply less abrupt changes in
+speech activity.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyslgr.LLSignal">
+<span id="pyslgr-llsignal-module"></span><h3>3.1.3. pyslgr.LLSignal module<a class="headerlink" href="#module-pyslgr.LLSignal" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="pyslgr.LLSignal.LLSignal">
+<em class="property">class </em><code class="descclassname">pyslgr.LLSignal.</code><code class="descname">LLSignal</code><a class="headerlink" href="#pyslgr.LLSignal.LLSignal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Class to contain and process 1-dimensional signals&#8211;typically speech or audio.</p>
+<p>LLSignal() &#8211; empty signal with zero samples.</p>
+<dl class="method">
+<dt id="pyslgr.LLSignal.LLSignal.enhance">
+<code class="descname">enhance</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.LLSignal.LLSignal.enhance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove wideband noise from the signal using an adaptive Wiener filter.</p>
+<p>enhance()</p>
+<p>Note: This technique estimates noise from non-speech regions, so it will work best when the
+input is (signal + noise).  If there is music or other non-speech sounds in the background, 
+results will vary.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.LLSignal.LLSignal.get_f0">
+<code class="descname">get_f0</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.LLSignal.LLSignal.get_f0" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find the fundamental frequency f0 (&#8220;pitch&#8221;) from the signal using the Entropic algorithm.</p>
+<p>get_f0 (min_f0, max_f0, window_dur, frame_step) -&gt; np.array(dtype=float)</p>
+<dl class="docutils">
+<dt>Parameters:</dt>
+<dd><dl class="first last docutils">
+<dt>min_f0</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">float</span><dd>Minimum allowed fundamental frequency in Hz (e.g., 100)</dd>
+<dt>max_f0</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">float</span><dd>Maximum allowed fundamental frequency in Hz (e.g., 650)</dd>
+<dt>window_duration</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">float</span><dd>Window duration in seconds (e.g., 0.010 &#8211; 10 milliseconds)</dd>
+<dt>frame_step</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">float</span><dd>Increment of window position (e.g., 0.002 &#8211; 2 milliseconds)</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.LLSignal.LLSignal.length">
+<code class="descname">length</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.LLSignal.LLSignal.length" title="Permalink to this definition">¶</a></dt>
+<dd><p>Length of the signal in samples.</p>
+<p>x.length() -&gt; int</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.LLSignal.LLSignal.load_pcm_wav">
+<code class="descname">load_pcm_wav</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.LLSignal.LLSignal.load_pcm_wav" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a single-channel pcm-encoded Microsoft wav file format.</p>
+<p>load_pcm_wav(filename, sum_channels=True)</p>
+<dl class="docutils">
+<dt>Parameters:</dt>
+<dd><dl class="first last docutils">
+<dt>filename</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">string </span><dd>Path of file to load</dd>
+<dt>sum_channels</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">boolean (default True)</span><dd>Default True &#8211; sum channels if multiple present.  
+Otherwise an error will be thrown for multiple channels.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.LLSignal.LLSignal.load_raw_short">
+<code class="descname">load_raw_short</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.LLSignal.LLSignal.load_raw_short" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a single-channel pcm-encoded file of short ints with no header.</p>
+<p>load_pcm_wav(filename, sampling_frequency)</p>
+<dl class="docutils">
+<dt>Parameters:</dt>
+<dd><dl class="first last docutils">
+<dt>filename</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">string </span><dd>Path to file to load</dd>
+<dt>sampling_frequency</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">int</span><dd>Sampling frequency of the file in Hz (e.g., 8000 for 8 kHz)</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.LLSignal.LLSignal.load_sph">
+<code class="descname">load_sph</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.LLSignal.LLSignal.load_sph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a NIST sphere file &#8211; channel is 0, 1.  Use 0 for single channel.</p>
+<p>load_sph(filename, channel_num)</p>
+<dl class="docutils">
+<dt>Parameters:</dt>
+<dd><dl class="first last docutils">
+<dt>filename</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">string </span><dd>Path to file to load</dd>
+<dt>channel_num</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">int</span><dd>Number of channel, 0 or 1, to load</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.LLSignal.LLSignal.normalize">
+<code class="descname">normalize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.LLSignal.LLSignal.normalize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalize the amplitude of the waveform to 16-bits.</p>
+<p>normalize()</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.LLSignal.LLSignal.preemphasis">
+<code class="descname">preemphasis</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.LLSignal.LLSignal.preemphasis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform pre-emphasis on the waveform; i.e., filter with 1/(1-alpha*z^(-1))</p>
+<p>preemphasis (alpha)</p>
+<dl class="docutils">
+<dt>Parameters:</dt>
+<dd><dl class="first last docutils">
+<dt>alpha</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">float</span><dd>Pre-emphasis coefficient</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.LLSignal.LLSignal.remove_mean">
+<code class="descname">remove_mean</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.LLSignal.LLSignal.remove_mean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the mean of the signal.</p>
+<p>remove_mean()</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.LLSignal.LLSignal.remove_tones">
+<code class="descname">remove_tones</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.LLSignal.LLSignal.remove_tones" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove stationary tones from a signal.</p>
+<p>remove_tones()</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.LLSignal.LLSignal.resample_16k">
+<code class="descname">resample_16k</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.LLSignal.LLSignal.resample_16k" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resample the signal to an 16 kHz sampling rate.
+Note: The resample_init() method must be called before calling this method.  Also,
+if the sample rate is below 16 kHz, no operation will be performed.</p>
+<p>resample_16k()</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.LLSignal.LLSignal.resample_8k">
+<code class="descname">resample_8k</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.LLSignal.LLSignal.resample_8k" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resample the signal to an 8 kHz sampling rate.
+Note: The resample_init() method must be called before calling this method.</p>
+<p>resample_8k()</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.LLSignal.LLSignal.sampling_frequency">
+<code class="descname">sampling_frequency</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.LLSignal.LLSignal.sampling_frequency" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the sampling frequency of the currently loaded signal.</p>
+<p>sampling_frequency()</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.LLSignal.LLSignal.save_pcm_wav">
+<code class="descname">save_pcm_wav</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.LLSignal.LLSignal.save_pcm_wav" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the current signal in pcm-encoded Microsoft wav file format.</p>
+<p>save_pcm_wav(filename, scale=False)</p>
+<dl class="docutils">
+<dt>Parameters:</dt>
+<dd><dl class="first last docutils">
+<dt>filename</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">string </span><dd>Path of file to save</dd>
+<dt>scale</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">boolean (default False)</span><dd>Scale the output to full 16-bit range when saving</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.LLSignal.LLSignal.save_raw_short">
+<code class="descname">save_raw_short</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.LLSignal.LLSignal.save_raw_short" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the current signal as short ints with no-header.</p>
+<p>save_raw_short(filename, clip, scale=False)</p>
+<dl class="docutils">
+<dt>Parameters:</dt>
+<dd><dl class="first last docutils">
+<dt>filename</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">string </span><dd>Path of file to save</dd>
+<dt>clip</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">boolean</span><dd>Clip the output if it is greater than the largest 16-bit value</dd>
+<dt>scale</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">boolean (default False)</span><dd>Scale the output to full 16-bit range when saving</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyslgr.MFCCFeatures">
+<span id="pyslgr-mfccfeatures-module"></span><h3>3.1.4. pyslgr.MFCCFeatures module<a class="headerlink" href="#module-pyslgr.MFCCFeatures" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="pyslgr.MFCCFeatures.MFCCFeatures">
+<em class="property">class </em><code class="descclassname">pyslgr.MFCCFeatures.</code><code class="descname">MFCCFeatures</code><a class="headerlink" href="#pyslgr.MFCCFeatures.MFCCFeatures" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyslgr.LLFeatures.LLFeatures" title="pyslgr.LLFeatures.LLFeatures"><code class="xref py py-class docutils literal"><span class="pre">pyslgr.LLFeatures.LLFeatures</span></code></a></p>
+<dl class="staticmethod">
+<dt id="pyslgr.MFCCFeatures.MFCCFeatures.config_dict_to_str">
+<em class="property">static </em><code class="descname">config_dict_to_str</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.MFCCFeatures.MFCCFeatures.config_dict_to_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a feature configuration dictionary to a json string for processing.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.MFCCFeatures.MFCCFeatures.duration">
+<code class="descname">duration</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.MFCCFeatures.MFCCFeatures.duration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the duration that the MFCC data spans in seconds.</p>
+<p>duration() -&gt; float seconds</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="pyslgr.MFCCFeatures.MFCCFeatures.get_lid_config">
+<em class="property">static </em><code class="descname">get_lid_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.MFCCFeatures.MFCCFeatures.get_lid_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns default language id configuration as a dictionary. User can 
+modify the entries in the dictionary or use this configuration as is. User 
+must call static method config_dict_to_str(config) before processing a signal with
+such configuration.</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="pyslgr.MFCCFeatures.MFCCFeatures.get_sid_config">
+<em class="property">static </em><code class="descname">get_sid_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.MFCCFeatures.MFCCFeatures.get_sid_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns default speaker id configuration as a dictionary. User can 
+modify the entries in the dictionary or use this configuration as is. User 
+must call static method config_dict_to_str(config) before processing a signal with
+such configuration.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.MFCCFeatures.MFCCFeatures.get_win_inc_ms">
+<code class="descname">get_win_inc_ms</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.MFCCFeatures.MFCCFeatures.get_win_inc_ms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the window increment in milliseconds.</p>
+<p>get_win_inc_ms()</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.MFCCFeatures.MFCCFeatures.load_sad_marks">
+<code class="descname">load_sad_marks</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.MFCCFeatures.MFCCFeatures.load_sad_marks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load SAD marks from a file or list</p>
+<p>load_sad_marks(src)</p>
+<dl class="docutils">
+<dt>Parameters:</dt>
+<dd><dl class="first docutils">
+<dt>src</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">string</span><dd>Name of input file</dd>
+</dl>
+<p>or 
+src : list of tuples</p>
+<blockquote class="last">
+<div>Tuples with start, duration in seconds: [(0.0,1.0),(2.0,1.5)]</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.MFCCFeatures.MFCCFeatures.process">
+<code class="descname">process</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.MFCCFeatures.MFCCFeatures.process" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process the signal to return mel-frequency cepstral coefficient (MFCC) features.</p>
+<p>process(signal, config) -&gt; features</p>
+<dl class="docutils">
+<dt>Parameters:</dt>
+<dd><p class="first">signal  Input signal &#8211; instance of LLSignal class
+config  String containing configuration parameters for MFCCs.  The string is</p>
+<blockquote class="last">
+<div>a JSON object converted to a string.  Parameters in the config are:
+dither     0/1 - Add low level noise to the signal (typical: 1)
+fb_low     Lowest filter bank frequency in Hz (typical: 300)
+fb_hi      Highest filter bank frequency in Hz (typical: 3140)
+fb_only    0/1 - Instead of producing cepstral coefficients produce the &#8216;raw&#8217; filter bank outputs instead
+keep_c0    0/1 - Keep the c0 cepstral coefficient; c0 represents frame energy (typical: 0)
+linear     true/false - linear or mel-warped scale for filter banks (typical: false)
+num_cep    int - number of cepstral coefficients (c1-c??) to output (typical: 7-19)
+win_inc_ms int - window increment in milliseconds (typical: 10)
+win_len_ms int - window length in milliseconds (typical: 20-30)</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.MFCCFeatures.MFCCFeatures.save_sad_marks">
+<code class="descname">save_sad_marks</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.MFCCFeatures.MFCCFeatures.save_sad_marks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save SAD marks to a file.</p>
+<p>save_sad_marks(filename)</p>
+<dl class="docutils">
+<dt>Parameters:</dt>
+<dd><dl class="first last docutils">
+<dt>filename</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">string</span><dd>Name of output file</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyslgr.Scores">
+<span id="pyslgr-scores-module"></span><h3>3.1.5. pyslgr.Scores module<a class="headerlink" href="#module-pyslgr.Scores" title="Permalink to this headline">¶</a></h3>
+<p>Created on Tue Nov 10 12:45:25 2015
+Class to store scores as numpy arrays
+&#64;author: JO21372</p>
+<dl class="class">
+<dt id="pyslgr.Scores.Scores">
+<em class="property">class </em><code class="descclassname">pyslgr.Scores.</code><code class="descname">Scores</code><span class="sig-paren">(</span><em>f_scores</em>, <em>s</em>, <em>u_score</em><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.Scores.Scores" title="Permalink to this definition">¶</a></dt>
+<dd><p>Expects frame scores and scores (f_scores and s respectively) as Python lists. 
+Argument u_score represents an ubm score as a float type.</p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2016, Esther Wolf.
+      <a href="_sources/pyslgr.txt" rel="nofollow">Show this page source</a>
+    </div>
+     <div class="rel rellarge">
+    
+    <div class="buttonPrevious">
+      <a href="examples.html">Previous
+      </a>
+    </div>
+    <div class="buttonNext">
+      <a href="py-modindex.html">Next
+      </a>
+    </div>
+    
+     </div>
+
+    
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-22606712-2']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    
+  </body>
+</html>

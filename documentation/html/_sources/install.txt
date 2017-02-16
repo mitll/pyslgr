@@ -1,0 +1,48 @@
+.. title:: Install
+.. install
+
+.. _install_top:
+==================
+Install
+==================
+
+
+Installation
+#############
+| We use Anaconda to install PySLGR. 
+| If you do not have Anaconda installed, you can download it `here <http://www.continuum.io/downloads>`_
+
+#. Download PySLGR from https://g62code.llan.ll.mit.edu/nmec/slgr.git (put external link here when I have it)
+#. Copy the provided conda package (*pyslgr<version>.tar.bz2*) to your local system. Make sure you have the correct version for your operating system. We will refer to the location of this file as <pyslgr-pkg dir>.
+#. Open the terminal and run::
+   		
+   		conda install <pyslgr-pkg dir>/<pkg-name.tar.bz2>
+	
+   where <pkg-name.tar.bz2> is the name of the file provided.
+
+.. warning:: For windows users, if you are using command prompt the command will look like this:
+			 ::
+			 	conda install <pyslgr-pkg dir>\<pkg-name.tar.bz2>
+
+.. seealso:: For details on how to build the package from the source code, see :ref:`How to Build PySLGR <build_pyslgr_top>`.
+
+Check Installation
+###################
+
+1. Locate a sample script in the *examples* directory.
+2. Run::
+
+	python <sample_script>
+
+To Remove
+##########
+
+Run:
+::
+	conda remove --name <env-name> pyslgr
+
+where <env-name> is the name of an existing environment. 
+
+To list all environments use:
+::
+	conda info -env$
