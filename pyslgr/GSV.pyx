@@ -29,15 +29,6 @@ import numpy as np
 import os
 
 cdef class GSV:
-<<<<<<< HEAD
-    def __cinit__(self, config):
-        """
-        GSV(config)
-        
-        config  dictionary or JSON string with config parameters
-
-        """
-=======
     """
     | GSV(config)
     |
@@ -45,8 +36,6 @@ cdef class GSV:
 
     """
     def __cinit__(self, config):
-       
->>>>>>> 4d8de5e0547f98e081db3bf3c3b74e76dc3a9e0f
         self._mPtr = new IPDF_expansion()
         if self._mPtr == NULL:
             raise MemoryError()

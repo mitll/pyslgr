@@ -11,5 +11,4 @@ ext = Extension("MFCCFeatures",
                 ,extra_link_args = ['-lfftw3','-lstdc++']
                 )
 
-setup(name="MFCCFeatures",
-      ext_modules=cythonize(ext))
+setup(name="MFCCFeatures", ext_modules=cythonize(ext))
