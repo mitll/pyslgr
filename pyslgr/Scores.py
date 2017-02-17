@@ -13,19 +13,9 @@
 # an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
 # specific language governing permissions and limitations under the License.
 #
-<<<<<<< HEAD
-"""
-Created on Tue Nov 10 12:45:25 2015
-Class to store scores as numpy arrays
-@author: JO21372
-"""
-=======
-
->>>>>>> 4d8de5e0547f98e081db3bf3c3b74e76dc3a9e0f
 import numpy as np
 
 class Scores:
-    
     """
     Expects frame scores and scores (f_scores and s respectively) as Python lists. 
     Argument u_score represents an ubm score as a float type.
