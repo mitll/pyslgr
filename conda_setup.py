@@ -9,7 +9,7 @@ from setuptools import setup, find_packages
 setup(
     name="pyslgr",
     packages=['pyslgr'],
-    version="0.7.0",
+    version="0.7.2",
     description="Python tools for speech, language, and gender recognition (SLGR)",
     author='Human Language Technology Group, MIT Lincoln Laboratory',
     author_email='none',

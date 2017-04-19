@@ -1,7 +1,6 @@
-###pySLGR 0.7.0
+### pySLGR 0.7.2
 
 A Python tool for Speaker, Language, and Gender Recognition (SLGR) and general meta-data extraction.
-
 
 Preliminary release:
 * This release has initial functionality and basic algorithms for running SLGR systems 
@@ -14,7 +13,7 @@ Requirements:
 
 Installation:
 * Download the files from the git release tab 
-* Type 'conda install pyslgr-0.7.0-py27_0.tar.bz2' to install pySLGR
+* Type 'conda install pyslgr-0.7.2-py27_0.tar.bz2' to install pySLGR
 * To run the examples untar the examples and models in the same directory
 * 'cd examples' and then './example_signal.py' 
 
