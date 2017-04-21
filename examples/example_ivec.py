@@ -38,3 +38,5 @@ if __name__ == "__main__":
     v = ivec.process(f)
     print 'A few elements of iVector: {}'.format(v[0:10])
     print 'iVector dimension = {}'.format(len(v))
+
+    print 'Done!  Successfully completed iVector tests'

@@ -38,3 +38,5 @@ if __name__ == "__main__":
     v = gsv.process(f)
     print 'A few elements of GSV expansion: {}'.format(v[0:10])
     print 'GSV expansion dimension = {}'.format(len(v))
+	
+    print 'Done!  Successfully completed GSV tests'
