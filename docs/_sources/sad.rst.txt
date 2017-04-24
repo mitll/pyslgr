@@ -7,7 +7,6 @@
 Speech Activity Detection (SAD)
 ================================
 
-.. Bill, please correct this!
 
 Speech Activity Detection enables the computer to differentiate between human speech and absense thereof in a given sound sample. There are several algorithms that allow you to implement SAD. In PySLGR, there are two different approaches to SAD: spectral content analysis and energy based analysis. For an example of spectral based SAD, see :ref:`example_gmmsad <example_gmm_sad>`. To further illustrate the functionality of pySLGR's SAD, we will use the energy based approach in the sections that follow.
 
