@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
   
-    <title>pySLGR documentation &mdash; pySLGR 1 documentation</title>
+    <title>pySLGR documentation &#8212; pySLGR 1 documentation</title>
   <!-- htmltitle is before nature.css - we use this hack to load bootstrap first -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="_static/css/bootstrap.min.css" media="screen" />
@@ -25,13 +25,15 @@
         VERSION:     '1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="pySLGR 1 documentation" href="#" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="1. User Guide" href="user_guide.html" />
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -46,10 +48,12 @@
            $(this).css('background-color', '#A7D6E2');
        }
     );
+
+    
     function showMenu() {
       var topNav = document.getElementById("scikit-navbar");
       if (topNav.className === "navbar") {
-          topNav.className += " responsive";
+          topNav.className += " responsive";s
       } else {
           topNav.className = "navbar";
       }
@@ -62,11 +66,12 @@
 <div class="header-wrapper">
     <div class="header"><div class="navbar" id="scikit-navbar">
             <ul>
-                <li><a href="#">Home</a></li>
+              <li><a href="#">Home</a></li>
               <li><a href="user_guide.html">User Guide</a></li>
-   
-            <li><a href="examples.html">Examples</a></li>
-			<li><a href="search.html">Search</a></li>
+              <li><a href="quick_start.html#examples">Examples</a></li>
+              <li><a href="search.html">Search</a></li>
+              <li><a href="genindex.html">Index</a></li>
+
             </ul>
             <a href="javascript:void(0);" onclick="showMenu()">
                 <div class="nav-icon">
@@ -95,39 +100,37 @@
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="user_guide.html">1. User Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="install.html">1.1. Install</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="install.html#installation">1.1.1. Installation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="install.html#check-installation">1.1.2. Check Installation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="install.html#to-remove">1.1.3. To Remove</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="quick_start.html">1.2. Quick Start</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="quick_start.html#example-signal">1.2.1. example_signal</a></li>
-<li class="toctree-l3"><a class="reference internal" href="quick_start.html#example-mfcc">1.2.2. example_mfcc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="quick_start.html#example-lid-gmm">1.2.3. example_lid_gmm</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="MFCC_Features.html">1.3. MFCC Features</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="MFCC_Features.html#overview">1.3.1. Overview</a></li>
-<li class="toctree-l3"><a class="reference internal" href="MFCC_Features.html#understanding-set-outfeat">1.3.2. Understanding set_outfeat()</a></li>
-<li class="toctree-l3"><a class="reference internal" href="MFCC_Features.html#rasta">1.3.3. RASTA</a></li>
-<li class="toctree-l3"><a class="reference internal" href="MFCC_Features.html#online-resources">1.3.4. Online Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html">1.1. Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prereqs.html">1.2. Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick_start.html">1.3. Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MFCC_Features.html">1.4. MFCC Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sad.html">1.5. Speech Activity Detection (SAD)</a></li>
 </ul>
 </li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">2. Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pyslgr.html">3. pySLGR Package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="pyslgr.html#modules">3.1. Modules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="pyslgr.html#module-pyslgr.GMMModel">3.1.1. pyslgr.GMMModel module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pyslgr.html#module-pyslgr.LLFeatures">3.1.2. pyslgr.LLFeatures module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pyslgr.html#module-pyslgr.LLSignal">3.1.3. pyslgr.LLSignal module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pyslgr.html#module-pyslgr.MFCCFeatures">3.1.4. pyslgr.MFCCFeatures module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pyslgr.html#module-pyslgr.Scores">3.1.5. pyslgr.Scores module</a></li>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pyslgr.html">pySLGR Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyslgr.html#modules">Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyslgr.html#module-pyslgr.GMMModel">pyslgr.GMMModel module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyslgr.html#module-pyslgr.LLFeatures">pyslgr.LLFeatures module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyslgr.html#module-pyslgr.LLSignal">pyslgr.LLSignal module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyslgr.html#module-pyslgr.MFCCFeatures">pyslgr.MFCCFeatures module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyslgr.html#module-pyslgr.FeatPipe">pyslgr.FeatPipe module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyslgr.html#module-pyslgr.iVector">pyslgr.iVector module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyslgr.html#module-pyslgr.GSV">pyslgr.GSV module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyslgr.html#module-pyslgr.sad">pyslgr.sad module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyslgr.html#module-pyslgr.Scores">pyslgr.Scores module</a></li>
 </ul>
 </li>
 </ul>
 </li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="misc.html">Miscellaneous</a></li>
 </ul>
 </div>
 </div>

@@ -1,0 +1,338 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+  
+    <title>SAD &#8212; pySLGR 1 documentation</title>
+  <!-- htmltitle is before nature.css - we use this hack to load bootstrap first -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="_static/css/bootstrap.min.css" media="screen" />
+  <link rel="stylesheet" href="_static/css/bootstrap-responsive.css"/>
+
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/gallery.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pySLGR Package" href="pyslgr.html" />
+    <link rel="prev" title="1.4. MFCC Features" href="MFCC_Features.html" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="_static/js/bootstrap.min.js" type="text/javascript"></script>
+
+  <script type="text/javascript">
+    $("div.buttonNext, div.buttonPrevious").hover(
+       function () {
+           $(this).css('background-color', '#FF9C34');
+       },
+       function () {
+           $(this).css('background-color', '#A7D6E2');
+       }
+    );
+
+    
+    function showMenu() {
+      var topNav = document.getElementById("scikit-navbar");
+      if (topNav.className === "navbar") {
+          topNav.className += " responsive";s
+      } else {
+          topNav.className = "navbar";
+      }
+    };
+  </script>
+
+  </head>
+  <body role="document">
+
+<div class="header-wrapper">
+    <div class="header"><div class="navbar" id="scikit-navbar">
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="user_guide.html">User Guide</a></li>
+              <li><a href="quick_start.html#examples">Examples</a></li>
+              <li><a href="search.html">Search</a></li>
+              <li><a href="genindex.html">Index</a></li>
+
+            </ul>
+            <a href="javascript:void(0);" onclick="showMenu()">
+                <div class="nav-icon">
+                    <div class="hamburger-line"></div>
+                    <div class="hamburger-line"></div>
+                    <div class="hamburger-line"></div>
+                </div>
+            </a>
+            
+        </div> <!-- end navbar --></div>
+</div>
+
+
+<div class="content-wrapper">
+    <div class="sphinxsidebar">
+    <div class="sphinxsidebarwrapper">
+        <div class="rel">
+    
+
+  <!-- rellinks[1:] is an ugly hack to avoid link to module
+  index -->
+        <div class="rellink">
+        <a href="MFCC_Features.html"
+        accesskey="P">Previous
+        <br/>
+        <span class="smallrellink">
+        1.4. MFCC Features
+        </span>
+            <span class="hiddenrellink">
+            1.4. MFCC Features
+            </span>
+        </a>
+        </div>
+            <div class="spacer">
+            &nbsp;
+            </div>
+        <div class="rellink">
+        <a href="pyslgr.html"
+        accesskey="N">Next
+        <br/>
+        <span class="smallrellink">
+        pySLGR Package
+        </span>
+            <span class="hiddenrellink">
+            pySLGR Package
+            </span>
+        </a>
+        </div>
+            <div class="spacer">
+            &nbsp;
+            </div>
+        <div class="rellink">
+        <a href="py-modindex.html"
+        >Modules
+        <br/>
+        <span class="smallrellink">
+        Python Module Index
+        </span>
+            <span class="hiddenrellink">
+            Python Module Index
+            </span>
+        </a>
+        </div>
+
+    <!-- Ad a link to the 'up' page -->
+        <div class="spacer">
+        &nbsp;
+        </div>
+        <div class="rellink">
+        <a href="user_guide.html">
+        Up
+        <br/>
+        <span class="smallrellink">
+        1. User Guide
+        </span>
+            <span class="hiddenrellink">
+            1. User Guide
+            </span>
+            
+        </a>
+        </div>
+    </div>
+    
+      <p class="doc-version">This documentation is for pySLGR <strong>version 1</strong> &mdash; <!--- <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p> --->
+	<!---
+    <p class="citing">If you use the software, please consider <a href="about.html#citing-scikit-learn">citing scikit-learn</a>.</p>
+    --->
+	<ul>
+<li><a class="reference internal" href="#">1.5. Speech Activity Detection (SAD)</a><ul>
+<li><a class="reference internal" href="#example">1.5.1. Example</a></li>
+<li><a class="reference internal" href="#xtalk">1.5.2. xtalk()</a></li>
+<li><a class="reference internal" href="#apply-sad">1.5.3. apply_sad()</a></li>
+<li><a class="reference internal" href="#sad-marks-and-labels">1.5.4. SAD marks and labels</a></li>
+<li><a class="reference internal" href="#putting-it-all-together">1.5.5. Putting it all together</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</div>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" checked />
+<label for="nav-trigger"></label>
+
+
+
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="speech-activity-detection-sad">
+<span id="sad-top"></span><h1>1.5. Speech Activity Detection (SAD)<a class="headerlink" href="#speech-activity-detection-sad" title="Permalink to this headline">¶</a></h1>
+<p>Speech Activity Detection enables the computer to differentiate between human speech and absense thereof in a given sound sample. There are several algorithms that allow you to implement SAD. In PySLGR, there are two different approaches to SAD: spectral content analysis and energy based analysis. For an example of spectral based SAD, see <a class="reference internal" href="quick_start.html#example-gmm-sad"><span class="std std-ref">example_gmmsad</span></a>. To further illustrate the functionality of pySLGR&#8217;s SAD, we will use the energy based approach in the sections that follow.</p>
+<div class="section" id="example">
+<h2>1.5.1. Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>By applying <a class="reference internal" href="pyslgr.html#pyslgr.LLFeatures.LLFeatures.xtalk" title="pyslgr.LLFeatures.LLFeatures.xtalk"><code class="xref py py-meth docutils literal"><span class="pre">xtalk()</span></code></a> to the examples/signals/example.sph file, we can calculate the speech activity in the example signal. We look at the first 5 seconds and notice that the highlighted areas indicate speech activity.</p>
+<img alt="images/SAD/sad_marks.png" class="align-center" id="image-top" src="images/SAD/sad_marks.png" />
+</div>
+<div class="section" id="xtalk">
+<h2>1.5.2. xtalk()<a class="headerlink" href="#xtalk" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="pyslgr.html#pyslgr.LLFeatures.LLFeatures.xtalk" title="pyslgr.LLFeatures.LLFeatures.xtalk"><code class="xref py py-meth docutils literal"><span class="pre">xtalk()</span></code></a> function can be found in the <a class="reference internal" href="pyslgr.html#pyslgr.LLFeatures.LLFeatures" title="pyslgr.LLFeatures.LLFeatures"><code class="xref py py-class docutils literal"><span class="pre">LLFeatures</span></code></a> class. The function is used to calculate where speech activity occured. The function itself does not return its calculations but there are several ways to access and use these calculations. They are described in the sections below and include discussions of the following functions:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="pyslgr.html#pyslgr.LLFeatures.LLFeatures.apply_sad" title="pyslgr.LLFeatures.LLFeatures.apply_sad"><code class="xref py py-meth docutils literal"><span class="pre">apply_sad()</span></code></a></li>
+<li><a class="reference internal" href="pyslgr.html#pyslgr.LLFeatures.LLFeatures.save_sad_labels" title="pyslgr.LLFeatures.LLFeatures.save_sad_labels"><code class="xref py py-meth docutils literal"><span class="pre">save_sad_labels()</span></code></a></li>
+<li><a class="reference internal" href="pyslgr.html#pyslgr.MFCCFeatures.MFCCFeatures.save_sad_marks" title="pyslgr.MFCCFeatures.MFCCFeatures.save_sad_marks"><code class="xref py py-meth docutils literal"><span class="pre">save_sad_marks()</span></code></a></li>
+<li><a class="reference internal" href="pyslgr.html#pyslgr.LLFeatures.LLFeatures.load_sad_labels" title="pyslgr.LLFeatures.LLFeatures.load_sad_labels"><code class="xref py py-meth docutils literal"><span class="pre">load_sad_labels()</span></code></a></li>
+<li><a class="reference internal" href="pyslgr.html#pyslgr.MFCCFeatures.MFCCFeatures.load_sad_marks" title="pyslgr.MFCCFeatures.MFCCFeatures.load_sad_marks"><code class="xref py py-meth docutils literal"><span class="pre">load_sad_marks()</span></code></a></li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Marks are only available in MFCCFeatures, not in LLFeatures</p>
+</div>
+</div>
+<div class="section" id="apply-sad">
+<h2>1.5.3. apply_sad()<a class="headerlink" href="#apply-sad" title="Permalink to this headline">¶</a></h2>
+<p>Once calculations have been made using <a class="reference internal" href="pyslgr.html#pyslgr.LLFeatures.LLFeatures.xtalk" title="pyslgr.LLFeatures.LLFeatures.xtalk"><code class="xref py py-meth docutils literal"><span class="pre">xtalk()</span></code></a>, we can remove the non-speech frames from the feature vector. To do so, we use <a class="reference internal" href="pyslgr.html#pyslgr.LLFeatures.LLFeatures.apply_sad" title="pyslgr.LLFeatures.LLFeatures.apply_sad"><code class="xref py py-meth docutils literal"><span class="pre">apply_sad()</span></code></a>. This does not modify the signal, just the SAD features.</p>
+</div>
+<div class="section" id="sad-marks-and-labels">
+<h2>1.5.4. SAD marks and labels<a class="headerlink" href="#sad-marks-and-labels" title="Permalink to this headline">¶</a></h2>
+<p>After calculating SAD using <a class="reference internal" href="pyslgr.html#pyslgr.LLFeatures.LLFeatures.xtalk" title="pyslgr.LLFeatures.LLFeatures.xtalk"><code class="xref py py-meth docutils literal"><span class="pre">xtalk()</span></code></a>, the results can be stored in two different ways. We can store them as labels using <a class="reference internal" href="pyslgr.html#pyslgr.LLFeatures.LLFeatures.save_sad_labels" title="pyslgr.LLFeatures.LLFeatures.save_sad_labels"><code class="xref py py-meth docutils literal"><span class="pre">save_sad_labels()</span></code></a>. This function will store the labels in a file of your choosing. The output will be a &#8216;0&#8217; or &#8216;1&#8217; indicating whether a frame is not speech or is speech, respectively.</p>
+<p>To load labels that have been saved or produced by another program, use <a class="reference internal" href="pyslgr.html#pyslgr.LLFeatures.LLFeatures.load_sad_labels" title="pyslgr.LLFeatures.LLFeatures.load_sad_labels"><code class="xref py py-meth docutils literal"><span class="pre">load_sad_labels()</span></code></a>. Labels can be imported in this manner from any file containing the correct format.</p>
+<p>Marks on the other hand can only be stored and loaded from the <a class="reference internal" href="pyslgr.html#pyslgr.MFCCFeatures.MFCCFeatures" title="pyslgr.MFCCFeatures.MFCCFeatures"><code class="xref py py-class docutils literal"><span class="pre">MFCCFeatures</span></code></a> class. Marks work in a similar way to labels, however store the information in a different format. The <a class="reference internal" href="pyslgr.html#pyslgr.MFCCFeatures.MFCCFeatures.save_sad_marks" title="pyslgr.MFCCFeatures.MFCCFeatures.save_sad_marks"><code class="xref py py-meth docutils literal"><span class="pre">save_sad_marks()</span></code></a> function produces a file in which each line has the following format:</p>
+<div class="line-block">
+<div class="line"><em>&#8220;speech &lt;start_of_speech_activity&gt; &lt;duration_of_speech_activity&gt;&#8221;</em></div>
+</div>
+<p>First is noted the category of activity, which is &#8216;speech&#8217;, then using spaces as delimiters, the starting point of the speech activity is given in seconds followed by the duration of that speech activity (also in seconds).</p>
+<p>To load a file of SAD marks, use <a class="reference internal" href="pyslgr.html#pyslgr.MFCCFeatures.MFCCFeatures.load_sad_marks" title="pyslgr.MFCCFeatures.MFCCFeatures.load_sad_marks"><code class="xref py py-meth docutils literal"><span class="pre">load_sad_marks()</span></code></a>.</p>
+</div>
+<div class="section" id="putting-it-all-together">
+<h2>1.5.5. Putting it all together<a class="headerlink" href="#putting-it-all-together" title="Permalink to this headline">¶</a></h2>
+<p>To obtain the <a class="reference internal" href="#image-top"><span class="std std-ref">figure</span></a> shown in the example, we used <a class="reference internal" href="pyslgr.html#pyslgr.LLFeatures.LLFeatures.xtalk" title="pyslgr.LLFeatures.LLFeatures.xtalk"><code class="xref py py-meth docutils literal"><span class="pre">xtalk()</span></code></a> and <a class="reference internal" href="pyslgr.html#pyslgr.MFCCFeatures.MFCCFeatures.save_sad_marks" title="pyslgr.MFCCFeatures.MFCCFeatures.save_sad_marks"><code class="xref py py-meth docutils literal"><span class="pre">save_sad_marks()</span></code></a>. The code below shows how to obtain the same image. The code is intended to run from the top level pyslgr directory.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+
+<span class="kn">from</span> <span class="nn">pyslgr.LLSignal</span> <span class="k">import</span> <span class="n">LLSignal</span>
+<span class="kn">from</span> <span class="nn">pyslgr.MFCCFeatures</span> <span class="k">import</span> <span class="n">MFCCFeatures</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> 
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
+
+
+<span class="n">sig</span> <span class="o">=</span> <span class="n">LLSignal</span><span class="p">()</span>
+<span class="n">sig</span><span class="o">.</span><span class="n">load_sph</span><span class="p">(</span><span class="s1">&#39;example.sph&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">fp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;examples/config/lid_config.json&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
+<span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="n">feat_config</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="s1">&#39;lid_config&#39;</span><span class="p">][</span><span class="s1">&#39;feat_config&#39;</span><span class="p">]</span>
+<span class="n">feat_config</span><span class="p">[</span><span class="s1">&#39;fb_only&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;true&#39;</span>
+
+<span class="n">mfcc_config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">feat_config</span><span class="p">)</span>
+
+<span class="n">feats</span> <span class="o">=</span> <span class="n">MFCCFeatures</span><span class="p">()</span>
+<span class="n">feats</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">mfcc_config</span><span class="p">)</span>
+<span class="n">feats</span><span class="o">.</span><span class="n">delta</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">feats</span><span class="o">.</span><span class="n">accel</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="hll"><span class="n">feats</span><span class="o">.</span><span class="n">xtalk</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+</span>
+<span class="hll"><span class="n">feats</span><span class="o">.</span><span class="n">save_sad_marks</span><span class="p">(</span><span class="s1">&#39;example.marks&#39;</span><span class="p">)</span>
+</span>
+<span class="n">marks</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">max_seconds</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;example.marks&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+	<span class="n">lines</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+	<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+		<span class="n">tokens</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+		<span class="n">x</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">tokens</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+		<span class="n">d</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">tokens</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">max_seconds</span><span class="p">):</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">d</span> <span class="o">&lt;</span> <span class="n">max_seconds</span><span class="p">):</span>
+				<span class="n">marks</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="o">+</span><span class="n">d</span><span class="p">))</span>
+			<span class="k">else</span><span class="p">:</span>
+				<span class="n">marks</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">max_seconds</span><span class="p">))</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="k">continue</span>
+
+<span class="n">sf</span> <span class="o">=</span> <span class="n">sig</span><span class="o">.</span><span class="n">sampling_frequency</span><span class="p">()</span>
+<span class="n">z</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_seconds</span><span class="o">*</span><span class="nb">int</span><span class="p">(</span><span class="n">sf</span><span class="p">))</span>
+<span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="n">sf</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">sig</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">z</span><span class="p">)])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time in seconds&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">mark</span> <span class="ow">in</span> <span class="n">marks</span><span class="p">:</span>
+	<span class="n">plt</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="n">mark</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">mark</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <a href="_sources/sad.rst.txt" rel="nofollow">Show this page source</a>
+    </div>
+     <div class="rel">
+    
+    <div class="buttonPrevious">
+      <a href="MFCC_Features.html">Previous
+      </a>
+    </div>
+    <div class="buttonNext">
+      <a href="pyslgr.html">Next
+      </a>
+    </div>
+    <div class="buttonPrevious">
+      <a href="py-modindex.html">Previous
+      </a>
+    </div>
+    
+     </div>
+
+    
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-22606712-2']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    
+  </body>
+</html>

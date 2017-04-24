@@ -1,0 +1,85 @@
+pySLGR Package
+==============
+
+Modules
+###########
+
+.. autosummary:: 
+    pyslgr.GMMModel
+    pyslgr.LLFeatures
+    pyslgr.LLSignal
+    pyslgr.MFCCFeatures
+    pyslgr.FeatPipe
+    pyslgr.iVector
+    pyslgr.GSV
+    pyslgr.sad
+    
+pyslgr.GMMModel module
+----------------------
+
+.. automodule:: pyslgr.GMMModel
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+pyslgr.LLFeatures module
+------------------------
+
+.. automodule:: pyslgr.LLFeatures
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+pyslgr.LLSignal module
+----------------------
+
+.. automodule:: pyslgr.LLSignal
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+pyslgr.MFCCFeatures module
+--------------------------
+
+.. automodule:: pyslgr.MFCCFeatures
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+pyslgr.FeatPipe module
+----------------------
+
+.. automodule:: pyslgr.FeatPipe
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+pyslgr.iVector module
+---------------------
+.. automodule:: pyslgr.iVector
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+pyslgr.GSV module
+---------------------
+.. automodule:: pyslgr.GSV
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+pyslgr.sad module
+---------------------
+.. automodule:: pyslgr.sad
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+pyslgr.Scores module
+--------------------
+
+.. automodule:: pyslgr.Scores
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

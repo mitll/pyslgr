@@ -1,0 +1,68 @@
+.. title:: SAD
+.. SAD
+
+.. _SAD_top:
+
+================================
+Speech Activity Detection (SAD)
+================================
+
+.. Bill, please correct this!
+
+Speech Activity Detection enables the computer to differentiate between human speech and absense thereof in a given sound sample. There are several algorithms that allow you to implement SAD. In PySLGR, there are two different approaches to SAD: spectral content analysis and energy based analysis. For an example of spectral based SAD, see :ref:`example_gmmsad <example_gmm_sad>`. To further illustrate the functionality of pySLGR's SAD, we will use the energy based approach in the sections that follow.
+
+Example
+########
+
+By applying :meth:`~pyslgr.LLFeatures.LLFeatures.xtalk` to the examples/signals/example.sph file, we can calculate the speech activity in the example signal. We look at the first 5 seconds and notice that the highlighted areas indicate speech activity.
+
+.. _image_top:
+
+.. image:: images/SAD/sad_marks.png
+   :align: center
+
+xtalk()
+########
+
+The :meth:`~pyslgr.LLFeatures.LLFeatures.xtalk` function can be found in the :class:`~pyslgr.LLFeatures.LLFeatures` class. The function is used to calculate where speech activity occured. The function itself does not return its calculations but there are several ways to access and use these calculations. They are described in the sections below and include discussions of the following functions:
+	
+	- :meth:`~pyslgr.LLFeatures.LLFeatures.apply_sad`
+	- :meth:`~pyslgr.LLFeatures.LLFeatures.save_sad_labels`
+	- :meth:`~pyslgr.MFCCFeatures.MFCCFeatures.save_sad_marks`
+	- :meth:`~pyslgr.LLFeatures.LLFeatures.load_sad_labels`
+	- :meth:`~pyslgr.MFCCFeatures.MFCCFeatures.load_sad_marks`
+
+.. note:: Marks are only available in MFCCFeatures, not in LLFeatures
+
+apply_sad()
+#############
+
+Once calculations have been made using :meth:`~pyslgr.LLFeatures.LLFeatures.xtalk`, we can remove the non-speech frames from the feature vector. To do so, we use :meth:`~pyslgr.LLFeatures.LLFeatures.apply_sad`. This does not modify the signal, just the SAD features.
+
+SAD marks and labels
+####################
+
+After calculating SAD using :meth:`~pyslgr.LLFeatures.LLFeatures.xtalk`, the results can be stored in two different ways. We can store them as labels using :meth:`~pyslgr.LLFeatures.LLFeatures.save_sad_labels`. This function will store the labels in a file of your choosing. The output will be a '0' or '1' indicating whether a frame is not speech or is speech, respectively. 
+
+To load labels that have been saved or produced by another program, use :meth:`~pyslgr.LLFeatures.LLFeatures.load_sad_labels`. Labels can be imported in this manner from any file containing the correct format.
+
+Marks on the other hand can only be stored and loaded from the :class:`~pyslgr.MFCCFeatures.MFCCFeatures` class. Marks work in a similar way to labels, however store the information in a different format. The :meth:`~pyslgr.MFCCFeatures.MFCCFeatures.save_sad_marks` function produces a file in which each line has the following format:
+
+| *"speech <start_of_speech_activity> <duration_of_speech_activity>"*
+
+First is noted the category of activity, which is 'speech', then using spaces as delimiters, the starting point of the speech activity is given in seconds followed by the duration of that speech activity (also in seconds).
+
+To load a file of SAD marks, use :meth:`~pyslgr.MFCCFeatures.MFCCFeatures.load_sad_marks`.
+
+
+Putting it all together
+########################
+
+To obtain the :ref:`figure <image_top>` shown in the example, we used :meth:`~pyslgr.LLFeatures.LLFeatures.xtalk` and :meth:`~pyslgr.MFCCFeatures.MFCCFeatures.save_sad_marks`. The code below shows how to obtain the same image. The code is intended to run from the top level pyslgr directory.
+
+.. literalinclude:: code/sad_plot_example.py
+	:emphasize-lines: 27, 29
+
+
+	
+

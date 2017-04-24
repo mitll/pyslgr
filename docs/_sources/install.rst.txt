@@ -1,0 +1,81 @@
+.. title:: Install
+.. install
+
+.. _install_top:
+==================
+Install
+==================
+
+.. _depedency_list:
+
+Dependencies
+#############
+.. warning:: Versioning errors can occur. Make sure that you have the version of each dependency installed as listed below.
+
+- Anaconda version 4.2.0 , python 2.7
+	
+	+---------------------+-------------------+
+	| conda tool          |   version         |
+	+=====================+===================+
+	| conda version       |   ≥ 4.2.9         |
+	+---------------------+-------------------+
+	| conda-env version   |   ≥ 4.2.9         |
+	+---------------------+-------------------+
+	| conda-build version |   2.1.10          |
+	+---------------------+-------------------+
+	| python version      |   2.7.12.final.0  |
+	+---------------------+-------------------+
+	| requests version    |   ≥ 2.10.0        |
+	+---------------------+-------------------+
+
+- Boost 1.61.0
+- FFTW3 3.3.4
+- gcc-4.8, g++-4.8
+
+For a more indepth explaination of how to install these, see the :ref:`prequisites section <prereq_top>`.
+
+
+Installation
+#############
+.. warning:: Mac users - please see the :ref:`known issues for Mac <problems_top>`.
+
+| We use Anaconda to install PySLGR. 
+| If you do not have Anaconda installed, you can download it `here <http://www.continuum.io/downloads>`_
+
+#. Download the latest PySLGR release from https://github.com/mitll/pyslgr/releases
+#. Copy the provided conda package (*pyslgr<version>.tar.bz2*) to your local system. Make sure you have the correct version for your operating system. We will refer to the location of this file as <pyslgr-pkg dir>.
+#. Also copy the provided models and examples packages (*models.tar.gz*, *examples.tar.gz*)
+#. Unpack *examples.tar.gz* into a directory of your choosing.
+#. Unpack the *models.tar.gz* in the examples directory created in the previous step.
+#. Open the terminal and run::
+   		
+   		conda install <pyslgr-pkg dir>/<pkg-name.tar.bz2>
+	
+   where <pkg-name.tar.bz2> is the name of the file provided.
+
+
+.. seealso:: For details on how to build the package from the source code, see :ref:`How to Build PySLGR <build_pyslgr_top>`.
+
+Check Installation
+###################
+
+.. warning:: Not all examples may work on Mac machines. See :ref:`known issues for Mac <problems_top>`.
+
+.. note:: Make sure that the *examples.tar.gz* is unpacked and contains an unpacked *models.tar.gz* directory.
+
+1. Locate a sample script in the *examples* directory.
+2. Run::
+
+	python <sample_script>
+
+To Remove
+##########
+Run:
+::
+	conda remove --name <env-name> pyslgr
+
+where <env-name> is the name of an existing environment. 
+
+To list all environments use:
+::
+	conda info -env$

@@ -1,0 +1,54 @@
+.. title:: Prerequisites
+.. dependencies
+.. _prereq_top:
+
+=============
+Prerequisites
+=============
+
+In order to install PySLGR successfully, make sure that the correct version of each of the following are installed on your machine. 
+
+**1.** Anaconda version 4.2.0 (python 2.7), you can download it download it `here <http://www.continuum.io/downloads>`_.
+
+**2.** Run
+::
+   conda info
+
+**3.** Check that the following fields match:
+
+	+---------------------+-------------------+
+	| conda tool          |   version         |
+	+=====================+===================+
+	| conda version       |   ≥ 4.2.9         |
+	+---------------------+-------------------+
+	| conda-env version   |   ≥ 4.2.9         |
+	+---------------------+-------------------+
+	| conda-build version |   1.21.3          |
+	+---------------------+-------------------+
+	| python version      |   2.7.12.final.0  |
+	+---------------------+-------------------+
+	| requests version    |   ≥ 2.10.0        |
+	+---------------------+-------------------+
+
+.. note:: Having a conda-build version above 1.21 may cause problems if you wish to build PySLGR
+
+**4.** Make sure that Boost version 1.61.0 is installed on the machine.
+
+| For Linux users:
+To install boost, use the following command:
+::
+    sudo apt-get install libboost-all-dev
+
+| For Mac users:
+Homebrew can be used to do this. To install homebrew, follow the instructions on their webpage: `<http://brew.sh/>`_. 
+Then, run the following command to install boost
+::
+	brew install boost
+
+**5.** Make sure FFTW3 version 3.3.4 is install. To install it using Anaconda:
+::
+	conda install -c salilab fftw=3.3.4
+
+**6.** Make sure that your GCC and G++ compiler is at least version 4.8. For instructions to install the correct compiler see :ref:`compiler_install`.
+
+.. warning:: For Mac users, the default gcc compiler that comes with Xcode is an outdated version. Please make sure that you are using the correct compiler version.

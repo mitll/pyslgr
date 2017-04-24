@@ -1,0 +1,26 @@
+.. title:: Problems
+.. problems
+
+.. _problems_top:
+======================
+Known Issues on Mac
+======================
+
+**1**. Running examples/example_signal.py will result in a Segmentation Fault 11. This is because Mac does not handle cython errors gracefully, therefore using a nonexistant file path will result in segmentation faults.
+
+**2**. Trying to load files that do not exist results in a Segmentation Fault 11.
+
+**3**. Running the following code:
+::
+	import matplotlib.pyplot as plt
+	from pyslgr.MFCCFeatures import MFCCFeatures
+
+	feats = MFCCFeatures()
+
+Gives the following error:
+::
+	malloc: *** error for object 0x10d1d0b80: pointer being freed was not allocated*** 
+	set a breakpoint in malloc_error_break to debug
+	Abort trap: 6
+
+To fix this error, simply import any pyslgr module before importing matplotlib.

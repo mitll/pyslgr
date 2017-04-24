@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
   
-    <title>3. pySLGR Package &mdash; pySLGR 1 documentation</title>
+    <title>pySLGR Package &#8212; pySLGR 1 documentation</title>
   <!-- htmltitle is before nature.css - we use this hack to load bootstrap first -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="_static/css/bootstrap.min.css" media="screen" />
@@ -25,14 +25,17 @@
         VERSION:     '1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="pySLGR 1 documentation" href="index.html" />
-    <link rel="prev" title="2. Examples" href="examples.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Miscellaneous" href="misc.html" />
+    <link rel="prev" title="1.5. Speech Activity Detection (SAD)" href="sad.html" />
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -47,10 +50,12 @@
            $(this).css('background-color', '#A7D6E2');
        }
     );
+
+    
     function showMenu() {
       var topNav = document.getElementById("scikit-navbar");
       if (topNav.className === "navbar") {
-          topNav.className += " responsive";
+          topNav.className += " responsive";s
       } else {
           topNav.className = "navbar";
       }
@@ -63,11 +68,12 @@
 <div class="header-wrapper">
     <div class="header"><div class="navbar" id="scikit-navbar">
             <ul>
-                <li><a href="index.html">Home</a></li>
+              <li><a href="index.html">Home</a></li>
               <li><a href="user_guide.html">User Guide</a></li>
-   
-            <li><a href="examples.html">Examples</a></li>
-			<li><a href="search.html">Search</a></li>
+              <li><a href="quick_start.html#examples">Examples</a></li>
+              <li><a href="search.html">Search</a></li>
+              <li><a href="genindex.html">Index</a></li>
+
             </ul>
             <a href="javascript:void(0);" onclick="showMenu()">
                 <div class="nav-icon">
@@ -90,14 +96,29 @@
   <!-- rellinks[1:] is an ugly hack to avoid link to module
   index -->
         <div class="rellink">
-        <a href="examples.html"
+        <a href="sad.html"
         accesskey="P">Previous
         <br/>
         <span class="smallrellink">
-        2. Examples
+        1.5. Speech A...
         </span>
             <span class="hiddenrellink">
-            2. Examples
+            1.5. Speech Activity Detection (SAD)
+            </span>
+        </a>
+        </div>
+            <div class="spacer">
+            &nbsp;
+            </div>
+        <div class="rellink">
+        <a href="misc.html"
+        accesskey="N">Next
+        <br/>
+        <span class="smallrellink">
+        Miscellaneous
+        </span>
+            <span class="hiddenrellink">
+            Miscellaneous
             </span>
         </a>
         </div>
@@ -109,7 +130,7 @@
         >Modules
         <br/>
         <span class="smallrellink">
-        Python Module...
+        Python Module Index
         </span>
             <span class="hiddenrellink">
             Python Module Index
@@ -125,13 +146,17 @@
     <p class="citing">If you use the software, please consider <a href="about.html#citing-scikit-learn">citing scikit-learn</a>.</p>
     --->
 	<ul>
-<li><a class="reference internal" href="#">3. pySLGR Package</a><ul>
-<li><a class="reference internal" href="#modules">3.1. Modules</a><ul>
-<li><a class="reference internal" href="#module-pyslgr.GMMModel">3.1.1. pyslgr.GMMModel module</a></li>
-<li><a class="reference internal" href="#module-pyslgr.LLFeatures">3.1.2. pyslgr.LLFeatures module</a></li>
-<li><a class="reference internal" href="#module-pyslgr.LLSignal">3.1.3. pyslgr.LLSignal module</a></li>
-<li><a class="reference internal" href="#module-pyslgr.MFCCFeatures">3.1.4. pyslgr.MFCCFeatures module</a></li>
-<li><a class="reference internal" href="#module-pyslgr.Scores">3.1.5. pyslgr.Scores module</a></li>
+<li><a class="reference internal" href="#">pySLGR Package</a><ul>
+<li><a class="reference internal" href="#modules">Modules</a><ul>
+<li><a class="reference internal" href="#module-pyslgr.GMMModel">pyslgr.GMMModel module</a></li>
+<li><a class="reference internal" href="#module-pyslgr.LLFeatures">pyslgr.LLFeatures module</a></li>
+<li><a class="reference internal" href="#module-pyslgr.LLSignal">pyslgr.LLSignal module</a></li>
+<li><a class="reference internal" href="#module-pyslgr.MFCCFeatures">pyslgr.MFCCFeatures module</a></li>
+<li><a class="reference internal" href="#module-pyslgr.FeatPipe">pyslgr.FeatPipe module</a></li>
+<li><a class="reference internal" href="#module-pyslgr.iVector">pyslgr.iVector module</a></li>
+<li><a class="reference internal" href="#module-pyslgr.GSV">pyslgr.GSV module</a></li>
+<li><a class="reference internal" href="#module-pyslgr.sad">pyslgr.sad module</a></li>
+<li><a class="reference internal" href="#module-pyslgr.Scores">pyslgr.Scores module</a></li>
 </ul>
 </li>
 </ul>
@@ -154,15 +179,53 @@
           <div class="body" role="main">
             
   <div class="section" id="pyslgr-package">
-<h1>3. pySLGR Package<a class="headerlink" href="#pyslgr-package" title="Permalink to this headline">¶</a></h1>
+<h1>pySLGR Package<a class="headerlink" href="#pyslgr-package" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="modules">
-<h2>3.1. Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#module-pyslgr.GMMModel" title="pyslgr.GMMModel"><code class="xref py py-obj docutils literal"><span class="pre">pyslgr.GMMModel</span></code></a></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#module-pyslgr.LLFeatures" title="pyslgr.LLFeatures"><code class="xref py py-obj docutils literal"><span class="pre">pyslgr.LLFeatures</span></code></a></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#module-pyslgr.LLSignal" title="pyslgr.LLSignal"><code class="xref py py-obj docutils literal"><span class="pre">pyslgr.LLSignal</span></code></a></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#module-pyslgr.MFCCFeatures" title="pyslgr.MFCCFeatures"><code class="xref py py-obj docutils literal"><span class="pre">pyslgr.MFCCFeatures</span></code></a></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#module-pyslgr.FeatPipe" title="pyslgr.FeatPipe"><code class="xref py py-obj docutils literal"><span class="pre">pyslgr.FeatPipe</span></code></a></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#module-pyslgr.iVector" title="pyslgr.iVector"><code class="xref py py-obj docutils literal"><span class="pre">pyslgr.iVector</span></code></a></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#module-pyslgr.GSV" title="pyslgr.GSV"><code class="xref py py-obj docutils literal"><span class="pre">pyslgr.GSV</span></code></a></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#module-pyslgr.sad" title="pyslgr.sad"><code class="xref py py-obj docutils literal"><span class="pre">pyslgr.sad</span></code></a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <div class="section" id="module-pyslgr.GMMModel">
-<span id="pyslgr-gmmmodel-module"></span><h3>3.1.1. pyslgr.GMMModel module<a class="headerlink" href="#module-pyslgr.GMMModel" title="Permalink to this headline">¶</a></h3>
+<span id="pyslgr-gmmmodel-module"></span><h3>pyslgr.GMMModel module<a class="headerlink" href="#module-pyslgr.GMMModel" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="pyslgr.GMMModel.GMMModel">
 <em class="property">class </em><code class="descclassname">pyslgr.GMMModel.</code><code class="descname">GMMModel</code><a class="headerlink" href="#pyslgr.GMMModel.GMMModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="pyslgr.GMMModel.GMMModel.icov">
+<code class="descname">icov</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.GMMModel.GMMModel.icov" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the GMM diagonal of the inverse covariance matrix as a numpy array</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="pyslgr.GMMModel.GMMModel.is_loaded">
 <code class="descname">is_loaded</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.GMMModel.GMMModel.is_loaded" title="Permalink to this definition">¶</a></dt>
@@ -182,6 +245,22 @@
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.GMMModel.GMMModel.mean">
+<code class="descname">mean</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.GMMModel.GMMModel.mean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the GMM mean vector as a numpy array</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.GMMModel.GMMModel.num_fea">
+<code class="descname">num_fea</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.GMMModel.GMMModel.num_fea" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyslgr.GMMModel.GMMModel.num_mix">
+<code class="descname">num_mix</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.GMMModel.GMMModel.num_mix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="method">
 <dt id="pyslgr.GMMModel.GMMModel.score_models">
@@ -206,14 +285,20 @@
 </dl>
 </dd></dl>
 
+<dl class="method">
+<dt id="pyslgr.GMMModel.GMMModel.suff_stats">
+<code class="descname">suff_stats</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.GMMModel.GMMModel.suff_stats" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
 <dt id="pyslgr.GMMModel.GMMSAD">
 <em class="property">class </em><code class="descclassname">pyslgr.GMMModel.</code><code class="descname">GMMSAD</code><a class="headerlink" href="#pyslgr.GMMModel.GMMSAD" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
-<p>Class to process a signal and produce SAD marks using a GMM
-GMMSAD (feat_config, gmm_models, label_keep, label_window, min_gap_dur=0.5, min_seg_dur=0.2)</p>
+<p>Class to process a signal and produce SAD marks using a GMM</p>
+<p>GMMSAD (feat_config, gmm_models, label_keep, label_window, min_gap_dur=0.5, min_seg_dur=0.2)
+or GMMSAD (config) where config is a JSON string or dictionary.</p>
 <dl class="docutils">
 <dt>Parameters:</dt>
 <dd><dl class="first last docutils">
@@ -223,6 +308,10 @@ GMMSAD (feat_config, gmm_models, label_keep, label_window, min_gap_dur=0.5, min_
  <span class="classifier-delimiter">:</span> <span class="classifier">string</span><dd>Base directory where models are stored</dd>
 <dt>gmm_models</dt>
  <span class="classifier-delimiter">:</span> <span class="classifier">dict</span><dd>Dictionary of models for GMMSAD scoring.  Typical keys are &#8216;speech&#8217;, &#8216;music&#8217;, &#8216;nonspeech&#8217;.</dd>
+<dt>label_keep</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">string</span><dd>The key of the model to keep (default: &#8216;speech&#8217;)</dd>
+<dt>label_window</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">int</span><dd>Window length for smoothing frame scores</dd>
 <dt>min_gap_dur</dt>
  <span class="classifier-delimiter">:</span> <span class="classifier">float (default 0.5 seconds)</span><dd>Minimum gap between segments &#8211; segments are combined if the gap is smaller than this time</dd>
 <dt>min_seg_dur</dt>
@@ -231,15 +320,22 @@ GMMSAD (feat_config, gmm_models, label_keep, label_window, min_gap_dur=0.5, min_
 </dd>
 </dl>
 <dl class="method">
-<dt id="pyslgr.GMMModel.GMMSAD.gmmsad">
-<code class="descname">gmmsad</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.GMMModel.GMMSAD.gmmsad" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="pyslgr.GMMModel.GMMSAD.process">
+<code class="descname">process</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.GMMModel.GMMSAD.process" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process LLSignal and return a list of tuples.  Each tuple is a start time (seconds) and duration of the 
+detected class.</p>
+<dl class="docutils">
+<dt>gmmsad (signal)</dt>
+<dd>signal   LLSignal 
+f        LLFeatures object (not used, but available for uniformity)</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
 </div>
 <div class="section" id="module-pyslgr.LLFeatures">
-<span id="pyslgr-llfeatures-module"></span><h3>3.1.2. pyslgr.LLFeatures module<a class="headerlink" href="#module-pyslgr.LLFeatures" title="Permalink to this headline">¶</a></h3>
+<span id="pyslgr-llfeatures-module"></span><h3>pyslgr.LLFeatures module<a class="headerlink" href="#module-pyslgr.LLFeatures" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="pyslgr.LLFeatures.LLFeatures">
 <em class="property">class </em><code class="descclassname">pyslgr.LLFeatures.</code><code class="descname">LLFeatures</code><a class="headerlink" href="#pyslgr.LLFeatures.LLFeatures" title="Permalink to this definition">¶</a></dt>
@@ -475,23 +571,13 @@ speech activity.</dd>
 
 </div>
 <div class="section" id="module-pyslgr.LLSignal">
-<span id="pyslgr-llsignal-module"></span><h3>3.1.3. pyslgr.LLSignal module<a class="headerlink" href="#module-pyslgr.LLSignal" title="Permalink to this headline">¶</a></h3>
+<span id="pyslgr-llsignal-module"></span><h3>pyslgr.LLSignal module<a class="headerlink" href="#module-pyslgr.LLSignal" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="pyslgr.LLSignal.LLSignal">
 <em class="property">class </em><code class="descclassname">pyslgr.LLSignal.</code><code class="descname">LLSignal</code><a class="headerlink" href="#pyslgr.LLSignal.LLSignal" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
 <p>Class to contain and process 1-dimensional signals&#8211;typically speech or audio.</p>
 <p>LLSignal() &#8211; empty signal with zero samples.</p>
-<dl class="method">
-<dt id="pyslgr.LLSignal.LLSignal.enhance">
-<code class="descname">enhance</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.LLSignal.LLSignal.enhance" title="Permalink to this definition">¶</a></dt>
-<dd><p>Remove wideband noise from the signal using an adaptive Wiener filter.</p>
-<p>enhance()</p>
-<p>Note: This technique estimates noise from non-speech regions, so it will work best when the
-input is (signal + noise).  If there is music or other non-speech sounds in the background, 
-results will vary.</p>
-</dd></dl>
-
 <dl class="method">
 <dt id="pyslgr.LLSignal.LLSignal.get_f0">
 <code class="descname">get_f0</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.LLSignal.LLSignal.get_f0" title="Permalink to this definition">¶</a></dt>
@@ -602,13 +688,6 @@ Otherwise an error will be thrown for multiple channels.</dd>
 </dd></dl>
 
 <dl class="method">
-<dt id="pyslgr.LLSignal.LLSignal.remove_tones">
-<code class="descname">remove_tones</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.LLSignal.LLSignal.remove_tones" title="Permalink to this definition">¶</a></dt>
-<dd><p>Remove stationary tones from a signal.</p>
-<p>remove_tones()</p>
-</dd></dl>
-
-<dl class="method">
 <dt id="pyslgr.LLSignal.LLSignal.resample_16k">
 <code class="descname">resample_16k</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.LLSignal.LLSignal.resample_16k" title="Permalink to this definition">¶</a></dt>
 <dd><p>Resample the signal to an 16 kHz sampling rate.
@@ -672,11 +751,62 @@ Note: The resample_init() method must be called before calling this method.</p>
 
 </div>
 <div class="section" id="module-pyslgr.MFCCFeatures">
-<span id="pyslgr-mfccfeatures-module"></span><h3>3.1.4. pyslgr.MFCCFeatures module<a class="headerlink" href="#module-pyslgr.MFCCFeatures" title="Permalink to this headline">¶</a></h3>
+<span id="pyslgr-mfccfeatures-module"></span><h3>pyslgr.MFCCFeatures module<a class="headerlink" href="#module-pyslgr.MFCCFeatures" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="pyslgr.MFCCFeatures.MFCCFeatures">
 <em class="property">class </em><code class="descclassname">pyslgr.MFCCFeatures.</code><code class="descname">MFCCFeatures</code><a class="headerlink" href="#pyslgr.MFCCFeatures.MFCCFeatures" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pyslgr.LLFeatures.LLFeatures" title="pyslgr.LLFeatures.LLFeatures"><code class="xref py py-class docutils literal"><span class="pre">pyslgr.LLFeatures.LLFeatures</span></code></a></p>
+<div class="line-block">
+<div class="line">config  String or dictionary containing configuration parameters for MFCCs.</div>
+<div class="line">Parameters in the config are:</div>
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="88%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>alpha</td>
+<td>Warping factor for bilinear method (no warping: 1.0)</td>
+</tr>
+<tr class="row-even"><td>dither</td>
+<td>0/1 - Add low level noise to the signal (typical: 1)</td>
+</tr>
+<tr class="row-odd"><td>fb_low</td>
+<td>Lowest filter bank frequency in Hz (typical: 300)</td>
+</tr>
+<tr class="row-even"><td>fb_hi</td>
+<td>Highest filter bank frequency in Hz (typical: 3140)</td>
+</tr>
+<tr class="row-odd"><td>fb_only</td>
+<td>0/1 - Instead of producing cepstral coefficients produce the &#8216;raw&#8217; filter bank outputs instead</td>
+</tr>
+<tr class="row-even"><td>keep_c0</td>
+<td>0/1 - Keep the c0 cepstral coefficient; c0 represents frame energy (typical: 0)</td>
+</tr>
+<tr class="row-odd"><td>linear</td>
+<td>true/false - linear or mel-warped scale for filter banks (typical: false)</td>
+</tr>
+<tr class="row-even"><td>num_cep</td>
+<td>int - number of cepstral coefficients (c1-c??) to output (typical: 7-19)</td>
+</tr>
+<tr class="row-odd"><td>tgt_num_filt</td>
+<td>int - number of filters across the entire bandwidth; only applied for linear=true</td>
+</tr>
+<tr class="row-even"><td>win_inc_ms</td>
+<td>int - window increment in milliseconds (typical: 10)</td>
+</tr>
+<tr class="row-odd"><td>win_len_ms</td>
+<td>int - window length in milliseconds (typical: 20-30)</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <dl class="staticmethod">
 <dt id="pyslgr.MFCCFeatures.MFCCFeatures.config_dict_to_str">
 <em class="property">static </em><code class="descname">config_dict_to_str</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.MFCCFeatures.MFCCFeatures.config_dict_to_str" title="Permalink to this definition">¶</a></dt>
@@ -738,23 +868,10 @@ src : list of tuples</p>
 <dt id="pyslgr.MFCCFeatures.MFCCFeatures.process">
 <code class="descname">process</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.MFCCFeatures.MFCCFeatures.process" title="Permalink to this definition">¶</a></dt>
 <dd><p>Process the signal to return mel-frequency cepstral coefficient (MFCC) features.</p>
-<p>process(signal, config) -&gt; features</p>
+<p>process(signal) -&gt; features</p>
 <dl class="docutils">
 <dt>Parameters:</dt>
-<dd><p class="first">signal  Input signal &#8211; instance of LLSignal class
-config  String containing configuration parameters for MFCCs.  The string is</p>
-<blockquote class="last">
-<div>a JSON object converted to a string.  Parameters in the config are:
-dither     0/1 - Add low level noise to the signal (typical: 1)
-fb_low     Lowest filter bank frequency in Hz (typical: 300)
-fb_hi      Highest filter bank frequency in Hz (typical: 3140)
-fb_only    0/1 - Instead of producing cepstral coefficients produce the &#8216;raw&#8217; filter bank outputs instead
-keep_c0    0/1 - Keep the c0 cepstral coefficient; c0 represents frame energy (typical: 0)
-linear     true/false - linear or mel-warped scale for filter banks (typical: false)
-num_cep    int - number of cepstral coefficients (c1-c??) to output (typical: 7-19)
-win_inc_ms int - window increment in milliseconds (typical: 10)
-win_len_ms int - window length in milliseconds (typical: 20-30)</div></blockquote>
-</dd>
+<dd>signal  Input signal &#8211; instance of LLSignal class</dd>
 </dl>
 </dd></dl>
 
@@ -776,11 +893,169 @@ win_len_ms int - window length in milliseconds (typical: 20-30)</div></blockquot
 </dd></dl>
 
 </div>
+<div class="section" id="module-pyslgr.FeatPipe">
+<span id="pyslgr-featpipe-module"></span><h3>pyslgr.FeatPipe module<a class="headerlink" href="#module-pyslgr.FeatPipe" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="pyslgr.FeatPipe.FeatPipe">
+<em class="property">class </em><code class="descclassname">pyslgr.FeatPipe.</code><code class="descname">FeatPipe</code><span class="sig-paren">(</span><em>config</em>, <em>featClass</em>, <em>sadClass</em><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.FeatPipe.FeatPipe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<div class="line-block">
+<div class="line">Implementation of a full fatures extraction pipeline.</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line">config : a dictionary of config parameters with two main keys &#8216;pipe_config&#8217;, &#8216;sad_config&#8217;.</div>
+<div class="line">config[&#8216;pipe_config&#8217;] has keys:</div>
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="79%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>accel_spread</td>
+<td>int</td>
+</tr>
+<tr class="row-even"><td>delta_spread</td>
+<td>int</td>
+</tr>
+<tr class="row-odd"><td>delta2point</td>
+<td>True/False</td>
+</tr>
+<tr class="row-even"><td>do_accel</td>
+<td>True/False</td>
+</tr>
+<tr class="row-odd"><td>do_delta</td>
+<td>True/False</td>
+</tr>
+<tr class="row-even"><td>do_rasta</td>
+<td>True/False</td>
+</tr>
+<tr class="row-odd"><td>do_feat_norm</td>
+<td>True/False</td>
+</tr>
+<tr class="row-even"><td>do_sdc</td>
+<td>True/False</td>
+</tr>
+<tr class="row-odd"><td>outfeat</td>
+<td>string to pass to set_outfeat</td>
+</tr>
+<tr class="row-even"><td>feat_config</td>
+<td>dictionary to pass directly into LLFeatures object</td>
+</tr>
+<tr class="row-odd"><td>sdc_params</td>
+<td>a tuple to pass to sdc &#8211; typically (3,7)</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line">config[&#8216;sad_config&#8217;] is passed directly to the sadClass</div>
+<div class="line"><br /></div>
+<div class="line">featClass : an LLFeatures compatible class</div>
+<div class="line">sadClass  : a class with constructor sadClass(config) and method sadClass.process(LLSignal x, LLFeatures f)</div>
+</div>
+<dl class="method">
+<dt id="pyslgr.FeatPipe.FeatPipe.process">
+<code class="descname">process</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.FeatPipe.FeatPipe.process" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Extract features </dt>
+<dd>x        Input signal</dd>
+</dl>
+<p>Returns a feature object</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyslgr.iVector">
+<span id="pyslgr-ivector-module"></span><h3>pyslgr.iVector module<a class="headerlink" href="#module-pyslgr.iVector" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="pyslgr.iVector.iVector">
+<em class="property">class </em><code class="descclassname">pyslgr.iVector.</code><code class="descname">iVector</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.iVector.iVector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<div class="line-block">
+<div class="line">iVector extractor</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line">config : a dictionary of config parameters</div>
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="79%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>tv_matrix</td>
+<td>filename for total variability matrix &#8211; raw floats</td>
+</tr>
+<tr class="row-even"><td>ubm_model</td>
+<td>UBM model file</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<dl class="method">
+<dt id="pyslgr.iVector.iVector.process">
+<code class="descname">process</code><span class="sig-paren">(</span><em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.iVector.iVector.process" title="Permalink to this definition">¶</a></dt>
+<dd><p>f   :   LLFeatures object, input features</p>
+<p>returns an ivector (factors with no scaling or transformation)</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyslgr.GSV">
+<span id="pyslgr-gsv-module"></span><h3>pyslgr.GSV module<a class="headerlink" href="#module-pyslgr.GSV" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="pyslgr.GSV.GSV">
+<em class="property">class </em><code class="descclassname">pyslgr.GSV.</code><code class="descname">GSV</code><a class="headerlink" href="#pyslgr.GSV.GSV" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<div class="line-block">
+<div class="line">GSV(config)</div>
+<div class="line"><br /></div>
+<div class="line">config  dictionary or JSON string with config parameters</div>
+</div>
+<dl class="method">
+<dt id="pyslgr.GSV.GSV.process">
+<code class="descname">process</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.GSV.GSV.process" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process input features &#8216;f&#8217; and produce a GSV expansion</p>
+<p>f    LLFeatures input</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyslgr.sad">
+<span id="pyslgr-sad-module"></span><h3>pyslgr.sad module<a class="headerlink" href="#module-pyslgr.sad" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="pyslgr.sad.XtalkSAD">
+<em class="property">class </em><code class="descclassname">pyslgr.sad.</code><code class="descname">XtalkSAD</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.sad.XtalkSAD" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<div class="line-block">
+<div class="line">Perform energy-based speech activity detection using Xtalk</div>
+</div>
+<div class="line-block">
+<div class="line">config : a dictionary of config parameters to pass to xtalk</div>
+<div class="line">&#8216;abs_min_energy&#8217;, &#8216;thresh&#8217;, &#8216;med_len&#8217; (optional)</div>
+</div>
+<dl class="method">
+<dt id="pyslgr.sad.XtalkSAD.process">
+<code class="descname">process</code><span class="sig-paren">(</span><em>x</em>, <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.sad.XtalkSAD.process" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="section" id="module-pyslgr.Scores">
-<span id="pyslgr-scores-module"></span><h3>3.1.5. pyslgr.Scores module<a class="headerlink" href="#module-pyslgr.Scores" title="Permalink to this headline">¶</a></h3>
-<p>Created on Tue Nov 10 12:45:25 2015
-Class to store scores as numpy arrays
-&#64;author: JO21372</p>
+<span id="pyslgr-scores-module"></span><h3>pyslgr.Scores module<a class="headerlink" href="#module-pyslgr.Scores" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="pyslgr.Scores.Scores">
 <em class="property">class </em><code class="descclassname">pyslgr.Scores.</code><code class="descname">Scores</code><span class="sig-paren">(</span><em>f_scores</em>, <em>s</em>, <em>u_score</em><span class="sig-paren">)</span><a class="headerlink" href="#pyslgr.Scores.Scores" title="Permalink to this definition">¶</a></dt>
@@ -801,17 +1076,20 @@ Argument u_score represents an ubm score as a float type.</p>
     </div>
 
     <div class="footer">
-        &copy; 2016, Esther Wolf.
-      <a href="_sources/pyslgr.txt" rel="nofollow">Show this page source</a>
+      <a href="_sources/pyslgr.rst.txt" rel="nofollow">Show this page source</a>
     </div>
      <div class="rel rellarge">
     
     <div class="buttonPrevious">
-      <a href="examples.html">Previous
+      <a href="sad.html">Previous
       </a>
     </div>
     <div class="buttonNext">
-      <a href="py-modindex.html">Next
+      <a href="misc.html">Next
+      </a>
+    </div>
+    <div class="buttonPrevious">
+      <a href="py-modindex.html">Previous
       </a>
     </div>
     

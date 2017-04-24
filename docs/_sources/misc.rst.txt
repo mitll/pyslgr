@@ -1,0 +1,14 @@
+.. title:: Miscellaneous
+.. miscellaneous
+
+===================
+Miscellaneous
+===================
+
+.. include:: big_toc.rst
+
+.. toctree::
+	:maxdepth: 2
+	
+	build_pyslgr.rst
+	known_problems_mac.rst

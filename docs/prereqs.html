@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
   
-    <title>User guide: contents &#8212; pySLGR 1 documentation</title>
+    <title>Prerequisites &#8212; pySLGR 1 documentation</title>
   <!-- htmltitle is before nature.css - we use this hack to load bootstrap first -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="_static/css/bootstrap.min.css" media="screen" />
@@ -34,8 +34,8 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="1.1. Install" href="install.html" />
-    <link rel="prev" title="Welcome to pySLGR’s documentation!" href="index.html" />
+    <link rel="next" title="1.3. Quick Start" href="quick_start.html" />
+    <link rel="prev" title="1.1. Install" href="install.html" />
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -69,7 +69,7 @@
     <div class="header"><div class="navbar" id="scikit-navbar">
             <ul>
               <li><a href="index.html">Home</a></li>
-              <li><a href="#">User Guide</a></li>
+              <li><a href="user_guide.html">User Guide</a></li>
               <li><a href="quick_start.html#examples">Examples</a></li>
               <li><a href="search.html">Search</a></li>
               <li><a href="genindex.html">Index</a></li>
@@ -90,20 +90,20 @@
 <div class="content-wrapper">
     <div class="sphinxsidebar">
     <div class="sphinxsidebarwrapper">
-        <div class="rel rellarge">
+        <div class="rel">
     
 
   <!-- rellinks[1:] is an ugly hack to avoid link to module
   index -->
         <div class="rellink">
-        <a href="index.html"
+        <a href="install.html"
         accesskey="P">Previous
         <br/>
         <span class="smallrellink">
-        Welcome to py...
+        1.1. Install
         </span>
             <span class="hiddenrellink">
-            Welcome to pySLGR’s documentation!
+            1.1. Install
             </span>
         </a>
         </div>
@@ -111,14 +111,14 @@
             &nbsp;
             </div>
         <div class="rellink">
-        <a href="install.html"
+        <a href="quick_start.html"
         accesskey="N">Next
         <br/>
         <span class="smallrellink">
-        1.1. Install
+        1.3. Quick Start
         </span>
             <span class="hiddenrellink">
-            1.1. Install
+            1.3. Quick Start
             </span>
         </a>
         </div>
@@ -139,6 +139,22 @@
         </div>
 
     <!-- Ad a link to the 'up' page -->
+        <div class="spacer">
+        &nbsp;
+        </div>
+        <div class="rellink">
+        <a href="user_guide.html">
+        Up
+        <br/>
+        <span class="smallrellink">
+        1. User Guide
+        </span>
+            <span class="hiddenrellink">
+            1. User Guide
+            </span>
+            
+        </a>
+        </div>
     </div>
     
       <p class="doc-version">This documentation is for pySLGR <strong>version 1</strong> &mdash; <!--- <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p> --->
@@ -146,7 +162,7 @@
     <p class="citing">If you use the software, please consider <a href="about.html#citing-scikit-learn">citing scikit-learn</a>.</p>
     --->
 	<ul>
-<li><a class="reference internal" href="#">1. User Guide</a></li>
+<li><a class="reference internal" href="#">1.2. Prerequisites</a></li>
 </ul>
 
     </div>
@@ -164,88 +180,73 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="user-guide">
-<h1>1. User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">¶</a></h1>
-<style type="text/css">
-  div.bodywrapper blockquote {
-      margin: 0 ;
-  }
-
-  div.toctree-wrapper ul {
-      margin-top: 0 ;
-      margin-bottom: 0 ;
-      padding-left: 10px ;
-  }
-
-  li.toctree-l1 {
-      padding: 0 0 0.5em 0 ;
-      list-style-type: none;
-      font-size: 150% ;
-      font-weight: bold;
-      }
-
-  li.toctree-l1 ul {
-      padding-left: 40px ;
-  }
-
-  li.toctree-l2 {
-      font-size: 70% ;
-      list-style-type: square;
-      font-weight: normal;
-      }
-
-  li.toctree-l3 {
-      font-size: 85% ;
-      list-style-type: circle;
-      font-weight: normal;
-      }
-
-</style><div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="install.html">1.1. Install</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="install.html#dependencies">1.1.1. Dependencies</a></li>
-<li class="toctree-l2"><a class="reference internal" href="install.html#installation">1.1.2. Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="install.html#check-installation">1.1.3. Check Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="install.html#to-remove">1.1.4. To Remove</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="prereqs.html">1.2. Prerequisites</a></li>
-<li class="toctree-l1"><a class="reference internal" href="quick_start.html">1.3. Quick Start</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="quick_start.html#examples">1.3.1. Examples</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="quick_start.html#example-signal">1.3.1.1. example_signal</a></li>
-<li class="toctree-l3"><a class="reference internal" href="quick_start.html#example-mfcc">1.3.1.2. example_mfcc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="quick_start.html#example-mfcc-fb">1.3.1.3. example_mfcc_fb</a></li>
-<li class="toctree-l3"><a class="reference internal" href="quick_start.html#example-feat-pipe">1.3.1.4. example_feat_pipe</a></li>
-<li class="toctree-l3"><a class="reference internal" href="quick_start.html#example-lid-pipe-gmm">1.3.1.5. example_lid_pipe_gmm</a></li>
-<li class="toctree-l3"><a class="reference internal" href="quick_start.html#example-lid-gmm">1.3.1.6. example_lid_gmm</a></li>
-<li class="toctree-l3"><a class="reference internal" href="quick_start.html#example-gmmsad">1.3.1.7. example_gmmsad</a></li>
-<li class="toctree-l3"><a class="reference internal" href="quick_start.html#example-ivec">1.3.1.8. example_ivec</a></li>
-<li class="toctree-l3"><a class="reference internal" href="quick_start.html#example-gsv">1.3.1.9. example_gsv</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="MFCC_Features.html">1.4. MFCC Features</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="MFCC_Features.html#overview">1.4.1. Overview</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="MFCC_Features.html#delta">1.4.1.1. Delta</a></li>
-<li class="toctree-l3"><a class="reference internal" href="MFCC_Features.html#acceleration">1.4.1.2. Acceleration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="MFCC_Features.html#energy">1.4.1.3. Energy</a></li>
-<li class="toctree-l3"><a class="reference internal" href="MFCC_Features.html#shifted-delta-features-sdc">1.4.1.4. Shifted Delta Features (SDC)</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="MFCC_Features.html#understanding-set-outfeat">1.4.2. Understanding set_outfeat()</a></li>
-<li class="toctree-l2"><a class="reference internal" href="MFCC_Features.html#online-resources">1.4.3. Online Resources</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="sad.html">1.5. Speech Activity Detection (SAD)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sad.html#example">1.5.1. Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sad.html#xtalk">1.5.2. xtalk()</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sad.html#apply-sad">1.5.3. apply_sad()</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sad.html#sad-marks-and-labels">1.5.4. SAD marks and labels</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sad.html#putting-it-all-together">1.5.5. Putting it all together</a></li>
-</ul>
-</li>
-</ul>
+  <div class="section" id="prerequisites">
+<span id="prereq-top"></span><h1>1.2. Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h1>
+<p>In order to install PySLGR successfully, make sure that the correct version of each of the following are installed on your machine.</p>
+<p><strong>1.</strong> Anaconda version 4.2.0 (python 2.7), you can download it download it <a class="reference external" href="http://www.continuum.io/downloads">here</a>.</p>
+<p><strong>2.</strong> Run</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">info</span>
+</pre></div>
+</div>
+<p><strong>3.</strong> Check that the following fields match:</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="53%" />
+<col width="48%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">conda tool</th>
+<th class="head">version</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>conda version</td>
+<td>≥ 4.2.9</td>
+</tr>
+<tr class="row-odd"><td>conda-env version</td>
+<td>≥ 4.2.9</td>
+</tr>
+<tr class="row-even"><td>conda-build version</td>
+<td>1.21.3</td>
+</tr>
+<tr class="row-odd"><td>python version</td>
+<td>2.7.12.final.0</td>
+</tr>
+<tr class="row-even"><td>requests version</td>
+<td>≥ 2.10.0</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Having a conda-build version above 1.21 may cause problems if you wish to build PySLGR</p>
+</div>
+<p><strong>4.</strong> Make sure that Boost version 1.61.0 is installed on the machine.</p>
+<div class="line-block">
+<div class="line">For Linux users:</div>
+</div>
+<p>To install boost, use the following command:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">libboost</span><span class="o">-</span><span class="nb">all</span><span class="o">-</span><span class="n">dev</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">For Mac users:</div>
+</div>
+<p>Homebrew can be used to do this. To install homebrew, follow the instructions on their webpage: <a class="reference external" href="http://brew.sh/">http://brew.sh/</a>.
+Then, run the following command to install boost</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">install</span> <span class="n">boost</span>
+</pre></div>
+</div>
+<p><strong>5.</strong> Make sure FFTW3 version 3.3.4 is install. To install it using Anaconda:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">salilab</span> <span class="n">fftw</span><span class="o">=</span><span class="mf">3.3</span><span class="o">.</span><span class="mi">4</span>
+</pre></div>
+</div>
+<p><strong>6.</strong> Make sure that your GCC and G++ compiler is at least version 4.8. For instructions to install the correct compiler see <a class="reference internal" href="build_pyslgr.html#compiler-install"><span class="std std-ref">Installing the Correct Compiler</span></a>.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">For Mac users, the default gcc compiler that comes with Xcode is an outdated version. Please make sure that you are using the correct compiler version.</p>
 </div>
 </div>
 
@@ -258,16 +259,16 @@
     </div>
 
     <div class="footer">
-      <a href="_sources/user_guide.rst.txt" rel="nofollow">Show this page source</a>
+      <a href="_sources/prereqs.rst.txt" rel="nofollow">Show this page source</a>
     </div>
-     <div class="rel rellarge">
+     <div class="rel">
     
     <div class="buttonPrevious">
-      <a href="index.html">Previous
+      <a href="install.html">Previous
       </a>
     </div>
     <div class="buttonNext">
-      <a href="install.html">Next
+      <a href="quick_start.html">Next
       </a>
     </div>
     <div class="buttonPrevious">

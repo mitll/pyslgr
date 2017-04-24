@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
   
-    <title>Quick Start &mdash; pySLGR 1 documentation</title>
+    <title>Quick Start &#8212; pySLGR 1 documentation</title>
   <!-- htmltitle is before nature.css - we use this hack to load bootstrap first -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="_static/css/bootstrap.min.css" media="screen" />
@@ -25,16 +25,17 @@
         VERSION:     '1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="pySLGR 1 documentation" href="index.html" />
-    <link rel="up" title="1. User Guide" href="user_guide.html" />
-    <link rel="next" title="1.3. MFCC Features" href="MFCC_Features.html" />
-    <link rel="prev" title="1.1. Install" href="install.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1.4. MFCC Features" href="MFCC_Features.html" />
+    <link rel="prev" title="1.2. Prerequisites" href="prereqs.html" />
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -49,10 +50,12 @@
            $(this).css('background-color', '#A7D6E2');
        }
     );
+
+    
     function showMenu() {
       var topNav = document.getElementById("scikit-navbar");
       if (topNav.className === "navbar") {
-          topNav.className += " responsive";
+          topNav.className += " responsive";s
       } else {
           topNav.className = "navbar";
       }
@@ -65,11 +68,12 @@
 <div class="header-wrapper">
     <div class="header"><div class="navbar" id="scikit-navbar">
             <ul>
-                <li><a href="index.html">Home</a></li>
+              <li><a href="index.html">Home</a></li>
               <li><a href="user_guide.html">User Guide</a></li>
-   
-            <li><a href="examples.html">Examples</a></li>
-			<li><a href="search.html">Search</a></li>
+              <li><a href="quick_start.html#examples">Examples</a></li>
+              <li><a href="search.html">Search</a></li>
+              <li><a href="genindex.html">Index</a></li>
+
             </ul>
             <a href="javascript:void(0);" onclick="showMenu()">
                 <div class="nav-icon">
@@ -92,14 +96,14 @@
   <!-- rellinks[1:] is an ugly hack to avoid link to module
   index -->
         <div class="rellink">
-        <a href="install.html"
+        <a href="prereqs.html"
         accesskey="P">Previous
         <br/>
         <span class="smallrellink">
-        1.1. Install
+        1.2. Prerequisites
         </span>
             <span class="hiddenrellink">
-            1.1. Install
+            1.2. Prerequisites
             </span>
         </a>
         </div>
@@ -111,10 +115,10 @@
         accesskey="N">Next
         <br/>
         <span class="smallrellink">
-        1.3. MFCC Fea...
+        1.4. MFCC Features
         </span>
             <span class="hiddenrellink">
-            1.3. MFCC Features
+            1.4. MFCC Features
             </span>
         </a>
         </div>
@@ -126,7 +130,7 @@
         >Modules
         <br/>
         <span class="smallrellink">
-        Python Module...
+        Python Module Index
         </span>
             <span class="hiddenrellink">
             Python Module Index
@@ -158,10 +162,19 @@
     <p class="citing">If you use the software, please consider <a href="about.html#citing-scikit-learn">citing scikit-learn</a>.</p>
     --->
 	<ul>
-<li><a class="reference internal" href="#">1.2. Quick Start</a><ul>
-<li><a class="reference internal" href="#example-signal">1.2.1. example_signal</a></li>
-<li><a class="reference internal" href="#example-mfcc">1.2.2. example_mfcc</a></li>
-<li><a class="reference internal" href="#example-lid-gmm">1.2.3. example_lid_gmm</a></li>
+<li><a class="reference internal" href="#">1.3. Quick Start</a><ul>
+<li><a class="reference internal" href="#examples">1.3.1. Examples</a><ul>
+<li><a class="reference internal" href="#example-signal">1.3.1.1. example_signal</a></li>
+<li><a class="reference internal" href="#example-mfcc">1.3.1.2. example_mfcc</a></li>
+<li><a class="reference internal" href="#example-mfcc-fb">1.3.1.3. example_mfcc_fb</a></li>
+<li><a class="reference internal" href="#example-feat-pipe">1.3.1.4. example_feat_pipe</a></li>
+<li><a class="reference internal" href="#example-lid-pipe-gmm">1.3.1.5. example_lid_pipe_gmm</a></li>
+<li><a class="reference internal" href="#example-lid-gmm">1.3.1.6. example_lid_gmm</a></li>
+<li><a class="reference internal" href="#example-gmmsad">1.3.1.7. example_gmmsad</a></li>
+<li><a class="reference internal" href="#example-ivec">1.3.1.8. example_ivec</a></li>
+<li><a class="reference internal" href="#example-gsv">1.3.1.9. example_gsv</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -182,22 +195,38 @@
           <div class="body" role="main">
             
   <div class="section" id="quick-start">
-<h1>1.2. Quick Start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h1>
-<p>Examples come with the pyslgr installation. If you used the Anaconda install option, you will find the example script in the following directory:</p>
-<p>slgr_cython/example_&lt;some_example&gt;.py</p>
-<p>If you installed from file, the example script can be found at:</p>
-<p>examples/example_&lt;some_example&gt;.py</p>
+<h1>1.3. Quick Start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h1>
+<p>To run the examples, make sure you have downloaded both <em>examples.tar.gz</em> and <em>models.tar.gz</em>. Unpack the examples into any directory, and then unpack the models inside this examples directory.</p>
 <p>To see the example simply run:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">example_</span><span class="o">&lt;</span><span class="n">some_example</span><span class="o">&gt;.</span><span class="n">py</span>
 </pre></div>
 </div>
-<p>The following sections walk you through the examples using the python interpreter.</p>
+<p>Below are walk-through guides to the examples.</p>
+<div class="section" id="examples">
+<h2>1.3.1. Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#example-signal" id="id3">example_signal</a></li>
+<li><a class="reference internal" href="#example-mfcc" id="id4">example_mfcc</a></li>
+<li><a class="reference internal" href="#example-mfcc-fb" id="id5">example_mfcc_fb</a></li>
+<li><a class="reference internal" href="#example-feat-pipe" id="id6">example_feat_pipe</a></li>
+<li><a class="reference internal" href="#example-lid-pipe-gmm" id="id7">example_lid_pipe_gmm</a></li>
+<li><a class="reference internal" href="#example-lid-gmm" id="id8">example_lid_gmm</a></li>
+<li><a class="reference internal" href="#example-gmmsad" id="id9">example_gmmsad</a></li>
+<li><a class="reference internal" href="#example-ivec" id="id10">example_ivec</a></li>
+<li><a class="reference internal" href="#example-gsv" id="id11">example_gsv</a></li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Following any of the examples on this page requires that you are in the examples directory (otherwise you will need to change the filepaths.)</p>
+</div>
 <div class="section" id="example-signal">
-<h2>1.2.1. example_signal<a class="headerlink" href="#example-signal" title="Permalink to this headline">¶</a></h2>
+<h3><a class="toc-backref" href="#id3">1.3.1.1. example_signal</a><a class="headerlink" href="#example-signal" title="Permalink to this headline">¶</a></h3>
 <p>Open the python interpreter and import the following:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyslgr.LLSignal</span> <span class="k">import</span> <span class="n">LLSignal</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyslgr.LLSignal</span> <span class="k">import</span> <span class="n">LLSignal</span>
 </pre></div>
 </div>
 <p>To create an instance of LLSignal</p>
@@ -205,7 +234,7 @@
 </pre></div>
 </div>
 <p>We can read the a test signal from file. Pyslgr has a few example signals already built in, we will use one of these.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sig</span><span class="o">.</span><span class="n">load_pcm_wav</span><span class="p">(</span><span class="s1">&#39;../slgr_test/test/dlpt-ara-D4m-RZ.wav&#39;</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sig</span><span class="o">.</span><span class="n">load_sph</span><span class="p">(</span><span class="s1">&#39;signals/example.sph&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>We will visualize the signal in the time domain. We will calculate and display the first 10 seconds.</p>
@@ -220,10 +249,10 @@
 </div>
 <p>The signal looks like this:</p>
 <img alt="images/quick_start/figure_1.png" class="align-center" src="images/quick_start/figure_1.png" />
-<p>To get the pitch of the signal, use <strong>f0_get(min_f0,max_f0,window_dur,frame_step)</strong></p>
+<p>To get the pitch of the signal, use <a class="reference internal" href="pyslgr.html#pyslgr.LLSignal.LLSignal.get_f0" title="pyslgr.LLSignal.LLSignal.get_f0"><code class="xref py py-meth docutils literal"><span class="pre">get_f0()</span></code></a></p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f0</span> <span class="o">=</span> <span class="n">sig</span><span class="o">.</span><span class="n">get_f0</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">650</span><span class="p">,</span><span class="mf">0.010</span><span class="p">,</span><span class="mf">0.005</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">f0</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">130</span><span class="p">:</span><span class="mi">135</span><span class="p">]</span>
-<span class="go">array([196,29374695, 196.95007324, 193.93437195, 195.29318237, 202.55558777])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f0</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">200</span><span class="p">:</span><span class="mi">205</span><span class="p">]</span>
+<span class="go">array([ 126.44771576,  125.1450882 ,  123.85125732,  123.43418884, 123.18312073])</span>
 </pre></div>
 </div>
 <p>Signals can be sliced using the same syntax as numpy. For instance, <strong>sig[0:10]</strong> returns the first 10 samples of the signal</p>
@@ -242,15 +271,15 @@
 </div>
 <p>For a slice [m:n] where n &gt; sig.length(), clipping will occur and only m:sig.length() is returned</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sig</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">sig</span><span class="o">.</span><span class="n">length</span><span class="p">()</span><span class="o">+</span><span class="mi">10</span><span class="p">]</span>
-<span class="go">array([72.])</span>
+<span class="go">array([ 16.])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sig</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="go">72.0</span>
+<span class="go">16.0</span>
 </pre></div>
 </div>
 <p>Strides and reversals are also possible. <strong>sig[20::3]</strong> returns every 3rd element starting with the 20th element. <strong>sig[10:-2]</strong> returns every second element starting at the 10th element as indices decrease.</p>
 <p>Using slices, we can plot portions of the signal. Here we look at 5 seconds of the signal from 3 seconds to 8 seconds.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">min_seconds</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">max_seconds</span> <span class="o">=</span> <span class="mi">8</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">min_seconds</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">max_seconds</span> <span class="o">=</span> <span class="mi">4</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">z</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">min_seconds</span><span class="o">*</span><span class="nb">int</span><span class="p">(</span><span class="n">sf</span><span class="p">),</span> <span class="n">max_seconds</span><span class="o">*</span><span class="nb">int</span><span class="p">(</span><span class="n">sf</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="n">sf</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">sig</span><span class="p">[</span><span class="n">min_seconds</span><span class="o">*</span><span class="nb">int</span><span class="p">(</span><span class="n">sf</span><span class="p">):</span><span class="n">max_seconds</span><span class="o">*</span><span class="nb">int</span><span class="p">(</span><span class="n">sf</span><span class="p">)])</span>
@@ -261,7 +290,7 @@
 <img alt="images/quick_start/figure_2.png" class="align-center" src="images/quick_start/figure_2.png" />
 <p>To check the frequency at which the signal was sampled, use the following</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sig</span><span class="o">.</span><span class="n">sampling_frequency</span><span class="p">()</span>
-<span class="go">16000.0</span>
+<span class="go">8000.0</span>
 </pre></div>
 </div>
 <p>We can downsample by resampling</p>
@@ -279,14 +308,14 @@
 </div>
 </div>
 <div class="section" id="example-mfcc">
-<span id="id1"></span><h2>1.2.2. example_mfcc<a class="headerlink" href="#example-mfcc" title="Permalink to this headline">¶</a></h2>
+<span id="id1"></span><h3><a class="toc-backref" href="#id4">1.3.1.2. example_mfcc</a><a class="headerlink" href="#example-mfcc" title="Permalink to this headline">¶</a></h3>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">We will use the LLSignal class in this example. To familiarize yourself with this class, please see <a class="reference internal" href="#example-signal">example_signal</a>.</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">MFCCFeatures extends LLFeatures</p>
+<p class="last">MFCCFeatures extends :class: <cite>~pyslgr.LLFeatures.LLFeatures</cite></p>
 </div>
 <p>To begin we will want to import the relevent modules:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">json</span>
@@ -296,7 +325,7 @@
 </div>
 <p>Processing the signal in order to obtain  mel-frequency cepstral coefficient (MFCC) features, requires a config file (in json format). We will load in the default feature config file and make modifications. Then we will restore it for use.</p>
 <p>We begin by loading the config file.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../config/lid_config.json&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;config/lid_config.json&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
@@ -317,24 +346,22 @@
 </div>
 <p>And, indeed <strong>fb_only</strong> has been set to true. We can also review the other configuration settings.</p>
 <p>We now load in the sample signal just as in <cite>example_signal</cite>.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fn</span> <span class="o">=</span> <span class="s1">&#39;../slgr_test/test/dlpt-ara-D4m-RZ.wav&#39;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fn</span> <span class="o">=</span> <span class="s1">&#39;signals/example.sph&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sig</span> <span class="o">=</span> <span class="n">LLSignal</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">sig</span><span class="o">.</span><span class="n">load_pcm_wav</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sig</span><span class="o">.</span><span class="n">load_sph</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>To get features, we make an instance of the MFCCFeatures class and call <a class="reference internal" href="pyslgr.html#pyslgr.MFCCFeatures.MFCCFeatures.process" title="pyslgr.MFCCFeatures.MFCCFeatures.process"><code class="xref py py-meth docutils literal"><span class="pre">process()</span></code></a></p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">feats</span> <span class="o">=</span> <span class="n">MFCCFeatures</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">feats</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">mfcc_config</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>To get features...</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">feats</span> <span class="o">=</span> <span class="n">MFCCFeatures</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">feats</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">mfcc_config</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">feats</span> <span class="o">=</span> <span class="n">MFCCFeatures</span><span class="p">(</span><span class="n">mfcc_config</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">feats</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">sig</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">feats</span><span class="o">.</span><span class="n">delta</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">feats</span><span class="o">.</span><span class="n">accel</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>See <a class="reference internal" href="MFCC_Features.html#mfcc-features-delta"><span class="std std-ref">MFCC Features</span></a> for more information on the delta() and accel().</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">See <a class="reference internal" href="MFCC_Features.html#mfcc-features-delta"><span class="std std-ref">MFCC Features</span></a> for more information on the delta() and accel().</p>
+</div>
 <p>You can also try out the various slicing and indexing operations.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -349,9 +376,197 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="n">feats</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span>   <span class="c1">#produces an empty array</span>
 </pre></div>
 </div>
+<p>Let us now look at a few basic SAD (Speech Activity Detection) tools</p>
+<p>First we need to create a temporary directory to store our results</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os.path</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;tmp&#39;</span><span class="p">):</span>
+<span class="go">       os.mkdir(&#39;tmp&#39;)</span>
+</pre></div>
+</div>
+<p>We will create sad labels and marks for the sample signal and save them.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">feats</span><span class="o">.</span><span class="n">xtalk</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">feats</span><span class="o">.</span><span class="n">save_sad_labels</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;tmp&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.lbl&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">feats</span><span class="o">.</span><span class="n">save_sad_marks</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;tmp&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.mark&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>To access the SAD labels directly, we can use the following</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lbl</span> <span class="o">=</span> <span class="n">feats</span><span class="o">.</span><span class="n">sad_labels</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">feats</span><span class="o">.</span><span class="n">apply_sad</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s1">&#39;a few SAD labels: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lbl</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">100</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s1">&#39;Number of frames is : </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">num_vec</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">For more information on SAD, click <a class="reference internal" href="sad.html#sad-top"><span class="std std-ref">here</span></a>.</p>
+</div>
+<p>If we wish to save the features as raw floats, we can do so:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">feats</span><span class="o">.</span><span class="n">save_raw</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;tmp&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.feats.dat&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-mfcc-fb">
+<h3><a class="toc-backref" href="#id5">1.3.1.3. example_mfcc_fb</a><a class="headerlink" href="#example-mfcc-fb" title="Permalink to this headline">¶</a></h3>
+<p>This example shows how to use &#8216;raw&#8217; filter bank outputs instead of MFCC Features.</p>
+<p>To begin, we will import all relevant modules.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyslgr.LLSignal</span> <span class="k">import</span> <span class="n">LLSignal</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyslgr.MFCCFeatures</span> <span class="k">import</span> <span class="n">MFCCFeatures</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">json</span>
+</pre></div>
+</div>
+<p>Next we will load in the example signal:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sig</span> <span class="o">=</span> <span class="n">LLSignal</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sig</span><span class="o">.</span><span class="n">load_sph</span><span class="p">(</span><span class="s1">&#39;signals/example.sph&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sig</span><span class="o">.</span><span class="n">resample_8k</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>We will need a configuration file. One has already been created, however will we modify it to meet our needs.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;config/lid_config.json&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">feat_config</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="s1">&#39;lid_config&#39;</span><span class="p">][</span><span class="s1">&#39;feat_config&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">feat_config</span><span class="p">[</span><span class="s1">&#39;fb_only&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">feat_config</span><span class="p">[</span><span class="s1">&#39;linear&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">feat_config</span><span class="p">[</span><span class="s1">&#39;win_len_ms&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">feat_config</span><span class="p">[</span><span class="s1">&#39;tgt_num_filt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mfcc_config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">feat_config</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s1">&#39;MFCC features configuration: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mfcc_config</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To get features, we make an instance of the MFCCFeatures class and call <a class="reference internal" href="pyslgr.html#pyslgr.MFCCFeatures.MFCCFeatures.process" title="pyslgr.MFCCFeatures.MFCCFeatures.process"><code class="xref py py-meth docutils literal"><span class="pre">process()</span></code></a></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">feat</span> <span class="o">=</span> <span class="n">MFCCFeatures</span><span class="p">(</span><span class="n">mfcc_config</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">feat</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">sig</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">feat</span><span class="o">.</span><span class="n">set_outfeat</span><span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">For more information on the <a class="reference internal" href="pyslgr.html#pyslgr.LLFeatures.LLFeatures.set_outfeat" title="pyslgr.LLFeatures.LLFeatures.set_outfeat"><code class="xref py py-meth docutils literal"><span class="pre">set_outfeat()</span></code></a> function, click <a class="reference internal" href="MFCC_Features.html#setting-features"><span class="std std-ref">here</span></a>.</p>
+</div>
+<p>We can now check how many features we calculated.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s1">&#39;Number of output features </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">num_outfeat</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">delta_f</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">sig</span><span class="o">.</span><span class="n">sampling_frequency</span><span class="p">()</span> <span class="o">/</span> <span class="p">(</span><span class="n">feat_config</span><span class="p">[</span><span class="s1">&#39;tgt_num_filt&#39;</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fb_range</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">feat_config</span><span class="p">[</span><span class="s1">&#39;fb_hi&#39;</span><span class="p">])</span><span class="o">-</span><span class="nb">float</span><span class="p">(</span><span class="n">feat_config</span><span class="p">[</span><span class="s1">&#39;fb_low&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s1">&#39;Approx num of feats: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fb_range</span><span class="o">/</span><span class="n">delta_f</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We can plot our fetaures.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">feats</span> <span class="o">=</span> <span class="n">feat</span><span class="p">[:]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">feats</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">::</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="mi">500</span><span class="p">],</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="images/mfcc/fb_only_output_feat.png" class="align-center" src="images/mfcc/fb_only_output_feat.png" />
+</div>
+<div class="section" id="example-feat-pipe">
+<span id="id2"></span><h3><a class="toc-backref" href="#id6">1.3.1.4. example_feat_pipe</a><a class="headerlink" href="#example-feat-pipe" title="Permalink to this headline">¶</a></h3>
+<p>This example demonstrates how to quickly create a pipeline that extracts features. <a class="reference internal" href="#example-gmm-sad"><span class="std std-ref">Example_gmmsad</span></a> demonstrates the manual process for feature extraction that the
+pipeline in this example achieves.</p>
+<p>To begin, we will import all relevant modules.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyslgr.GMMModel</span> <span class="k">import</span> <span class="n">GMMSAD</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyslgr.LLSignal</span> <span class="k">import</span> <span class="n">LLSignal</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyslgr.MFCCFeatures</span> <span class="k">import</span> <span class="n">MFCCFeatures</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyslgr.FeatPipe</span> <span class="k">import</span> <span class="n">FeatPipe</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyslgr.sad</span> <span class="k">import</span> <span class="n">XtalkSAD</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">json</span>
+</pre></div>
+</div>
+<p>Next we will load in the example signal:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sig</span> <span class="o">=</span> <span class="n">LLSignal</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sig</span><span class="o">.</span><span class="n">load_sph</span><span class="p">(</span><span class="s1">&#39;signals/example.sph&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now we will need the configuration file for the pipeline. There is already such a configuration file which has been set up for this example.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;config/lid_mfcc+gmmsad_pipe.json&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fid</span><span class="p">:</span>
+<span class="go">        pipe_config = json.load(fid)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s1">&#39;Pipeline configuration: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pipe_config</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We can now apply the pipeline. It will reture a MFCCFeatures object.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pipe</span> <span class="o">=</span> <span class="n">FeatPipe</span><span class="p">(</span><span class="n">pipe_config</span><span class="p">,</span> <span class="n">MFCCFeatures</span><span class="p">,</span> <span class="n">GMMSAD</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">feat</span> <span class="o">=</span> <span class="n">pip</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">sig</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To gain insight into what the pipeline has accomplished, we can print out a few of the calculation results.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s1">&#39;Number of base features: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">feat</span><span class="o">.</span><span class="n">num_base_feat</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s1">&#39;Number of output features: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">feat</span><span class="o">.</span><span class="n">num_outfeat</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s1">&#39;Number of frames is : </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">feat</span><span class="o">.</span><span class="n">num_vec</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s1">&#39;Frame rate: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">feat</span><span class="o">.</span><span class="n">get_win_inc_ms</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s1">&#39;Duration in seconds is: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">feat</span><span class="o">.</span><span class="n">duration</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>We can also store our results. To accomplish this, we will check if a tmp directory already exists, otherwise we will create one.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os.path</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;tmp&#39;</span><span class="p">):</span>
+<span class="go">       os.mkdir(&#39;tmp&#39;)</span>
+</pre></div>
+</div>
+<p>Then we can save our features:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Saving features to tmp/</span><span class="si">{}</span><span class="s1">.full_feat_ext.dat as raw floats.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;example&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">feat</span><span class="o">.</span><span class="n">save_raw</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;tmp&#39;</span><span class="p">,</span> <span class="s1">&#39;example&#39;</span> <span class="o">+</span> <span class="s1">&#39;.feat_ext.dat&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-lid-pipe-gmm">
+<h3><a class="toc-backref" href="#id7">1.3.1.5. example_lid_pipe_gmm</a><a class="headerlink" href="#example-lid-pipe-gmm" title="Permalink to this headline">¶</a></h3>
+<p>This example shows how to set up a pipeline that can be used for Language Identification (lid).</p>
+<p>To begin this example, we will need to import all the relevant modules</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyslgr.GMMModel</span> <span class="k">import</span> <span class="n">GMMSAD</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyslgr.LLSignal</span> <span class="k">import</span> <span class="n">LLSignal</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyslgr.MFCCFeatures</span> <span class="k">import</span> <span class="n">MFCCFeatures</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyslgr.FeatPipe</span> <span class="k">import</span> <span class="n">FeatPipe</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyslgr.sad</span> <span class="k">import</span> <span class="n">XtalkSAD</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyslgr.GMMModel</span> <span class="k">import</span> <span class="n">GMMModel</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">json</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os</span>
+</pre></div>
+</div>
+<p>First, we will load our example signal.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sig</span> <span class="o">=</span> <span class="n">LLSignal</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sig</span><span class="o">.</span><span class="n">load_sph</span><span class="p">(</span><span class="s1">&#39;signals/example.sph&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now, we need to load in the configuration file for the pipeline. A configuration file has already been setup for this example.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;config/lid_mfcc+gmmsad_pipe.json&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+<span class="go">      pipe_config = json.load(fp)</span>
+</pre></div>
+</div>
+<p>We can now run the pipeline. It will return an MFCCFeatures object.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pipe</span> <span class="o">=</span> <span class="n">FeatPipe</span><span class="p">(</span><span class="n">pipe_config</span><span class="p">,</span> <span class="n">MFCCFeatures</span><span class="p">,</span> <span class="n">GMMSAD</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">feat</span> <span class="o">=</span> <span class="n">pipe</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">sig</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We can now use PySLGR to identify the language of your example signal.</p>
+<p>Start by creating a GMMModel object.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g_ubm</span> <span class="o">=</span> <span class="n">GMMModel</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g_ubm</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;models/language/sbkg.o1024-sdc-rasta-fn-fnap.mod&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We will now load in the pre-existing language models.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;config/lid_config.json&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+<span class="go">        slgr_config = json.load(fp)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model_names</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">slgr_config</span><span class="p">[</span><span class="s1">&#39;lid_config&#39;</span><span class="p">][</span><span class="s1">&#39;models&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g_langs</span><span class="o">=</span><span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">model_names</span><span class="p">)):</span>
+<span class="go">        g_langs.append(GMMModel())</span>
+<span class="go">        g_langs[i].load(os.path.join(&#39;models&#39;, model_names[i]))</span>
+</pre></div>
+</div>
+<p>The next step is to score the models.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">allScores</span> <span class="o">=</span> <span class="n">g_ubm</span><span class="o">.</span><span class="n">score_models</span><span class="p">(</span><span class="n">feat</span><span class="p">,</span> <span class="n">g_langs</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">modelScores</span> <span class="o">=</span> <span class="n">allScores</span><span class="o">.</span><span class="n">scores</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scores_out</span><span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">modelScores</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+<span class="go">        scores_out.append((model_names[i], modelScore[i+1] - modelScores[i]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s1">&#39;scores: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">scores_out</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s1">&#39;UBM score = &#39;</span><span class="p">,</span> <span class="n">allScores</span><span class="o">.</span><span class="n">ubm_score</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="example-lid-gmm">
-<h2>1.2.3. example_lid_gmm<a class="headerlink" href="#example-lid-gmm" title="Permalink to this headline">¶</a></h2>
+<h3><a class="toc-backref" href="#id8">1.3.1.6. example_lid_gmm</a><a class="headerlink" href="#example-lid-gmm" title="Permalink to this headline">¶</a></h3>
+<p>In this example, we will demonstrate the language identification (lid) capabilities of PySLGR.</p>
 <p>To begin this example, we will want to import all the relevant modules</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyslgr.LLSignal</span> <span class="k">import</span> <span class="n">LLSignal</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyslgr.MFCCFeatures</span> <span class="k">import</span> <span class="n">MFCCFeatures</span>
@@ -363,11 +578,11 @@
 </div>
 <p>Now we would like to load our example signal.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sig</span> <span class="o">=</span> <span class="n">LLSignal</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">sig</span><span class="o">.</span><span class="n">load_pcm_wav</span><span class="p">(</span><span class="s1">&#39;../slgr_test/test/dlpt-ara-D4m-RZ.wav&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sig</span><span class="o">.</span><span class="n">load_sph</span><span class="p">(</span><span class="s1">&#39;signals/example.sph&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>As in example_mfcc, we need to set up the config file for our MFCC features.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">slgr_config_fn</span> <span class="o">=</span> <span class="s1">&#39;../config/lid_config.json&#39;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">slgr_config_fn</span> <span class="o">=</span> <span class="s1">&#39;config/lid_config.json&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">slgr_config_fn</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
@@ -375,20 +590,20 @@
 </pre></div>
 </div>
 <p>For this example, we will also need models. These models can be found in the /nmec/slgr/model directory</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model_dir</span> <span class="o">=</span> <span class="s1">&#39;../model&#39;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model_dir</span> <span class="o">=</span> <span class="s1">&#39;models&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model_names</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;lid_config&#39;</span><span class="p">][</span><span class="s1">&#39;models&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
 </pre></div>
 </div>
-<p>We initialize the MFCC features as in example_mfcc. For more details on how to use the set_outfeat function, see .</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">feat</span> <span class="o">=</span> <span class="n">MFCCFeatures</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">feat</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">mfcc_config</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">feat</span><span class="o">.</span><span class="n">rasta</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">feat</span><span class="o">.</span><span class="n">delta2point</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">feat</span><span class="o">.</span><span class="n">sdc</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">feat</span><span class="o">.</span><span class="n">xtalk</span><span class="p">(</span><span class="o">-</span><span class="mf">10.0</span><span class="p">,</span><span class="mf">5.0</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">feat</span><span class="o">.</span><span class="n">apply_sad</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">feat</span><span class="o">.</span><span class="n">feat_norm</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">feat</span><span class="o">.</span><span class="n">set_outfeat</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">)</span>
+<p>We initialize the MFCC features as in example_mfcc. For more details on how to use the <a class="reference internal" href="pyslgr.html#pyslgr.LLFeatures.LLFeatures.set_outfeat" title="pyslgr.LLFeatures.LLFeatures.set_outfeat"><code class="xref py py-meth docutils literal"><span class="pre">set_outfeat()</span></code></a> function, see <a class="reference internal" href="MFCC_Features.html#setting-features"><span class="std std-ref">Understanding set_outfeat()</span></a> .</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">feats</span> <span class="o">=</span> <span class="n">MFCCFeatures</span><span class="p">(</span><span class="n">mfcc_config</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">feats</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">sig</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">feats</span><span class="o">.</span><span class="n">rasta</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">feats</span><span class="o">.</span><span class="n">delta2point</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">feats</span><span class="o">.</span><span class="n">sdc</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">feats</span><span class="o">.</span><span class="n">xtalk</span><span class="p">(</span><span class="o">-</span><span class="mf">10.0</span><span class="p">,</span><span class="mf">5.0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">feats</span><span class="o">.</span><span class="n">apply_sad</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">feats</span><span class="o">.</span><span class="n">feat_norm</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">feats</span><span class="o">.</span><span class="n">set_outfeat</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Now we will create the GMM model object.</p>
@@ -404,7 +619,7 @@
 </pre></div>
 </div>
 <p>To get the scores:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">allScores</span> <span class="o">=</span> <span class="n">g_ubm</span><span class="o">.</span><span class="n">score_models</span><span class="p">(</span><span class="n">feat</span><span class="p">,</span> <span class="n">g_langs</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">allScores</span> <span class="o">=</span> <span class="n">g_ubm</span><span class="o">.</span><span class="n">score_models</span><span class="p">(</span><span class="n">feats</span><span class="p">,</span> <span class="n">g_langs</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">modelScores</span> <span class="o">=</span> <span class="n">allScores</span><span class="o">.</span><span class="n">scores</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">scores_out</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">modelScores</span><span class="o">.</span><span class="n">size</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span>
@@ -412,8 +627,179 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="n">scores_out</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">scores_out</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">operator</span><span class="o">.</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s1">&#39;scores: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">scores_out</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s2">&quot;UBM score =&quot;</span><span class="p">,</span> <span class="n">allScores</span><span class="o">.</span><span class="n">ubm_score</span>
-<span class="go">UBM score = -71.553314209</span>
+<span class="go">UBM score = -71.3863830566</span>
 </pre></div>
+</div>
+</div>
+<div class="section" id="example-gmmsad">
+<span id="example-gmm-sad"></span><h3><a class="toc-backref" href="#id9">1.3.1.7. example_gmmsad</a><a class="headerlink" href="#example-gmmsad" title="Permalink to this headline">¶</a></h3>
+<p>For this example, we will need to import the following python modules:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyslgr.LLSignal</span> <span class="k">import</span> <span class="n">LLSignal</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyslgr.MFCCFeatures</span> <span class="k">import</span> <span class="n">MFCCFeatures</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyslgr.GMMModel</span> <span class="k">import</span> <span class="n">GMMSAD</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">json</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">operator</span>
+</pre></div>
+</div>
+<p>Now we need to load the relevant config files. They are stored as .json files in the <em>config</em> directory.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fn</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;config/gmmsad_params.json&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">feat_config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;feat_config&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>We will also load the relevant models. We will use models for &#8216;non-speech, &#8216;speech&#8217;, and &#8216;music.&#8217;</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model_dir</span> <span class="o">=</span> <span class="s1">&#39;models&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model_files</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="s1">&#39;gmm_models&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s1">&#39;Using models: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">model_files</span><span class="p">)</span>
+<span class="go">Using models: {u&#39;music&#39;: u&#39;sad/sMUSIC3.o128-rasta-mfb2-21-cep+dcep.mod&#39;, u&#39;speech&#39;: u&#39;sad/sSPEECH.o128-rasta-mfb2-21-cep+dcep.mod&#39;, u&#39;nonspeech&#39;: u&#39;sad/sNONSPEECH.o128-rasta-mfb2-21-cep+dcep.mod&#39;}</span>
+</pre></div>
+</div>
+<p>We grab the example audio signal...</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sig</span> <span class="o">=</span> <span class="n">LLSignal</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sig</span><span class="o">.</span><span class="n">load_sph</span><span class="p">(</span><span class="s1">&#39;signals/example.sph&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now that everything is set up, we can use our GMM to detect speech activity. This is called Speech Activity Detection (SAD).</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">More information about SAD can be found <a class="reference internal" href="sad.html#sad-top"><span class="std std-ref">here</span></a></p>
+</div>
+<p>Run:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gmmsad</span> <span class="o">=</span> <span class="n">GMMSAD</span><span class="p">(</span><span class="n">feat_config</span><span class="p">,</span> <span class="n">model_dir</span><span class="p">,</span> <span class="n">model_files</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sad_marks</span> <span class="o">=</span> <span class="n">gmmsad</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s1">&#39;sad marks : </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sad_marks</span><span class="p">)</span>
+<span class="go">sad marks : [(0.35999998450279236, 82.58999633789062), (83.47999572753906, 34.01000213623047)]</span>
+</pre></div>
+</div>
+<p>Since our example is mainly speech, almost the entire signal is selected. We can now visualize our results:</p>
+<img alt="images/SAD/gmmsad_red.png" class="align-center" src="images/SAD/gmmsad_red.png" />
+<p>The following code will produce the image above.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">max_seconds</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sad_marks</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">sad_marks</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">marks</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">mark</span> <span class="ow">in</span> <span class="n">sad_marks</span><span class="p">:</span>
+<span class="go">      marks.append((mark[0],mark[0]+mark[1]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sf</span> <span class="o">=</span> <span class="n">sig</span><span class="o">.</span><span class="n">sampling_frequency</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">z</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_seconds</span><span class="o">*</span><span class="nb">int</span><span class="p">(</span><span class="n">sf</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="n">sf</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">sig</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">z</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time in seconds&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">mark</span> <span class="ow">in</span> <span class="n">marks</span><span class="p">:</span>
+<span class="go">      if(mark[1] &gt; max_seconds):</span>
+<span class="go">        plt.axvspan(mark[0], max_seconds, facecolor=&#39;r&#39;, alpha=0.2)</span>
+<span class="go">      else:</span>
+<span class="go">        plt.axvspan(mark[0], mark[1], facecolor=&#39;r&#39;, alpha=0.2)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>We can also load the SAD marks into a Features object.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;config/lid_config.json&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">feat_config</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="s1">&#39;lid_config&#39;</span><span class="p">][</span><span class="s1">&#39;feat_config&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">feat_config</span><span class="p">[</span><span class="s1">&#39;fb_only&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;true&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mfcc_config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">feat_config</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">feat</span> <span class="o">=</span> <span class="n">MFCCFeatures</span><span class="p">(</span><span class="n">mfcc_config</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">feat</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">sig</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">feat</span><span class="o">.</span><span class="n">load_sad_marks</span><span class="p">(</span><span class="n">sad_marks</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Saving these marks to file is also possible.</p>
+<p>First we will check to see if a tmp directory exists, otherwise we will create one.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os.path</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;tmp&#39;</span><span class="p">):</span>
+<span class="go">      os.mkdir(&#39;tmp&#39;)</span>
+</pre></div>
+</div>
+<p>Next we can save the marks to file.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">feat</span><span class="o">.</span><span class="n">save_sad_marks</span><span class="p">(</span><span class="s1">&#39;tmp/eg.mark&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-ivec">
+<h3><a class="toc-backref" href="#id10">1.3.1.8. example_ivec</a><a class="headerlink" href="#example-ivec" title="Permalink to this headline">¶</a></h3>
+<p>This example demonstrates how to extract ivectors using PySLGR.</p>
+<p>To begin this example, we import all of the relevant modules.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">json</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyslgr.GMMModel</span> <span class="k">import</span> <span class="n">GMMSAD</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyslgr.iVector</span> <span class="k">import</span> <span class="n">iVector</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyslgr.LLSignal</span> <span class="k">import</span> <span class="n">LLSignal</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyslgr.MFCCFeatures</span> <span class="k">import</span> <span class="n">MFCCFeatures</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyslgr.FeatPipe</span> <span class="k">import</span> <span class="n">FeatPipe</span>
+</pre></div>
+</div>
+<p>We will now load in the example signal.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sig</span> <span class="o">=</span> <span class="n">LLSignal</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sig</span><span class="o">.</span><span class="n">load_sph</span><span class="p">(</span><span class="s1">&#39;signals/example.sph&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then, we will use the same pipeline as in <a class="reference internal" href="#example-feat-pipe"><span class="std std-ref">example_feat_pipe</span></a>.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;config/sid_mfcc+gmmsad_pipe.json&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fid</span><span class="p">:</span>
+<span class="go">        pipe_config = json.load(fid)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pipe</span> <span class="o">=</span> <span class="n">FeatPipe</span><span class="p">(</span><span class="n">pipe_config</span><span class="p">,</span> <span class="n">MFCCFeatures</span><span class="p">,</span> <span class="n">GMMSAD</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">feat</span> <span class="o">=</span> <span class="n">pipe</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">sig</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We can check the number of output features.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s1">&#39;Number of output features: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">feat</span><span class="o">.</span><span class="n">num_outfeat</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Finally, we can compute the ivector by loading in the example configuration file.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;config/ivec.json&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+<span class="go">      config = json.load(fp)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ivec</span> <span class="o">=</span> <span class="n">iVector</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">ivec</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">feat</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To take a look at a few of the calculated ivectors, simply:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s1">&#39;A few elements of iVector: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>To check the dimesnsions of the iVector:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s1">&#39;iVector dimension: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-gsv">
+<h3><a class="toc-backref" href="#id11">1.3.1.9. example_gsv</a><a class="headerlink" href="#example-gsv" title="Permalink to this headline">¶</a></h3>
+<p>This example demonstrates the capability to compute the Guassian Supervector (GSV) expansion using PySLGR.</p>
+<p>First, we will want to import all the relevant modules.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">json</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyslgr.GMMModel</span> <span class="k">import</span> <span class="n">GMMSAD</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyslgr.GSV</span> <span class="k">import</span> <span class="n">GSV</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyslgr.LLSignal</span> <span class="k">import</span> <span class="n">LLSignal</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyslgr.MFCCFeatures</span> <span class="k">import</span> <span class="n">MFCCFeatures</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyslgr.FeatPipe</span> <span class="k">import</span> <span class="n">FeatPipe</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyslgr.sad</span> <span class="k">import</span> <span class="n">XtalkSAD</span>
+</pre></div>
+</div>
+<p>Next we will load an example signal.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sig</span> <span class="o">=</span> <span class="n">LLSignal</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sig</span><span class="o">.</span><span class="n">load_sph</span><span class="p">(</span><span class="s1">&#39;signals/example.sph&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We will use the feature pipeline to quickly compute MFCC features.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mfcc_pipe_fn</span> <span class="o">=</span> <span class="s2">&quot;config/sid_mfcc+gmmsad_pipe.json&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">mfcc_pipe_fn</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+<span class="go">      pipe_config = json.load(fp)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pipe</span> <span class="o">=</span> <span class="n">FeatPipe</span><span class="p">(</span><span class="n">pipe_config</span><span class="p">,</span> <span class="n">MFCCFeatures</span><span class="p">,</span> <span class="n">GMMSAD</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">feat</span> <span class="o">=</span> <span class="n">pipe</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To compute GSV expansion, we will first need to load a configuration file. This file is available in the config directory.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;config/gsv.json&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+<span class="go">      config = json.load(fp)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gsv</span> <span class="o">=</span> <span class="n">GSV</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now we can compute a GSV expansion.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">gsv</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">feat</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s1">&#39;A few elements of GSV expansion: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s1">&#39;GSV expansion dimension = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -427,13 +813,12 @@
     </div>
 
     <div class="footer">
-        &copy; 2016, Esther Wolf.
-      <a href="_sources/quick_start.txt" rel="nofollow">Show this page source</a>
+      <a href="_sources/quick_start.rst.txt" rel="nofollow">Show this page source</a>
     </div>
      <div class="rel">
     
     <div class="buttonPrevious">
-      <a href="install.html">Previous
+      <a href="prereqs.html">Previous
       </a>
     </div>
     <div class="buttonNext">

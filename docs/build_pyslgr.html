@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
   
-    <title>Build PySLGR &mdash; pySLGR 1 documentation</title>
+    <title>Build PySLGR &#8212; pySLGR 1 documentation</title>
   <!-- htmltitle is before nature.css - we use this hack to load bootstrap first -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="_static/css/bootstrap.min.css" media="screen" />
@@ -25,13 +25,17 @@
         VERSION:     '1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="pySLGR 1 documentation" href="index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Known Issues on Mac" href="known_problems_mac.html" />
+    <link rel="prev" title="Miscellaneous" href="misc.html" />
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -46,10 +50,12 @@
            $(this).css('background-color', '#A7D6E2');
        }
     );
+
+    
     function showMenu() {
       var topNav = document.getElementById("scikit-navbar");
       if (topNav.className === "navbar") {
-          topNav.className += " responsive";
+          topNav.className += " responsive";s
       } else {
           topNav.className = "navbar";
       }
@@ -62,11 +68,12 @@
 <div class="header-wrapper">
     <div class="header"><div class="navbar" id="scikit-navbar">
             <ul>
-                <li><a href="index.html">Home</a></li>
+              <li><a href="index.html">Home</a></li>
               <li><a href="user_guide.html">User Guide</a></li>
-   
-            <li><a href="examples.html">Examples</a></li>
-			<li><a href="search.html">Search</a></li>
+              <li><a href="quick_start.html#examples">Examples</a></li>
+              <li><a href="search.html">Search</a></li>
+              <li><a href="genindex.html">Index</a></li>
+
             </ul>
             <a href="javascript:void(0);" onclick="showMenu()">
                 <div class="nav-icon">
@@ -83,17 +90,47 @@
 <div class="content-wrapper">
     <div class="sphinxsidebar">
     <div class="sphinxsidebarwrapper">
-        <div class="rel rellarge">
+        <div class="rel">
     
 
   <!-- rellinks[1:] is an ugly hack to avoid link to module
   index -->
         <div class="rellink">
+        <a href="misc.html"
+        accesskey="P">Previous
+        <br/>
+        <span class="smallrellink">
+        Miscellaneous
+        </span>
+            <span class="hiddenrellink">
+            Miscellaneous
+            </span>
+        </a>
+        </div>
+            <div class="spacer">
+            &nbsp;
+            </div>
+        <div class="rellink">
+        <a href="known_problems_mac.html"
+        accesskey="N">Next
+        <br/>
+        <span class="smallrellink">
+        Known Issues on Mac
+        </span>
+            <span class="hiddenrellink">
+            Known Issues on Mac
+            </span>
+        </a>
+        </div>
+            <div class="spacer">
+            &nbsp;
+            </div>
+        <div class="rellink">
         <a href="py-modindex.html"
         >Modules
         <br/>
         <span class="smallrellink">
-        Python Module...
+        Python Module Index
         </span>
             <span class="hiddenrellink">
             Python Module Index
@@ -102,6 +139,22 @@
         </div>
 
     <!-- Ad a link to the 'up' page -->
+        <div class="spacer">
+        &nbsp;
+        </div>
+        <div class="rellink">
+        <a href="misc.html">
+        Up
+        <br/>
+        <span class="smallrellink">
+        Miscellaneous
+        </span>
+            <span class="hiddenrellink">
+            Miscellaneous
+            </span>
+            
+        </a>
+        </div>
     </div>
     
       <p class="doc-version">This documentation is for pySLGR <strong>version 1</strong> &mdash; <!--- <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p> --->
@@ -110,7 +163,6 @@
     --->
 	<ul>
 <li><a class="reference internal" href="#">How to Build PySLGR</a><ul>
-<li><a class="reference internal" href="#windows">Windows</a></li>
 <li><a class="reference internal" href="#linux">Linux</a></li>
 <li><a class="reference internal" href="#mac-osx">Mac OSX</a><ul>
 <li><a class="reference internal" href="#installing-the-correct-compiler">Installing the Correct Compiler</a></li>
@@ -137,36 +189,22 @@
             
   <div class="section" id="how-to-build-pyslgr">
 <span id="build-pyslgr-top"></span><h1>How to Build PySLGR<a class="headerlink" href="#how-to-build-pyslgr" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="windows">
-<h2>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h2>
-</div>
+<p>Before building PySLGR, please make sure that you have all the correct versions of the <a class="reference internal" href="install.html#depedency-list"><span class="std std-ref">dependencies</span></a> installed.</p>
 <div class="section" id="linux">
 <h2>Linux<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><p><strong>1.</strong> Make sure that Anaconda is installed. If it is not, you can download it <a class="reference external" href="http://www.continuum.io/downloads">here.</a></p>
 <p><strong>2.</strong> Make sure that your gcc compiler version is greater than 4.8, else follow the instructions to <a class="reference internal" href="#compiler-install"><span class="std std-ref">Installing the Correct Compiler</span></a>.</p>
 <p><strong>3.</strong> Now compile the source code by running:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="nb">all</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">make</span>
 </pre></div>
 </div>
-<div class="line-block">
-<div class="line">in the following directories:</div>
-</div>
-<blockquote>
-<div><ul class="simple">
-<li>slgr/slgr_engine</li>
-<li>slgr/GetF0Lib</li>
-</ul>
-</div></blockquote>
-<p><strong>4.</strong> Navigate to slgr/slgr_cython, and run:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="o">-</span><span class="n">f</span> <span class="n">makefile_linux</span>
-</pre></div>
-</div>
-<p><strong>5.</strong> Then from the same directory build the package:</p>
+<p>in the top level pyslgr directory</p>
+<p><strong>4.</strong> Then from the same directory build the package:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">build</span> <span class="n">pyslgr</span>
 </pre></div>
 </div>
-<p><strong>6.</strong> We can now install the package:</p>
+<p><strong>5.</strong> We can now install the package:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">--</span><span class="n">use</span><span class="o">-</span><span class="n">local</span> <span class="n">pyslgr</span>
 </pre></div>
 </div>
@@ -189,6 +227,13 @@
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">anaconda</span> <span class="n">boost</span><span class="o">=</span><span class="mf">1.60</span><span class="o">.</span><span class="mi">0</span>
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>In some cases, installing boost through Anaconda is not sufficient and you must install it on your system using brew or port. You can use the following brew command:</p>
+<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">install</span> <span class="n">boost</span>
+</pre></div>
+</div>
+</div>
 <p><strong>4.</strong> Install FFTW3 using Anaconda</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">salilab</span> <span class="n">fftw</span><span class="o">=</span><span class="mf">3.3</span><span class="o">.</span><span class="mi">4</span>
 </pre></div>
@@ -199,34 +244,22 @@
 <p class="last">Having a compiler that has a lower version number than 4.8 will result in a linking error later on. The default compiler from Xcode has version 4.3 and will not work.</p>
 </div>
 <p><strong>6.</strong> Now run:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="nb">all</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">make</span>
 </pre></div>
 </div>
-<div class="line-block">
-<div class="line">in the following directories:</div>
-</div>
-<blockquote>
-<div><ul class="simple">
-<li>slgr/slgr_engine</li>
-<li>slgr/GetF0Lib</li>
-</ul>
-</div></blockquote>
-<p><strong>7.</strong> Navigate to slgr/slgr_cython, and run:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="o">-</span><span class="n">f</span> <span class="n">makefile_linux</span>
-</pre></div>
-</div>
-<p><strong>8.</strong> Finally we can build the python module (from the same directoty - slgr/slgr_cython):</p>
+<p>in the top level pyslgr directory.</p>
+<p><strong>7.</strong> Finally we can build the python module (from the same directoty):</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">build</span> <span class="n">pyslgr</span>
 </pre></div>
 </div>
-<p><strong>9.</strong> We now use this local file to install pyslgr:</p>
+<p><strong>8.</strong> We now use this local file to install pyslgr:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">--</span><span class="n">use</span><span class="o">-</span><span class="n">local</span> <span class="n">pyslgr</span>
 </pre></div>
 </div>
 </div></blockquote>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The package will only be available if python is started from the same directory where it was installed. To make the package available from any directory, find the location of the <em>tar.bz2</em> file given after completion of step 8. Copy this file to a location of your choice and follow the <a class="reference internal" href="install.html#install-top"><span class="std std-ref">instructions for installing</span></a>.</p>
+<p class="last">The package will only be available if python is started from the same directory where it was installed. To make the package available from any directory, find the location of the <em>tar.bz2</em> file given after completion of step 7. Copy this file to a location of your choice and follow the <a class="reference internal" href="install.html#install-top"><span class="std std-ref">instructions for installing</span></a>.</p>
 </div>
 <div class="section" id="installing-the-correct-compiler">
 <span id="compiler-install"></span><h3>Installing the Correct Compiler<a class="headerlink" href="#installing-the-correct-compiler" title="Permalink to this headline">¶</a></h3>
@@ -265,11 +298,18 @@
     </div>
 
     <div class="footer">
-        &copy; 2016, Esther Wolf.
-      <a href="_sources/build_pyslgr.txt" rel="nofollow">Show this page source</a>
+      <a href="_sources/build_pyslgr.rst.txt" rel="nofollow">Show this page source</a>
     </div>
-     <div class="rel rellarge">
+     <div class="rel">
     
+    <div class="buttonPrevious">
+      <a href="misc.html">Previous
+      </a>
+    </div>
+    <div class="buttonNext">
+      <a href="known_problems_mac.html">Next
+      </a>
+    </div>
     <div class="buttonPrevious">
       <a href="py-modindex.html">Previous
       </a>

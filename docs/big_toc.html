@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
   
-    <title>&lt;no title&gt; &mdash; pySLGR 1 documentation</title>
+    <title>&lt;no title&gt; &#8212; pySLGR 1 documentation</title>
   <!-- htmltitle is before nature.css - we use this hack to load bootstrap first -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="_static/css/bootstrap.min.css" media="screen" />
@@ -25,13 +25,15 @@
         VERSION:     '1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="pySLGR 1 documentation" href="index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -46,10 +48,12 @@
            $(this).css('background-color', '#A7D6E2');
        }
     );
+
+    
     function showMenu() {
       var topNav = document.getElementById("scikit-navbar");
       if (topNav.className === "navbar") {
-          topNav.className += " responsive";
+          topNav.className += " responsive";s
       } else {
           topNav.className = "navbar";
       }
@@ -62,11 +66,12 @@
 <div class="header-wrapper">
     <div class="header"><div class="navbar" id="scikit-navbar">
             <ul>
-                <li><a href="index.html">Home</a></li>
+              <li><a href="index.html">Home</a></li>
               <li><a href="user_guide.html">User Guide</a></li>
-   
-            <li><a href="examples.html">Examples</a></li>
-			<li><a href="search.html">Search</a></li>
+              <li><a href="quick_start.html#examples">Examples</a></li>
+              <li><a href="search.html">Search</a></li>
+              <li><a href="genindex.html">Index</a></li>
+
             </ul>
             <a href="javascript:void(0);" onclick="showMenu()">
                 <div class="nav-icon">
@@ -93,7 +98,7 @@
         >Modules
         <br/>
         <span class="smallrellink">
-        Python Module...
+        Python Module Index
         </span>
             <span class="hiddenrellink">
             Python Module Index
@@ -170,8 +175,7 @@
     </div>
 
     <div class="footer">
-        &copy; 2016, Esther Wolf.
-      <a href="_sources/big_toc.txt" rel="nofollow">Show this page source</a>
+      <a href="_sources/big_toc.rst.txt" rel="nofollow">Show this page source</a>
     </div>
      <div class="rel rellarge">
     
