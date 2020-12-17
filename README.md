@@ -1,4 +1,4 @@
-# pySLGR 0.7.2
+# pySLGR 1.0
 
 A Python tool for Speaker, Language, and Gender Recognition (SLGR) and general meta-data extraction.
 
