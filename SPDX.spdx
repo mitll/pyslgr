@@ -1,0 +1,5 @@
+SPDXVersion: SPDX-2.1
+PackageName: PYSLGR
+PackageOriginator: MIT Lincoln Laboratory
+PackageHomePage: https://github.com/mitll/pyslgr
+PackageLicenseDeclared: MIT
