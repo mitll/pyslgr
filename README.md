@@ -41,6 +41,7 @@ A Python tool for Speaker, Language, and Gender Recognition (SLGR) and general m
 		conda install pyslgr --use-local
 ## Citation
 Please use this DOI number reference, published on Zenodo, when citing the software:
+
 [![DOI](https://zenodo.org/badge/76076310.svg)](https://zenodo.org/badge/latestdoi/76076310)
 
 ## Disclaimer
